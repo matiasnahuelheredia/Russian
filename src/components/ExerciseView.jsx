@@ -1,0 +1,1772 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { getExercisesByTense } from '../data/exercises';
+import { getVocabularyByTopic } from '../data/vocabularyData';
+import MatchExercise from './MatchExercise';
+import ExamView from './ExamView';
+import ExamView2 from './ExamView2';
+import ExamView3 from './ExamView3';
+import ExamView4 from './ExamView4';
+import ExamView5 from './ExamView5';
+import ExamView6 from './ExamView6';
+import Introduction from './Introduction';
+import ConflictWarfareExercise from './ConflictWarfareExercise';
+import AdjectivesExercise from './AdjectivesExercise';
+import PhonesTechnologyExercise from './PhonesTechnologyExercise';
+import ManagerialReportsExercise from './ManagerialReportsExercise';
+import ConfusingAdverbsExercise from './ConfusingAdverbsExercise';
+import SentenceAdverbsExercise from './SentenceAdverbsExercise';
+import EmailWritingB1 from './EmailWritingB1';
+import EmailWritingB2 from './EmailWritingB2';
+import StoryTellingB2 from './StoryTellingB2';
+import LinkingWordsB2 from './LinkingWordsB2';
+import PersonalQuestionsB2 from './PersonalQuestionsB2';
+import PictureDescriptionB2 from './PictureDescriptionB2';
+import TalkAboutYourselfB2 from './TalkAboutYourselfB2';
+import JobInterviewB2 from './JobInterviewB2';
+import VerbBeA1Exercise from './VerbBeA1Exercise';
+import HaveHadC1Exercise from './HaveHadC1Exercise';
+import LinkersC1Exercise from './LinkersC1Exercise';
+import PronounsC1Exercise from './PronounsC1Exercise';
+import PastTensesC1Exercise from './PastTensesC1Exercise';
+import GetVerbC1Exercise from './GetVerbC1Exercise';
+import DiscourseMarkersC1Exercise from './DiscourseMarkersC1Exercise';
+import SpeculationDeductionC1Exercise from './SpeculationDeductionC1Exercise';
+import InversionC1Exercise from './InversionC1Exercise';
+import DistancingC1Exercise from './DistancingC1Exercise';
+import UnrealPastTensesC1Exercise from './UnrealPastTensesC1Exercise';
+import VerbObjectInfinitiveGerundC1Exercise from './VerbObjectInfinitiveGerundC1Exercise';
+import ConditionalSentencesC1Exercise from './ConditionalSentencesC1Exercise';
+import PermissionObligationC1Exercise from './PermissionObligationC1Exercise';
+import VerbsSensesC1Exercise from './VerbsSensesC1Exercise';
+import GerundsInfinitivesC1Exercise from './GerundsInfinitivesC1Exercise';
+import FuturePlansC1Exercise from './FuturePlansC1Exercise';
+import EllipsisC1Exercise from './EllipsisC1Exercise';
+import CompoundPossessiveNounsC1Exercise from './CompoundPossessiveNounsC1Exercise';
+import CleftSentencesC1Exercise from './CleftSentencesC1Exercise';
+import RelativeClausesC1Exercise from './RelativeClausesC1Exercise';
+import AdjectivesC1Exercise from './AdjectivesC1Exercise';
+import IdiomsC1Exercise from './IdiomsC1Exercise';
+import WorkVocabularyC1Exercise from './WorkVocabularyC1Exercise';
+import PhrasalVerbsC1Exercise from './PhrasalVerbsC1Exercise';
+import SoundsVoiceC1Exercise from './SoundsVoiceC1Exercise';
+import TimeExpressionsC1Exercise from './TimeExpressionsC1Exercise';
+import PrepositionsC1Exercise from './PrepositionsC1Exercise';
+import MoneyVocabularyC1Exercise from './MoneyVocabularyC1Exercise';
+import PhonesTechnologyC1Exercise from './PhonesTechnologyC1Exercise';
+import NegativePrefixesC1Exercise from './NegativePrefixesC1Exercise';
+import PrefixesMeaningsC1Exercise from './PrefixesMeaningsC1Exercise';
+import VerbsPhrasesC1Exercise from './VerbsPhrasesC1Exercise';
+import AnimalsBirdsInsectsC1Exercise from './AnimalsBirdsInsectsC1Exercise';
+import AnimalIssuesC1Exercise from './AnimalIssuesC1Exercise';
+import ExpressionsIdiomsC1Exercise from './ExpressionsIdiomsC1Exercise';
+import UtensilsC1Exercise from './UtensilsC1Exercise';
+import NumbersCountingExercise from './NumbersCountingExercise';
+import BasicPhrasesExercise from './BasicPhrasesExercise';
+import PronunciationExercise from './PronunciationExercise';
+import PresentarteExercise from './PresentarteExercise';
+import PedirComidaExercise from './PedirComidaExercise';
+import ComprarAlgoExercise from './ComprarAlgoExercise';
+import DireccionesExercise from './DireccionesExercise';
+import RutinaExercise from './RutinaExercise';
+import FamiliaTrabajoExercise from './FamiliaTrabajoExercise';
+import PasadoSimpleRusoExercise from './PasadoSimpleRusoExercise';
+import PedirInfoExercise from './PedirInfoExercise';
+import VerbosMovimientoB1Exercise from './VerbosMovimientoB1Exercise';
+import VerbosReflexivosB1Exercise from './VerbosReflexivosB1Exercise';
+import ComparativosB1Exercise from './ComparativosB1Exercise';
+import ParticiposC1Exercise from './ParticiposC1Exercise';
+import GerundiosC1Exercise from './GerundiosC1Exercise';
+import AspectosVerbalesC1Exercise from './AspectosVerbalesC1Exercise';
+
+const ExerciseView = ({ tenseId, onSelectTense }) => {
+  // Si es la introducción, mostrar el componente Introduction
+  if (tenseId === 'introduction') {
+    return <Introduction onSelectTense={onSelectTense} />;
+  }
+
+  // Si es conflict-warfare, mostrar el componente ConflictWarfareExercise
+  if (tenseId === 'conflict-warfare') {
+    return <ConflictWarfareExercise />;
+  }
+
+  // Si es adjectives, mostrar el componente AdjectivesExercise
+  if (tenseId === 'adjectives') {
+    return <AdjectivesExercise />;
+  }
+
+  // Si es phones-technology, mostrar el componente PhonesTechnologyExercise
+  if (tenseId === 'phones-technology') {
+    return <PhonesTechnologyExercise />;
+  }
+
+  // Si es managerial-reports, mostrar el componente ManagerialReportsExercise
+  if (tenseId === 'managerial-reports') {
+    return <ManagerialReportsExercise />;
+  }
+
+  // Si es confusing-adverbs, mostrar el componente ConfusingAdverbsExercise
+  if (tenseId === 'confusing-adverbs') {
+    return <ConfusingAdverbsExercise />;
+  }
+
+  // Si es sentence-adverbs, mostrar el componente SentenceAdverbsExercise
+  if (tenseId === 'sentence-adverbs') {
+    return <SentenceAdverbsExercise />;
+  }
+
+  // Si es email-writing-b1, mostrar el componente EmailWritingB1
+  if (tenseId === 'email-writing-b1') {
+    return <EmailWritingB1 />;
+  }
+
+  // Si es email-writing-b1, mostrar el componente EmailWritingB1
+  if (tenseId === 'email-writing-b1') {
+    return <EmailWritingB1 />;
+  }
+
+  // Si es email-writing-b2, mostrar el componente EmailWritingB2
+  if (tenseId === 'email-writing-b2') {
+    return <EmailWritingB2 />;
+  }
+
+  // Si es story-telling-b2, mostrar el componente StoryTellingB2
+  if (tenseId === 'story-telling-b2') {
+    return <StoryTellingB2 />;
+  }
+
+  // Si es linking-words-b2, mostrar el componente LinkingWordsB2
+  if (tenseId === 'linking-words-b2') {
+    return <LinkingWordsB2 />;
+  }
+
+  // Si es personal-questions-b2, mostrar el componente PersonalQuestionsB2
+  if (tenseId === 'personal-questions-b2') {
+    return <PersonalQuestionsB2 />;
+  }
+
+  // Si es picture-description-b2, mostrar el componente PictureDescriptionB2
+  if (tenseId === 'picture-description-b2') {
+    return <PictureDescriptionB2 />;
+  }
+
+  // Si es talk-about-yourself-b2, mostrar el componente TalkAboutYourselfB2
+  if (tenseId === 'talk-about-yourself-b2') {
+    return <TalkAboutYourselfB2 />;
+  }
+
+  // Si es job-interview-b2, mostrar el componente JobInterviewB2
+  if (tenseId === 'job-interview-b2') {
+    return <JobInterviewB2 />;
+  }
+
+  // Ejercicios de ruso - Alfabeto y fundamentos
+  if (tenseId === 'cyrillic-alphabet' || tenseId === 'verb-be-a1') {
+    return <VerbBeA1Exercise />;
+  }
+
+  // Números en Ruso
+  if (tenseId === 'numbers-counting') {
+    return <NumbersCountingExercise />;
+  }
+
+  // Frases Básicas
+  if (tenseId === 'basic-phrases') {
+    return <BasicPhrasesExercise />;
+  }
+
+  // Pronunciación Rusa
+  if (tenseId === 'pronunciation') {
+    return <PronunciationExercise />;
+  }
+
+  // A1 Situaciones
+  if (tenseId === 'presentarte') return <PresentarteExercise />;
+  if (tenseId === 'pedir-comida') return <PedirComidaExercise />;
+  if (tenseId === 'comprar-algo') return <ComprarAlgoExercise />;
+  if (tenseId === 'preguntar-direcciones') return <DireccionesExercise />;
+
+  // A2 Elemental
+  if (tenseId === 'rutina-diaria') return <RutinaExercise />;
+  if (tenseId === 'familia-trabajo') return <FamiliaTrabajoExercise />;
+  if (tenseId === 'pasado-ruso') return <PasadoSimpleRusoExercise />;
+  if (tenseId === 'pedir-informacion') return <PedirInfoExercise />;
+
+  // B1 Intermedio
+  if (tenseId === 'verbos-movimiento-b1') return <VerbosMovimientoB1Exercise />;
+  if (tenseId === 'verbos-reflexivos-b1') return <VerbosReflexivosB1Exercise />;
+  if (tenseId === 'comparativos-b1') return <ComparativosB1Exercise />;
+
+  // C1 Avanzado
+  if (tenseId === 'participios-c1') return <ParticiposC1Exercise />;
+  if (tenseId === 'gerundios-c1') return <GerundiosC1Exercise />;
+  if (tenseId === 'aspecto-verbal-c1') return <AspectosVerbalesC1Exercise />;
+
+  // Ejercicios de casos gramaticales
+  if (
+    [
+      'nominative-case',
+      'accusative-case',
+      'genitive-case',
+      'dative-case',
+      'instrumental-case',
+      'prepositional-case',
+    ].includes(tenseId)
+  ) {
+    return (
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="bg-htb-card rounded-lg border border-gray-800 p-6 mb-6">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Casos Gramaticales del Ruso
+          </h2>
+          <p className="text-htb-text mb-4">
+            Los ejercicios de casos gramaticales están en desarrollo.
+          </p>
+          <div className="bg-htb-sidebar border border-htb-green/30 rounded-lg p-4">
+            <p className="text-htb-green font-semibold mb-2">
+              📚 Los 6 casos del ruso:
+            </p>
+            <ul className="list-disc list-inside text-htb-text space-y-1">
+              <li>
+                <strong>Nominativo</strong> - Sujeto de la oración
+              </li>
+              <li>
+                <strong>Acusativo</strong> - Objeto directo
+              </li>
+              <li>
+                <strong>Genitivo</strong> - Posesión, negación
+              </li>
+              <li>
+                <strong>Dativo</strong> - Objeto indirecto
+              </li>
+              <li>
+                <strong>Instrumental</strong> - Instrumento, compañía
+              </li>
+              <li>
+                <strong>Prepositivo</strong> - Después de preposiciones
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Ejercicios de verbos
+  if (
+    [
+      'present-tense-verbs',
+      'past-tense-verbs',
+      'future-tense-verbs',
+      'verbs-of-motion',
+      'verb-aspects',
+    ].includes(tenseId)
+  ) {
+    return (
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="bg-htb-card rounded-lg border border-gray-800 p-6 mb-6">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Sistema Verbal Ruso
+          </h2>
+          <p className="text-htb-text mb-4">
+            Los ejercicios de verbos están en desarrollo.
+          </p>
+          <div className="bg-htb-sidebar border border-htb-green/30 rounded-lg p-4">
+            <p className="text-htb-green font-semibold mb-2">
+              🚀 Sistema verbal ruso:
+            </p>
+            <ul className="list-disc list-inside text-htb-text space-y-1">
+              <li>
+                <strong>Presente</strong> - Dos conjugaciones principales
+              </li>
+              <li>
+                <strong>Pasado</strong> - Formas por género y número
+              </li>
+              <li>
+                <strong>Futuro</strong> - Perfecto e imperfecto
+              </li>
+              <li>
+                <strong>Verbos de movimiento</strong> - Determinado e
+                indeterminado
+              </li>
+              <li>
+                <strong>Aspectos</strong> - Perfectivo e imperfectivo
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Ejercicios de vocabulario
+  if (
+    [
+      'family-relations',
+      'food-drinks',
+      'city-transport',
+      'work-professions',
+      'travel-tourism',
+      'shopping-money',
+    ].includes(tenseId)
+  ) {
+    return (
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="bg-htb-card rounded-lg border border-gray-800 p-6 mb-6">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Vocabulario Ruso
+          </h2>
+          <p className="text-htb-text mb-4">
+            Los ejercicios de vocabulario temático están en desarrollo.
+          </p>
+          <div className="bg-htb-sidebar border border-htb-green/30 rounded-lg p-4">
+            <p className="text-htb-green font-semibold mb-2">
+              📖 Temas disponibles próximamente:
+            </p>
+            <ul className="list-disc list-inside text-htb-text space-y-1">
+              <li>Familia y Relaciones</li>
+              <li>Comida y Bebidas</li>
+              <li>Ciudad y Transporte</li>
+              <li>Trabajo y Profesiones</li>
+              <li>Viajes y Turismo</li>
+              <li>Compras y Dinero</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Si es have-had-c1, mostrar el componente HaveHadC1Exercise
+  if (tenseId === 'have-had-c1') {
+    return <HaveHadC1Exercise />;
+  }
+
+  // Si es linkers-c1, mostrar el componente LinkersC1Exercise
+  if (tenseId === 'linkers-c1') {
+    return <LinkersC1Exercise />;
+  }
+
+  // Si es pronouns-c1, mostrar el componente PronounsC1Exercise
+  if (tenseId === 'pronouns-c1') {
+    return <PronounsC1Exercise />;
+  }
+
+  // Si es past-tenses-c1, mostrar el componente PastTensesC1Exercise
+  if (tenseId === 'past-tenses-c1') {
+    return <PastTensesC1Exercise />;
+  }
+
+  // Si es get-verb-c1, mostrar el componente GetVerbC1Exercise
+  if (tenseId === 'get-verb-c1') {
+    return <GetVerbC1Exercise />;
+  }
+
+  // Si es discourse-markers-c1, mostrar el componente DiscourseMarkersC1Exercise
+  if (tenseId === 'discourse-markers-c1') {
+    return <DiscourseMarkersC1Exercise />;
+  }
+
+  // Si es speculation-deduction-c1, mostrar el componente SpeculationDeductionC1Exercise
+  if (tenseId === 'speculation-deduction-c1') {
+    return <SpeculationDeductionC1Exercise />;
+  }
+
+  // Si es inversion-c1, mostrar el componente InversionC1Exercise
+  if (tenseId === 'inversion-c1') {
+    return <InversionC1Exercise />;
+  }
+
+  // Si es distancing-c1, mostrar el componente DistancingC1Exercise
+  if (tenseId === 'distancing-c1') {
+    return <DistancingC1Exercise />;
+  }
+
+  // Si es unreal-past-tenses-c1, mostrar el componente UnrealPastTensesC1Exercise
+  if (tenseId === 'unreal-past-tenses-c1') {
+    return <UnrealPastTensesC1Exercise />;
+  }
+
+  // Si es verb-object-infinitive-gerund-c1, mostrar el componente VerbObjectInfinitiveGerundC1Exercise
+  if (tenseId === 'verb-object-infinitive-gerund-c1') {
+    return <VerbObjectInfinitiveGerundC1Exercise />;
+  }
+
+  // Si es conditional-sentences-c1, mostrar el componente ConditionalSentencesC1Exercise
+  if (tenseId === 'conditional-sentences-c1') {
+    return <ConditionalSentencesC1Exercise />;
+  }
+
+  // Si es permission-obligation-c1, mostrar el componente PermissionObligationC1Exercise
+  if (tenseId === 'permission-obligation-c1') {
+    return <PermissionObligationC1Exercise />;
+  }
+
+  // Si es verbs-senses-c1, mostrar el componente VerbsSensesC1Exercise
+  if (tenseId === 'verbs-senses-c1') {
+    return <VerbsSensesC1Exercise />;
+  }
+
+  // Si es gerunds-infinitives-c1, mostrar el componente GerundsInfinitivesC1Exercise
+  if (tenseId === 'gerunds-infinitives-c1') {
+    return <GerundsInfinitivesC1Exercise />;
+  }
+
+  // Si es future-plans-c1, mostrar el componente FuturePlansC1Exercise
+  if (tenseId === 'future-plans-c1') {
+    return <FuturePlansC1Exercise />;
+  }
+
+  // Si es ellipsis-c1, mostrar el componente EllipsisC1Exercise
+  if (tenseId === 'ellipsis-c1') {
+    return <EllipsisC1Exercise />;
+  }
+
+  // Si es compound-possessive-nouns-c1, mostrar el componente CompoundPossessiveNounsC1Exercise
+  if (tenseId === 'compound-possessive-nouns-c1') {
+    return <CompoundPossessiveNounsC1Exercise />;
+  }
+
+  // Si es cleft-sentences-c1, mostrar el componente CleftSentencesC1Exercise
+  if (tenseId === 'cleft-sentences-c1') {
+    return <CleftSentencesC1Exercise />;
+  }
+
+  // Si es relative-clauses-c1, mostrar el componente RelativeClausesC1Exercise
+  if (tenseId === 'relative-clauses-c1') {
+    return <RelativeClausesC1Exercise />;
+  }
+
+  // Si es idioms-c1, mostrar el componente IdiomsC1Exercise
+  if (tenseId === 'idioms-c1') {
+    return <IdiomsC1Exercise />;
+  }
+
+  // Si es work-vocabulary-c1, mostrar el componente WorkVocabularyC1Exercise
+  if (tenseId === 'work-vocabulary-c1') {
+    return <WorkVocabularyC1Exercise />;
+  }
+
+  // Si es phrasal-verbs-c1, mostrar el componente PhrasalVerbsC1Exercise
+  if (tenseId === 'phrasal-verbs-c1') {
+    return <PhrasalVerbsC1Exercise />;
+  }
+
+  // Si es sounds-voice-c1, mostrar el componente SoundsVoiceC1Exercise
+  if (tenseId === 'sounds-voice-c1') {
+    return <SoundsVoiceC1Exercise />;
+  }
+
+  // Si es time-expressions-c1, mostrar el componente TimeExpressionsC1Exercise
+  if (tenseId === 'time-expressions-c1') {
+    return <TimeExpressionsC1Exercise />;
+  }
+
+  // Si es prepositions-c1, mostrar el componente PrepositionsC1Exercise
+  if (tenseId === 'prepositions-c1') {
+    return <PrepositionsC1Exercise />;
+  }
+
+  // Si es money-vocabulary-c1, mostrar el componente MoneyVocabularyC1Exercise
+  if (tenseId === 'money-vocabulary-c1') {
+    return <MoneyVocabularyC1Exercise />;
+  }
+
+  // Si es phones-technology-c1, mostrar el componente PhonesTechnologyC1Exercise
+  if (tenseId === 'phones-technology-c1') {
+    return <PhonesTechnologyC1Exercise />;
+  }
+
+  // Si es negative-prefixes-c1, mostrar el componente NegativePrefixesC1Exercise
+  if (tenseId === 'negative-prefixes-c1') {
+    return <NegativePrefixesC1Exercise />;
+  }
+
+  // Si es prefixes-meanings-c1, mostrar el componente PrefixesMeaningsC1Exercise
+  if (tenseId === 'prefixes-meanings-c1') {
+    return <PrefixesMeaningsC1Exercise />;
+  }
+
+  // Si es verbs-phrases-c1, mostrar el componente VerbsPhrasesC1Exercise
+  if (tenseId === 'verbs-phrases-c1') {
+    return <VerbsPhrasesC1Exercise />;
+  }
+
+  // Si es animals-birds-insects-c1, mostrar el componente AnimalsBirdsInsectsC1Exercise
+  if (tenseId === 'animals-birds-insects-c1') {
+    return <AnimalsBirdsInsectsC1Exercise />;
+  }
+
+  // Si es animal-issues-c1, mostrar el componente AnimalIssuesC1Exercise
+  if (tenseId === 'animal-issues-c1') {
+    return <AnimalIssuesC1Exercise />;
+  }
+
+  // Si es expressions-idioms-c1, mostrar el componente ExpressionsIdiomsC1Exercise
+  if (tenseId === 'expressions-idioms-c1') {
+    return <ExpressionsIdiomsC1Exercise />;
+  }
+
+  // Si es utensils-c1, mostrar el componente UtensilsC1Exercise
+  if (tenseId === 'utensils-c1') {
+    return <UtensilsC1Exercise />;
+  }
+
+  // Si es adjectives-c1, mostrar el componente AdjectivesC1Exercise
+  if (tenseId === 'adjectives-c1') {
+    return <AdjectivesC1Exercise />;
+  }
+
+  // Si es un ejercicio de tipo match, usar el componente especializado
+  if (tenseId === 'weather-match') {
+    return <MatchExercise tenseId={tenseId} />;
+  }
+
+  // Si es el examen, usar el componente ExamView
+  if (tenseId === 'exam') {
+    return <ExamView />;
+  }
+
+  // Si es el examen 2 (cybersecurity), usar el componente ExamView2
+  if (tenseId === 'exam2') {
+    return <ExamView2 />;
+  }
+
+  // Si es el examen 3 (final exam), usar el componente ExamView3
+  if (tenseId === 'exam3') {
+    return <ExamView3 />;
+  }
+
+  // Si es el examen 4 (Complete Exam 2), usar el componente ExamView4
+  if (tenseId === 'exam4') {
+    return <ExamView4 />;
+  }
+
+  // Si es el examen 5 (Complete Exam 3), usar el componente ExamView5
+  if (tenseId === 'exam5') {
+    return <ExamView5 />;
+  }
+
+  // Si es el examen 6 (Complete Exam 4), usar el componente ExamView6
+  if (tenseId === 'exam6') {
+    return <ExamView6 />;
+  }
+
+  const [exercises, setExercises] = useState([]);
+  const [currentExercise, setCurrentExercise] = useState(null);
+  const [userAnswer, setUserAnswer] = useState('');
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [feedback, setFeedback] = useState(null);
+  const [isReversed, setIsReversed] = useState(true);
+  const [isVocabulary, setIsVocabulary] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
+  const [countdown, setCountdown] = useState(4);
+  const [initialCountdown, setInitialCountdown] = useState(20);
+  const [stats, setStats] = useState({ correct: 0, incorrect: 0 });
+  const [vocabularyImage, setVocabularyImage] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [remainingVocabExercises, setRemainingVocabExercises] = useState([]);
+  const [reorderedWords, setReorderedWords] = useState([]);
+  const [availableWords, setAvailableWords] = useState([]);
+
+  const inputRef = useRef(null);
+  const initialTimerRef = useRef(null);
+  const initialIntervalRef = useRef(null);
+  const feedbackTimerRef = useRef(null);
+  const feedbackIntervalRef = useRef(null);
+
+  // Función para obtener imagen relacionada con la palabra
+  const fetchVocabularyImage = async (word) => {
+    try {
+      setImageLoading(true);
+      // Usar Pexels API sin necesidad de key para imágenes básicas
+      // O usar una URL de búsqueda directa
+      const searchTerm = encodeURIComponent(word);
+      const imageUrl = `https://source.unsplash.com/featured/400x300/?${searchTerm}`;
+
+      setTimeout(() => {
+        setVocabularyImage(imageUrl);
+        setImageLoading(false);
+      }, 100);
+    } catch (error) {
+      console.error('Error loading image:', error);
+      setVocabularyImage(null);
+      setImageLoading(false);
+    }
+  };
+
+  // Función para limpiar todos los timers
+  const clearAllTimers = () => {
+    if (initialTimerRef.current) clearTimeout(initialTimerRef.current);
+    if (initialIntervalRef.current) clearInterval(initialIntervalRef.current);
+    if (feedbackTimerRef.current) clearTimeout(feedbackTimerRef.current);
+    if (feedbackIntervalRef.current) clearInterval(feedbackIntervalRef.current);
+  };
+
+  // Función para iniciar el countdown inicial de vocabulario
+  const startInitialCountdown = (exercise) => {
+    clearAllTimers();
+    setInitialCountdown(20);
+    let currentCount = 20;
+
+    initialIntervalRef.current = setInterval(() => {
+      currentCount -= 1;
+      setInitialCountdown(currentCount);
+
+      if (currentCount <= 0) {
+        clearInterval(initialIntervalRef.current);
+      }
+    }, 1000);
+
+    initialTimerRef.current = setTimeout(() => {
+      clearInterval(initialIntervalRef.current);
+      setInitialCountdown(0);
+
+      // Timeout: mostrar respuesta y contar como incorrecta
+      if (exercise && exercise.englishWord) {
+        let correctAnswers = [];
+        if (isReversed) {
+          correctAnswers = [exercise.englishWord];
+        } else {
+          correctAnswers = Array.isArray(exercise.spanishWord)
+            ? exercise.spanishWord
+            : [exercise.spanishWord];
+        }
+
+        setFeedback({
+          isCorrect: false,
+          message: '⏱️ Se acabó el tiempo. ' + exercise.explanation,
+          correctAnswer: correctAnswers.join(' / '),
+          userAnswerText: '',
+        });
+        setShowAnswer(true);
+
+        setStats((prev) => ({
+          correct: prev.correct,
+          incorrect: prev.incorrect + 1,
+        }));
+
+        // Pasar a siguiente pregunta después de 3 segundos
+        feedbackTimerRef.current = setTimeout(() => {
+          loadNewQuestion();
+        }, 3000);
+      }
+    }, 20000);
+  };
+
+  useEffect(() => {
+    clearAllTimers();
+
+    const vocabTopics = [
+      'clothes-fashion',
+      'airport',
+      'weather',
+      'illnesses-injuries',
+      'cinema',
+      'dependent-prepositions',
+      'education',
+      'food-cooking',
+      'houses',
+      'money',
+      'personality',
+      'relationships',
+      'sport',
+      'the-body',
+      'transport',
+      'word-building',
+      'work',
+      'adverbs-phrases',
+      'business',
+    ];
+    const isVocabTopic = vocabTopics.includes(tenseId);
+    setIsVocabulary(isVocabTopic);
+
+    let loadedExercises = [];
+    if (isVocabTopic) {
+      loadedExercises = getVocabularyByTopic(tenseId);
+      setRemainingVocabExercises([...loadedExercises]);
+    } else {
+      loadedExercises = getExercisesByTense(tenseId);
+    }
+
+    setExercises(loadedExercises);
+
+    setUserAnswer('');
+    setUserAnswers([]);
+    setFeedback(null);
+    setIsReversed(true);
+    setShowAnswer(false);
+    setCountdown(4);
+    setStats({ correct: 0, incorrect: 0 });
+    setReorderedWords([]);
+    setAvailableWords([]);
+
+    if (loadedExercises.length > 0) {
+      const randomIndex = Math.floor(Math.random() * loadedExercises.length);
+      const exercise = loadedExercises[randomIndex];
+      setCurrentExercise(exercise);
+
+      // Initialize reorder exercise
+      if (
+        exercise.sentenceParts &&
+        exercise.sentenceParts[0]?.type === 'reorder'
+      ) {
+        setAvailableWords([...exercise.words]);
+      }
+
+      if (isVocabTopic) {
+        startInitialCountdown(exercise);
+        // Cargar imagen para vocabulario
+        if (exercise.englishWord) {
+          if (exercise.imageUrl) {
+            setVocabularyImage(exercise.imageUrl);
+            setImageLoading(false);
+          } else {
+            fetchVocabularyImage(exercise.englishWord);
+          }
+        }
+      }
+    }
+
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, 100);
+
+    return () => clearAllTimers();
+  }, [tenseId]);
+
+  const handleToggleDirection = () => {
+    clearAllTimers();
+    setIsReversed(!isReversed);
+    setUserAnswer('');
+    setUserAnswers([]);
+    setFeedback(null);
+    setShowAnswer(false);
+    setCountdown(4);
+    // Reset remaining exercises when changing direction
+    if (isVocabulary) {
+      setRemainingVocabExercises([...exercises]);
+    }
+    loadNewQuestion();
+  };
+
+  const loadNewQuestion = () => {
+    const exercisesToUse =
+      isVocabulary && remainingVocabExercises.length > 0
+        ? remainingVocabExercises
+        : exercises;
+
+    if (exercisesToUse.length > 0) {
+      clearAllTimers();
+
+      const randomIndex = Math.floor(Math.random() * exercisesToUse.length);
+      const exercise = exercisesToUse[randomIndex];
+      setCurrentExercise(exercise);
+      setUserAnswer('');
+      setUserAnswers([]);
+      setFeedback(null);
+      setShowAnswer(false);
+      setCountdown(4);
+
+      // Initialize reorder exercise if needed
+      if (
+        exercise.sentenceParts &&
+        exercise.sentenceParts[0]?.type === 'reorder'
+      ) {
+        setReorderedWords([]);
+        setAvailableWords([...exercise.words]);
+      } else {
+        setReorderedWords([]);
+        setAvailableWords([]);
+      }
+
+      // Initialize reorder exercise if needed
+      if (
+        exercise.sentenceParts &&
+        exercise.sentenceParts[0]?.type === 'reorder'
+      ) {
+        setReorderedWords([]);
+        setAvailableWords([...exercise.words]);
+      } else {
+        setReorderedWords([]);
+        setAvailableWords([]);
+      }
+
+      // Iniciar countdown inicial solo para vocabulario
+      if (isVocabulary && exercise.englishWord) {
+        startInitialCountdown(exercise);
+        // Cargar imagen para vocabulario
+        if (exercise.imageUrl) {
+          setVocabularyImage(exercise.imageUrl);
+          setImageLoading(false);
+        } else {
+          fetchVocabularyImage(exercise.englishWord);
+        }
+      }
+
+      // Hacer focus en el input después de un breve delay
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }, 100);
+    }
+  };
+
+  const handleAnswerChange = (
+    selectedValue,
+    inputIndex = null,
+    isDropdown = false
+  ) => {
+    if (inputIndex !== null || isDropdown) {
+      const newAnswers = [...userAnswers];
+      newAnswers[inputIndex] = selectedValue;
+      setUserAnswers(newAnswers);
+    } else {
+      setUserAnswer(selectedValue);
+    }
+    setFeedback(null);
+  };
+
+  const normalizeAnswer = (answer) => {
+    return answer.toLowerCase().trim().replace(/\s+/g, ' ');
+  };
+
+  const checkAnswer = () => {
+    if (!currentExercise) return;
+
+    // Detener el countdown inicial cuando se verifica la respuesta
+    clearAllTimers();
+    setInitialCountdown(0);
+
+    // Handle reorder exercises
+    if (
+      currentExercise.sentenceParts &&
+      currentExercise.sentenceParts[0]?.type === 'reorder'
+    ) {
+      if (reorderedWords.length !== currentExercise.correctAnswer.length) {
+        setFeedback({
+          isCorrect: false,
+          message: 'Please arrange all the words',
+          correctAnswer: currentExercise.correctAnswer.join(' '),
+        });
+        return;
+      }
+
+      const isCorrect =
+        JSON.stringify(reorderedWords) ===
+        JSON.stringify(currentExercise.correctAnswer);
+
+      setFeedback({
+        isCorrect,
+        message: isCorrect
+          ? 'Correct! ' + currentExercise.explanation
+          : 'Incorrect. ' + currentExercise.explanation,
+        correctAnswer: currentExercise.correctAnswer.join(' '),
+        userAnswerText: reorderedWords.join(' '),
+      });
+
+      setStats((prev) => ({
+        correct: prev.correct + (isCorrect ? 1 : 0),
+        incorrect: prev.incorrect + (isCorrect ? 0 : 1),
+      }));
+
+      return;
+    }
+
+    // Para ejercicios de vocabulario
+    if (isVocabulary && currentExercise.englishWord) {
+      const answer =
+        Array.isArray(userAnswer) && userAnswer.length > 0
+          ? userAnswer[0]
+          : userAnswer;
+
+      if (!answer || answer.trim() === '') {
+        setFeedback({
+          isCorrect: false,
+          message: 'Please complete your answer',
+          correctAnswer: isReversed
+            ? currentExercise.englishWord
+            : Array.isArray(currentExercise.spanishWord)
+              ? currentExercise.spanishWord.join(', ')
+              : currentExercise.spanishWord,
+        });
+        return;
+      }
+
+      const normalizedUserAnswer = normalizeAnswer(answer);
+      let isCorrect = false;
+      let correctAnswers = [];
+
+      if (isReversed) {
+        correctAnswers = [currentExercise.englishWord];
+        isCorrect =
+          normalizeAnswer(currentExercise.englishWord) === normalizedUserAnswer;
+      } else {
+        correctAnswers = Array.isArray(currentExercise.spanishWord)
+          ? currentExercise.spanishWord
+          : [currentExercise.spanishWord];
+        isCorrect = correctAnswers.some(
+          (correct) => normalizeAnswer(correct) === normalizedUserAnswer
+        );
+      }
+
+      setFeedback({
+        isCorrect,
+        message: isCorrect
+          ? 'Correct! ' + currentExercise.explanation
+          : 'Incorrect. ' + currentExercise.explanation,
+        correctAnswer: correctAnswers.join(' / '),
+        userAnswerText: answer,
+      });
+
+      // Actualizar estadísticas
+      setStats((prev) => ({
+        correct: prev.correct + (isCorrect ? 1 : 0),
+        incorrect: prev.incorrect + (isCorrect ? 0 : 1),
+      }));
+
+      // Si la respuesta es correcta, eliminar del pool y pasar a la siguiente
+      if (isCorrect) {
+        // Remover el ejercicio actual del pool de vocabulario
+        const updatedRemaining = remainingVocabExercises.filter(
+          (ex) => ex !== currentExercise
+        );
+        setRemainingVocabExercises(updatedRemaining);
+
+        // Mostrar mensaje si completó todos
+        if (updatedRemaining.length === 0) {
+          setTimeout(() => {
+            alert(
+              'Congratulations! You have completed all words correctly. 🎉\n\nFinal statistics:\nCorrect: ' +
+                (stats.correct + 1) +
+                '\nIncorrect: ' +
+                stats.incorrect
+            );
+            // Reiniciar el vocabulario
+            setRemainingVocabExercises([...exercises]);
+            setStats({ correct: 0, incorrect: 0 });
+          }, 100);
+        }
+
+        feedbackTimerRef.current = setTimeout(() => {
+          loadNewQuestion();
+        }, 5000);
+      } else {
+        // Si es incorrecta, iniciar countdown y timer para mostrar respuesta después de 4 segundos
+        setCountdown(4);
+        let currentCount = 4;
+
+        feedbackIntervalRef.current = setInterval(() => {
+          currentCount -= 1;
+          setCountdown(currentCount);
+
+          if (currentCount <= 0) {
+            clearInterval(feedbackIntervalRef.current);
+          }
+        }, 1000);
+
+        feedbackTimerRef.current = setTimeout(() => {
+          setShowAnswer(true);
+          clearInterval(feedbackIntervalRef.current);
+        }, 4000);
+      }
+
+      return;
+    }
+
+    // Para ejercicios con inputs de texto (array de respuestas)
+    if (Array.isArray(currentExercise.correctAnswer)) {
+      if (
+        !userAnswers ||
+        userAnswers.length === 0 ||
+        userAnswers.every((ans) => !ans || ans.trim() === '')
+      ) {
+        setFeedback({
+          isCorrect: false,
+          message: 'Please complete all answers',
+          correctAnswer: currentExercise.correctAnswer.join(' ... '),
+        });
+        return;
+      }
+
+      const allCorrect = currentExercise.correctAnswer.every((correct, idx) => {
+        const userAns = userAnswers[idx];
+        if (!userAns || userAns.trim() === '') return false;
+        return normalizeAnswer(userAns) === normalizeAnswer(correct);
+      });
+
+      setFeedback({
+        isCorrect: allCorrect,
+        message: allCorrect
+          ? 'Correct! ' + currentExercise.explanation
+          : 'Incorrect. ' + currentExercise.explanation,
+        correctAnswer: currentExercise.correctAnswer.join(' ... '),
+        userAnswerText: userAnswers.join(' ... '),
+        tense: currentExercise.tense,
+      });
+      return;
+    }
+
+    // Para ejercicios con dropdown (puede ser único o múltiple)
+    // Contar cuántos dropdowns hay
+    const dropdownCount =
+      currentExercise.sentenceParts?.filter((p) => p.type === 'dropdown')
+        .length || 0;
+
+    if (dropdownCount > 1) {
+      // Múltiples dropdowns: verificar que todos estén completados
+      if (
+        !userAnswers ||
+        userAnswers.length === 0 ||
+        userAnswers.some(
+          (ans) => ans === undefined || ans === '' || ans === '-1'
+        )
+      ) {
+        setFeedback({
+          isCorrect: false,
+          message: 'Please complete all answers',
+        });
+        return;
+      }
+
+      // Verificar que todas las respuestas sean correctas
+      const allCorrect = userAnswers.every((ans, idx) => {
+        const selectedOption = currentExercise.options[parseInt(ans)];
+        return selectedOption === currentExercise.correctAnswer;
+      });
+
+      setFeedback({
+        isCorrect: allCorrect,
+        message: allCorrect
+          ? 'Correct! ' + currentExercise.explanation
+          : 'Incorrect. ' + currentExercise.explanation,
+        correctAnswer: currentExercise.correctAnswer,
+        tense: currentExercise.tense,
+      });
+    } else {
+      // Dropdown único: usar el primer elemento del array o userAnswer
+      const answer =
+        userAnswers && userAnswers.length > 0 ? userAnswers[0] : userAnswer;
+
+      if (answer === undefined || answer === '' || answer === '-1') {
+        setFeedback({
+          isCorrect: false,
+          message: 'Please select an answer',
+        });
+        return;
+      }
+
+      const selectedOption = currentExercise.options[parseInt(answer)];
+      const isCorrect = selectedOption === currentExercise.correctAnswer;
+
+      setFeedback({
+        isCorrect,
+        message: isCorrect
+          ? 'Correct! ' + currentExercise.explanation
+          : 'Incorrect. ' + currentExercise.explanation,
+        correctAnswer: currentExercise.correctAnswer,
+        tense: currentExercise.tense,
+      });
+    }
+  };
+
+  const getTenseTitle = () => {
+    const titles = {
+      'present-simple': 'Present Simple',
+      'present-continuous': 'Present Continuous',
+      'present-simple-continuous-mix':
+        'Present Simple & Continuous Mix - Action and Non-Action Verbs',
+      'present-perfect': 'Present Perfect',
+      'present-perfect-continuous': 'Present Perfect Continuous',
+      'past-simple': 'Past Simple',
+      'past-continuous': 'Past Continuous',
+      'past-perfect': 'Past Perfect',
+      'past-perfect-continuous': 'Past Perfect Continuous',
+      'future-simple': 'Future Simple',
+      'future-continuous': 'Future Continuous',
+      'future-perfect': 'Future Perfect',
+      'future-perfect-continuous': 'Future Perfect Continuous',
+      'first-conditional': 'First Conditional',
+      'second-conditional': 'Second Conditional',
+      'third-conditional': 'Third Conditional',
+      'question-forms': 'Question Forms',
+      'mixed-tenses': 'Mixed Tenses - All Practice',
+      'clothes-fashion': 'Clothes and Fashion - Vocabulary',
+      airport: 'Airport - Vocabulary',
+      weather: 'Weather - Vocabulary',
+      'illnesses-injuries': 'Illnesses and Injuries - Vocabulary',
+      cinema: 'Cinema - Vocabulary',
+      'dependent-prepositions': 'Dependent Prepositions - Vocabulary',
+      education: 'Education - Vocabulary',
+      'food-cooking': 'Food and Cooking - Vocabulary',
+      houses: 'Houses - Vocabulary',
+      money: 'Money - Vocabulary',
+      personality: 'Personality - Vocabulary',
+      relationships: 'Relationships - Vocabulary',
+      sport: 'Sport - Vocabulary',
+      'the-body': 'The Body - Vocabulary',
+      transport: 'Transport - Vocabulary',
+      'word-building': 'Word Building - Vocabulary',
+      work: 'Work - Vocabulary',
+      hacking: 'Hacking - Vocabulary',
+      'adverbs-phrases': 'Adverbs and Adverbial Phrases - Vocabulary',
+      business: 'Business - Vocabulary',
+      'present-perfect-past-simple-2':
+        'Present Perfect & Past Simple (2) - Word Order',
+    };
+    return titles[tenseId] || 'Exercises';
+  };
+
+  const getTenseStructure = () => {
+    const structures = {
+      'present-simple': {
+        affirmative: 'Subject + verb (base form) / verb + s/es (3rd person)',
+        negative: 'Subject + do/does + not + verb (base form)',
+        interrogative: 'Do/Does + subject + verb (base form)?',
+        example: 'I work / She works / Do you work?',
+        signalWords:
+          'always, usually, often, sometimes, rarely, never, every day/week/month, on Mondays, once a week',
+      },
+      'present-continuous': {
+        affirmative: 'Subject + am/is/are + verb + ing',
+        negative: 'Subject + am/is/are + not + verb + ing',
+        interrogative: 'Am/Is/Are + subject + verb + ing?',
+        example: 'I am working / She is working / Are you working?',
+        signalWords:
+          'now, right now, at the moment, currently, today, this week, these days, Look!, Listen!',
+      },
+      'present-simple-continuous-mix': {
+        affirmative:
+          'Present Simple: Subject + verb(s) | Present Continuous: Subject + am/is/are + verb+ing',
+        negative:
+          "Present Simple: don't/doesn't + verb | Present Continuous: am/is/are + not + verb+ing",
+        interrogative:
+          'Present Simple: Do/Does + subject + verb? | Present Continuous: Am/Is/Are + subject + verb+ing?',
+        example:
+          "Action verbs: I'm eating (now) vs I eat (habit) | Non-action verbs: I like (NOT I'm liking)",
+        signalWords:
+          'Simple: always, usually, often | Continuous: now, at the moment, currently, Look!',
+      },
+      'present-perfect': {
+        affirmative: 'Subject + have/has + past participle',
+        negative: 'Subject + have/has + not + past participle',
+        interrogative: 'Have/Has + subject + past participle?',
+        example: 'I have worked / She has worked / Have you worked?',
+        signalWords:
+          'already, just, yet, ever, never, recently, lately, so far, up to now, since, for, this week',
+      },
+      'present-perfect-continuous': {
+        affirmative: 'Subject + have/has + been + verb + ing',
+        negative: 'Subject + have/has + not + been + verb + ing',
+        interrogative: 'Have/Has + subject + been + verb + ing?',
+        example: 'I have been working / She has been working',
+        signalWords:
+          'for, since, how long, all day, all week, all morning, lately, recently',
+      },
+      'past-simple': {
+        affirmative: 'Subject + verb + ed (regular) / irregular form',
+        negative: 'Subject + did + not + verb (base form)',
+        interrogative: 'Did + subject + verb (base form)?',
+        example: 'I worked / She went / Did you work?',
+        signalWords:
+          'yesterday, ago, last week/month/year, in 1990, when, in the past',
+      },
+      'past-continuous': {
+        affirmative: 'Subject + was/were + verb + ing',
+        negative: 'Subject + was/were + not + verb + ing',
+        interrogative: 'Was/Were + subject + verb + ing?',
+        example: 'I was working / They were working',
+        signalWords:
+          'while, when, as, at that moment, at that time, all day yesterday',
+      },
+      'past-perfect': {
+        affirmative: 'Subject + had + past participle',
+        negative: 'Subject + had + not + past participle',
+        interrogative: 'Had + subject + past participle?',
+        example: 'I had worked / Had you worked?',
+        signalWords:
+          'before, after, when, by the time, until, already, just, never',
+      },
+      'past-perfect-continuous': {
+        affirmative: 'Subject + had + been + verb + ing',
+        negative: 'Subject + had + not + been + verb + ing',
+        interrogative: 'Had + subject + been + verb + ing?',
+        example: 'I had been working / Had you been working?',
+        signalWords: 'for, since, how long, before, by the time',
+      },
+      'present-perfect-past-simple-2': {
+        affirmative:
+          'Present Perfect: have/has + past participle | Past Simple: verb + ed (regular) / irregular form',
+        negative:
+          "Present Perfect: haven't/hasn't + past participle | Past Simple: didn't + verb (base form)",
+        interrogative:
+          'Present Perfect: Have/Has + subject + past participle? | Past Simple: Did + subject + verb?',
+        example:
+          'Present Perfect (experience, unfinished time): I have visited Paris | Past Simple (finished time): I visited Paris in 2020',
+        signalWords:
+          'Perfect: already, yet, just, ever, never, recently | Simple: yesterday, ago, last, in 2020, when',
+      },
+      'future-simple': {
+        affirmative: 'Subject + will + verb (base form)',
+        negative: "Subject + will + not (won't) + verb (base form)",
+        interrogative: 'Will + subject + verb (base form)?',
+        example: 'I will work / Will you work?',
+        signalWords:
+          'tomorrow, next week/month/year, in the future, soon, later, tonight',
+      },
+      'future-continuous': {
+        affirmative: 'Subject + will + be + verb + ing',
+        negative: 'Subject + will + not + be + verb + ing',
+        interrogative: 'Will + subject + be + verb + ing?',
+        example: 'I will be working / Will you be working?',
+        signalWords:
+          'at this time tomorrow, at 3pm tomorrow, this time next week, in the future',
+      },
+      'future-perfect': {
+        affirmative: 'Subject + will + have + past participle',
+        negative: 'Subject + will + not + have + past participle',
+        interrogative: 'Will + subject + have + past participle?',
+        example: 'I will have worked / Will you have worked?',
+        signalWords: 'by, by then, by the time, by next week, by 2030, before',
+      },
+      'future-perfect-continuous': {
+        affirmative: 'Subject + will + have + been + verb + ing',
+        negative: 'Subject + will + not + have + been + verb + ing',
+        interrogative: 'Will + subject + have + been + verb + ing?',
+        example: 'I will have been working for 10 years',
+        signalWords: 'by, by then, by the time, for, by next week',
+      },
+      'first-conditional': {
+        affirmative: 'If + present simple, will + verb (base form)',
+        negative: "If + don't/doesn't + verb, will + not + verb",
+        interrogative: 'What + will + subject + verb + if + present?',
+        example: 'If it rains, I will stay home',
+        signalWords:
+          'if, unless, as soon as, when, before, after (real/possible future situations)',
+      },
+      'second-conditional': {
+        affirmative: 'If + past simple, would + verb (base form)',
+        negative: "If + didn't + verb, would + not + verb",
+        interrogative: 'What + would + subject + verb + if + past?',
+        example: 'If I were rich, I would travel',
+        signalWords:
+          'if, unless (hypothetical/unreal present or future situations)',
+      },
+      'third-conditional': {
+        affirmative: 'If + past perfect, would + have + past participle',
+        negative:
+          "If + hadn't + past participle, wouldn't + have + past participle",
+        interrogative:
+          'What + would + subject + have + done + if + past perfect?',
+        example: 'If I had known, I would have helped',
+        signalWords:
+          "if, unless (hypothetical/unreal past situations that didn't happen)",
+      },
+    };
+    return structures[tenseId] || null;
+  };
+
+  if (!currentExercise) {
+    return (
+      <div className="bg-htb-card border border-gray-800 rounded-lg p-8 text-center">
+        <h2 className="text-2xl font-bold mb-4 text-white">
+          {getTenseTitle()}
+        </h2>
+        <p className="text-htb-text-dim">Loading exercise...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="max-w-4xl mx-auto px-2 sm:px-4">
+      <div className="bg-htb-card rounded-lg border border-gray-800 p-4 sm:p-6 mb-4 sm:mb-6">
+        <div className="flex justify-between items-start mb-4">
+          <div className="flex-1">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+              {getTenseTitle()}
+            </h2>
+            <p className="text-sm sm:text-base text-htb-text-dim">
+              {isVocabulary
+                ? isReversed
+                  ? 'Translate the following word from Spanish to English.'
+                  : 'Translate the following word from English to Spanish.'
+                : tenseId === 'question-forms'
+                  ? 'Arrange the words in the correct order to form the question.'
+                  : 'Complete the following sentence by selecting the correct option.'}
+            </p>
+          </div>
+        </div>
+
+        {/* Sección de estadísticas y toggle para vocabulario */}
+        {isVocabulary && (
+          <div className="mt-4 flex flex-col gap-4">
+            {/* Indicador de palabras restantes */}
+            <div className="flex items-center justify-center gap-4 p-3 bg-htb-sidebar rounded-lg border border-htb-green/30">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">📚</span>
+                <div>
+                  <p className="text-sm font-semibold text-htb-green">
+                    Words to learn
+                  </p>
+                  <p className="text-2xl font-bold text-white">
+                    {remainingVocabExercises.length} / {exercises.length}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Estadísticas en tiempo real */}
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-xs sm:text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-htb-green"></div>
+                <span className="font-semibold text-htb-green">
+                  {stats.correct}
+                </span>
+                <span className="text-htb-text-dim">Correct</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <span className="font-semibold text-red-500">
+                  {stats.incorrect}
+                </span>
+                <span className="text-htb-text-dim">Incorrect</span>
+              </div>
+            </div>
+
+            {/* Barra de progreso visual */}
+            {stats.correct + stats.incorrect > 0 && (
+              <div className="w-full max-w-md mx-auto sm:mx-0">
+                <div className="flex h-6 rounded-full overflow-hidden bg-htb-sidebar">
+                  <div
+                    className="bg-htb-green transition-all duration-500 flex items-center justify-center text-xs text-htb-bg font-semibold"
+                    style={{
+                      width: `${
+                        (stats.correct / (stats.correct + stats.incorrect)) *
+                        100
+                      }%`,
+                    }}
+                  >
+                    {stats.correct > 0 &&
+                      `${Math.round(
+                        (stats.correct / (stats.correct + stats.incorrect)) *
+                          100
+                      )}%`}
+                  </div>
+                  <div
+                    className="bg-red-500 transition-all duration-500 flex items-center justify-center text-xs text-white font-semibold"
+                    style={{
+                      width: `${
+                        (stats.incorrect / (stats.correct + stats.incorrect)) *
+                        100
+                      }%`,
+                    }}
+                  >
+                    {stats.incorrect > 0 &&
+                      `${Math.round(
+                        (stats.incorrect / (stats.correct + stats.incorrect)) *
+                          100
+                      )}%`}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Toggle de dirección */}
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 sm:gap-3">
+              <span className="text-xs sm:text-sm font-medium text-htb-text">
+                {isReversed ? 'ES → EN' : 'EN → ES'}
+              </span>
+              <button
+                onClick={handleToggleDirection}
+                className="relative inline-flex items-center h-8 w-16 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-htb-green focus:ring-offset-2 focus:ring-offset-htb-bg"
+                style={{ backgroundColor: isReversed ? '#9fef00' : '#374151' }}
+              >
+                <span
+                  className={`inline-block h-6 w-6 transform rounded-full transition-transform ${
+                    isReversed
+                      ? 'translate-x-9 bg-htb-bg'
+                      : 'translate-x-1 bg-white'
+                  }`}
+                />
+              </button>
+              <span className="text-xs sm:text-sm font-medium text-htb-text">
+                Change direction
+              </span>
+            </div>
+          </div>
+        )}
+
+        {/* Grammar Structure Help */}
+        {!isVocabulary && getTenseStructure() && (
+          <div className="mt-4 bg-htb-sidebar border border-htb-green/30 rounded-lg p-4">
+            <div className="flex items-start gap-2 mb-3">
+              <span className="text-htb-green text-xl">📖</span>
+              <h3 className="text-sm font-bold text-htb-green uppercase tracking-wide">
+                Grammar Structure
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+              <div className="bg-htb-card rounded p-3 border border-gray-800">
+                <p className="font-semibold text-htb-green mb-1">
+                  ✓ Affirmative
+                </p>
+                <p className="text-htb-text text-xs leading-relaxed">
+                  {getTenseStructure().affirmative}
+                </p>
+              </div>
+              <div className="bg-htb-card rounded p-3 border border-gray-800">
+                <p className="font-semibold text-red-500 mb-1">✗ Negative</p>
+                <p className="text-htb-text text-xs leading-relaxed">
+                  {getTenseStructure().negative}
+                </p>
+              </div>
+              <div className="bg-htb-card rounded p-3 border border-gray-800">
+                <p className="font-semibold text-blue-400 mb-1">
+                  ? Interrogative
+                </p>
+                <p className="text-htb-text text-xs leading-relaxed">
+                  {getTenseStructure().interrogative}
+                </p>
+              </div>
+            </div>
+            <div className="mt-3 bg-htb-sidebar border border-htb-green/30 rounded p-2">
+              <p className="text-xs text-htb-text-dim">
+                <span className="font-semibold text-htb-green">Example:</span>
+                <span className="ml-1 text-htb-text italic">
+                  {getTenseStructure().example}
+                </span>
+              </p>
+            </div>
+            {getTenseStructure().signalWords && (
+              <div className="mt-3 bg-htb-card border border-htb-green/30 rounded p-3">
+                <div className="flex items-start gap-2">
+                  <span className="text-htb-green text-lg">⏰</span>
+                  <div className="flex-1">
+                    <p className="font-semibold text-htb-green text-xs mb-1.5">
+                      Signal Words / Time Expressions:
+                    </p>
+                    <p className="text-htb-text text-xs leading-relaxed italic">
+                      {getTenseStructure().signalWords}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      <div className="bg-htb-card border border-gray-800 rounded-lg p-4 sm:p-6">
+        <div className="mb-6">
+          <div className="flex-1">
+            {/* Contador inicial solo para vocabulario */}
+            {isVocabulary && initialCountdown > 0 && !feedback && (
+              <div className="mb-4 p-3 rounded-md bg-htb-sidebar border border-htb-green/30 text-center">
+                <p className="text-sm text-htb-green">
+                  ⏱️ You have{' '}
+                  <span className="font-bold text-htb-green text-lg">
+                    {initialCountdown}
+                  </span>{' '}
+                  second{initialCountdown !== 1 ? 's' : ''} to answer
+                </p>
+              </div>
+            )}
+
+            {/* Reorder exercises */}
+            {currentExercise.sentenceParts &&
+            currentExercise.sentenceParts[0]?.type === 'reorder' ? (
+              <div className="flex flex-col gap-4">
+                <p className="text-white text-lg font-medium">
+                  Arrange the words to form a correct sentence:
+                </p>
+
+                {/* Answer area - where words are arranged */}
+                <div className="bg-htb-card border-2 border-htb-green rounded-lg p-4 min-h-[80px] flex flex-wrap gap-2 items-center">
+                  {reorderedWords.length === 0 ? (
+                    <span className="text-htb-text-dim italic">
+                      Click on words below to build your sentence...
+                    </span>
+                  ) : (
+                    reorderedWords.map((word, index) => (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          const newReordered = reorderedWords.filter(
+                            (_, i) => i !== index
+                          );
+                          setReorderedWords(newReordered);
+                          setAvailableWords([...availableWords, word]);
+                        }}
+                        disabled={feedback !== null}
+                        className="bg-htb-green text-htb-bg px-4 py-2 rounded-md font-semibold hover:bg-htb-green-hover transition-colors disabled:opacity-50"
+                      >
+                        {word}
+                      </button>
+                    ))
+                  )}
+                </div>
+
+                {/* Available words - to select from */}
+                <div>
+                  <p className="text-htb-text text-sm mb-2">Available words:</p>
+                  <div className="bg-htb-sidebar border border-gray-800 rounded-lg p-4 flex flex-wrap gap-2">
+                    {availableWords.map((word, index) => (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          setReorderedWords([...reorderedWords, word]);
+                          const newAvailable = availableWords.filter(
+                            (_, i) => i !== index
+                          );
+                          setAvailableWords(newAvailable);
+                        }}
+                        disabled={feedback !== null}
+                        className="bg-htb-card text-white px-4 py-2 rounded-md border border-gray-700 hover:border-htb-green hover:text-htb-green transition-colors disabled:opacity-50"
+                      >
+                        {word}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : isVocabulary && currentExercise.englishWord ? (
+              // Renderizado para vocabulario
+              <div className="flex flex-col gap-4">
+                {/* Imagen del vocabulario */}
+                {vocabularyImage && !imageLoading && (
+                  <div className="flex justify-center mb-4">
+                    <div className="relative rounded-lg overflow-hidden shadow-lg border-4 border-htb-green w-full max-w-md">
+                      <img
+                        src={vocabularyImage}
+                        alt={currentExercise.englishWord}
+                        className="w-full h-48 sm:h-56 md:h-64 object-cover"
+                        onError={(e) => {
+                          console.log('Image failed to load');
+                          e.target.style.display = 'none';
+                        }}
+                        onLoad={() => console.log('Image loaded successfully')}
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {imageLoading && (
+                  <div className="flex justify-center mb-4">
+                    <div className="w-full max-w-md h-48 sm:h-56 md:h-64 bg-htb-sidebar animate-pulse flex items-center justify-center rounded-lg border border-gray-800">
+                      <span className="text-htb-text-dim">
+                        Loading image...
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                <span className="text-white font-medium text-base sm:text-lg">
+                  {isReversed
+                    ? `Translate to English: ${
+                        Array.isArray(currentExercise.spanishWord)
+                          ? currentExercise.spanishWord[0]
+                          : currentExercise.spanishWord
+                      }`
+                    : `Translate to Spanish: ${currentExercise.englishWord}`}
+                </span>
+                <input
+                  type="text"
+                  ref={inputRef}
+                  value={userAnswer || ''}
+                  onChange={(e) => handleAnswerChange(e.target.value)}
+                  className="border border-gray-300 rounded px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-htb-green w-full bg-htb-bg text-white"
+                  placeholder="Your answer..."
+                  disabled={feedback !== null}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter' && !feedback) {
+                      checkAnswer();
+                    }
+                  }}
+                />
+              </div>
+            ) : (
+              // Renderizado para ejercicios normales
+              <div className="flex flex-wrap items-center gap-1 sm:gap-2 mb-3 text-sm sm:text-base">
+                {currentExercise.sentenceParts?.map((part, partIndex) => {
+                  if (part.type === 'text') {
+                    return (
+                      <span key={partIndex} className="text-white text-lg">
+                        {part.content}
+                      </span>
+                    );
+                  } else if (part.type === 'input') {
+                    const inputIndex = currentExercise.sentenceParts
+                      .slice(0, partIndex)
+                      .filter((p) => p.type === 'input').length;
+
+                    return (
+                      <input
+                        key={partIndex}
+                        type="text"
+                        value={userAnswers[inputIndex] || ''}
+                        onChange={(e) =>
+                          handleAnswerChange(e.target.value, inputIndex)
+                        }
+                        className="border border-gray-300 rounded px-2 sm:px-3 py-1.5 sm:py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-htb-green min-w-[120px] sm:min-w-[150px] bg-htb-bg text-white"
+                        placeholder="..."
+                        disabled={feedback !== null}
+                      />
+                    );
+                  } else {
+                    // Dropdown
+                    const dropdownIndex = currentExercise.sentenceParts
+                      .slice(0, partIndex)
+                      .filter((p) => p.type === 'dropdown').length;
+
+                    return (
+                      <select
+                        key={partIndex}
+                        value={userAnswers[dropdownIndex] ?? '-1'}
+                        onChange={(e) =>
+                          handleAnswerChange(
+                            e.target.value,
+                            dropdownIndex,
+                            true
+                          )
+                        }
+                        className="dropdown-custom text-base"
+                        disabled={feedback !== null}
+                      >
+                        <option value="-1" disabled></option>
+                        {currentExercise.options?.map((option, optIndex) => (
+                          <option key={optIndex} value={optIndex}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    );
+                  }
+                })}
+              </div>
+            )}
+
+            {/* Mostrar la respuesta después de 10 segundos solo en vocabulario */}
+            {isVocabulary && showAnswer && !feedback && (
+              <div className="mt-4 p-4 rounded-md bg-htb-sidebar border border-htb-green/30">
+                <p className="font-semibold text-htb-green text-base mb-2">
+                  💡 Answer:
+                </p>
+                <p className="text-white text-base">
+                  {isReversed
+                    ? currentExercise.englishWord
+                    : Array.isArray(currentExercise.spanishWord)
+                      ? currentExercise.spanishWord.join(' / ')
+                      : currentExercise.spanishWord}
+                </p>
+                <p className="text-sm text-htb-text-dim mt-2 italic">
+                  {currentExercise.explanation}
+                </p>
+              </div>
+            )}
+
+            {/* Mostrar contador regresivo solo en vocabulario cuando hay feedback incorrecto pero no se ha mostrado la respuesta */}
+            {isVocabulary && feedback && !feedback.isCorrect && !showAnswer && (
+              <div className="mt-4 p-3 rounded-md bg-htb-sidebar border border-htb-green/30 text-center">
+                <p className="text-sm text-htb-text">
+                  Next answer in{' '}
+                  <span className="font-bold text-htb-green text-lg">
+                    {countdown}
+                  </span>{' '}
+                  second{countdown !== 1 ? 's' : ''}
+                </p>
+              </div>
+            )}
+
+            {/* Mostrar mensaje de espera cuando la respuesta es correcta en vocabulario */}
+            {isVocabulary && feedback && feedback.isCorrect && (
+              <div className="mt-4 p-3 rounded-md bg-htb-sidebar border border-htb-green/30 text-center">
+                <p className="text-sm text-htb-green">
+                  ⏳ Loading next question in 5 seconds...
+                </p>
+              </div>
+            )}
+
+            {feedback && (
+              <div
+                className={`mt-4 p-4 rounded-md ${
+                  feedback.isCorrect
+                    ? 'bg-htb-sidebar border border-htb-green'
+                    : 'bg-htb-sidebar border border-red-500'
+                }`}
+              >
+                <p
+                  className={`font-semibold text-lg ${
+                    feedback.isCorrect ? 'text-htb-green' : 'text-red-500'
+                  }`}
+                >
+                  {feedback.isCorrect ? '✓ Correct' : '✗ Incorrect'}
+                </p>
+                {/* Mostrar el tiempo verbal solo en Mixed Tenses */}
+                {tenseId === 'mixed-tenses' && feedback.tense && (
+                  <p className="text-sm text-htb-green font-semibold mt-1 bg-htb-card inline-block px-3 py-1 rounded border border-htb-green/30">
+                    📚 {feedback.tense}
+                  </p>
+                )}
+                <p className="text-base text-htb-text mt-2">
+                  {feedback.message}
+                </p>
+                {!feedback.isCorrect && showAnswer && (
+                  <>
+                    <p className="text-base text-htb-text mt-3">
+                      <strong>Correct answer:</strong> {feedback.correctAnswer}
+                    </p>
+                    {feedback.userAnswerText && (
+                      <p className="text-base text-htb-text mt-2">
+                        <strong>Tu respuesta:</strong> {feedback.userAnswerText}
+                      </p>
+                    )}
+                  </>
+                )}
+                {!isVocabulary && !feedback.isCorrect && (
+                  <>
+                    <p className="text-base text-htb-text mt-3">
+                      <strong>Correct answer:</strong> {feedback.correctAnswer}
+                    </p>
+                    {feedback.userAnswerText && (
+                      <p className="text-base text-htb-text mt-2">
+                        <strong>Tu respuesta:</strong> {feedback.userAnswerText}
+                      </p>
+                    )}
+                  </>
+                )}
+              </div>
+            )}
+
+            <div className="mt-6 flex gap-3">
+              {!feedback ? (
+                <button
+                  onClick={checkAnswer}
+                  className="bg-htb-green hover:bg-htb-green-hover text-htb-bg px-6 py-3 rounded-md font-semibold transition-colors"
+                >
+                  Check answer
+                </button>
+              ) : (
+                <>
+                  {/* Mostrar botón de siguiente pregunta solo si no es vocabulario o si es vocabulario pero ya pasaron los timers */}
+                  {(!isVocabulary ||
+                    (isVocabulary && !feedback.isCorrect && showAnswer)) && (
+                    <button
+                      onClick={loadNewQuestion}
+                      className="bg-htb-green hover:bg-htb-green-hover text-htb-bg px-6 py-3 rounded-md font-semibold transition-colors"
+                    >
+                      Next question →
+                    </button>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ExerciseView;
