@@ -148,6 +148,11 @@ import CiudadTransporteB2Exercise from './CiudadTransporteB2Exercise';
 import TrabajoProfesionesB2Exercise from './TrabajoProfesionesB2Exercise';
 import ViajesTurismoB2Exercise from './ViajesTurismoB2Exercise';
 import ComprasDineroB2Exercise from './ComprasDineroB2Exercise';
+import CondicionalB2Exercise from './CondicionalB2Exercise';
+import PrefijosVerbalesB2Exercise from './PrefijosVerbalesB2Exercise';
+import SubordinadasB2Exercise from './SubordinadasB2Exercise';
+import NumeralesB2Exercise from './NumeralesB2Exercise';
+import FuturoB2Exercise from './FuturoB2Exercise';
 
 const ExerciseView = ({ tenseId, onSelectTense }) => {
   // Si es la introducción, mostrar el componente Introduction
@@ -342,6 +347,11 @@ const ExerciseView = ({ tenseId, onSelectTense }) => {
   if (tenseId === 'dias-meses-a1') return <DiasMesesA1Exercise />;
 
   // B2 Casos Gramaticales
+  if (tenseId === 'condicional-b2') return <CondicionalB2Exercise />;
+  if (tenseId === 'prefijos-b2') return <PrefijosVerbalesB2Exercise />;
+  if (tenseId === 'subordinadas-b2') return <SubordinadasB2Exercise />;
+  if (tenseId === 'numerales-b2') return <NumeralesB2Exercise />;
+  if (tenseId === 'futuro-b2') return <FuturoB2Exercise />;
   if (tenseId === 'nominative-case') return <NominativoCaseB2Exercise />;
   if (tenseId === 'accusative-case') return <AcusativoCaseB2Exercise />;
   if (tenseId === 'genitive-case') return <GenitivoCaseB2Exercise />;

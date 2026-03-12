@@ -26,6 +26,7 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
       'B1-Gramatica': false,
       'B1-Vocabulario': false,
       'Upper-Intermediate': false,
+      'B2-Gramatica': false,
       Casos: false,
       Verbos: false,
       Vocabulary: false,
@@ -239,6 +240,21 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
       name: 'Negación Avanzada',
       category: 'C1-Gramatica',
     },
+
+    // B2-Gramática
+    {
+      id: 'condicional-b2',
+      name: 'Modo Condicional',
+      category: 'B2-Gramatica',
+    },
+    { id: 'prefijos-b2', name: 'Prefijos Verbales', category: 'B2-Gramatica' },
+    {
+      id: 'subordinadas-b2',
+      name: 'Oraciones Subordinadas',
+      category: 'B2-Gramatica',
+    },
+    { id: 'numerales-b2', name: 'Numerales y Casos', category: 'B2-Gramatica' },
+    { id: 'futuro-b2', name: 'Tiempo Futuro', category: 'B2-Gramatica' },
 
     // Casos Gramaticales
     { id: 'nominative-case', name: 'Caso Nominativo', category: 'Casos' },
@@ -1002,7 +1018,12 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
             matchesSearch('B2') ||
             matchesSearch('Casos') ||
             matchesSearch('Verbos') ||
-            matchesSearch('Vocabulario')) && (
+            matchesSearch('Vocabulario') ||
+            matchesSearch('Condicional') ||
+            matchesSearch('Prefijos') ||
+            matchesSearch('Subordinadas') ||
+            matchesSearch('Numerales') ||
+            matchesSearch('Futuro')) && (
             <div>
               <button
                 onClick={() => toggleSection('Upper-Intermediate')}
@@ -1031,6 +1052,46 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
 
               {expandedSections['Upper-Intermediate'] && (
                 <div className="ml-3 mt-1 space-y-1">
+                  {/* B2 Gramática */}
+                  <button
+                    onClick={() => toggleSection('B2-Gramatica')}
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm hover:bg-htb-card transition-colors"
+                  >
+                    <span className="text-htb-text-dim">📐 Gramática</span>
+                    <svg
+                      className={`w-3 h-3 transition-transform ${
+                        expandedSections['B2-Gramatica'] ? 'rotate-180' : ''
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                  {expandedSections['B2-Gramatica'] && (
+                    <div className="ml-3 space-y-0.5">
+                      {groupedTenses['B2-Gramatica']?.map((tense) => (
+                        <button
+                          key={tense.id}
+                          onClick={() => onSelectTense(tense.id)}
+                          className={`w-full text-left px-3 py-1.5 rounded text-xs transition-colors ${
+                            selectedTense === tense.id
+                              ? 'bg-htb-green text-htb-bg font-medium'
+                              : 'text-htb-text-dim hover:text-htb-text hover:bg-htb-card'
+                          }`}
+                        >
+                          {tense.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
                   {/* Casos Gramaticales */}
                   <button
                     onClick={() => toggleSection('Casos')}
