@@ -23,6 +23,7 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
       'A2-Gramatica': false,
       Intermediate: false,
       'B1-Gramatica': false,
+      'B1-Vocabulario': false,
       'Upper-Intermediate': false,
       Casos: false,
       Verbos: false,
@@ -157,6 +158,23 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
       category: 'B1-Gramatica',
     },
     { id: 'comparativos-b1', name: 'Comparativos', category: 'B1-Gramatica' },
+    { id: 'modales-b1', name: 'Palabras Modales', category: 'B1-Gramatica' },
+    {
+      id: 'relativos-b1',
+      name: 'Pronombres Relativos (который)',
+      category: 'B1-Gramatica',
+    },
+    { id: 'imperativo-b1', name: 'Modo Imperativo', category: 'B1-Gramatica' },
+    {
+      id: 'conectores-b1',
+      name: 'Conectores y Conjunciones',
+      category: 'B1-Gramatica',
+    },
+    {
+      id: 'aspecto-pasado-b1',
+      name: 'Aspecto Verbal en el Pasado',
+      category: 'B1-Gramatica',
+    },
 
     // C1-Gramática
     {
@@ -219,6 +237,15 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
     { id: 'work-professions', name: 'Trabajo y Profesiones' },
     { id: 'travel-tourism', name: 'Viajes y Turismo' },
     { id: 'shopping-money', name: 'Compras y Dinero' },
+  ];
+
+  const vocabularyTopicsB1 = [
+    { id: 'cuerpo-salud-b1', name: 'Cuerpo y Salud' },
+    { id: 'casa-hogar-b1', name: 'Casa y Hogar' },
+    { id: 'naturaleza-clima-b1', name: 'Naturaleza y Clima' },
+    { id: 'entretenimiento-b1', name: 'Entretenimiento' },
+    { id: 'emociones-sentimientos-b1', name: 'Emociones y Sentimientos' },
+    { id: 'ropa-compras-b1', name: 'Ropa y Compras' },
   ];
 
   const vocabularyTopicsC1 = [
@@ -762,7 +789,17 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
             matchesSearch('Intermedio B1') ||
             matchesSearch('Movimiento') ||
             matchesSearch('Reflexivos') ||
-            matchesSearch('Comparativos')) && (
+            matchesSearch('Comparativos') ||
+            matchesSearch('Modales') ||
+            matchesSearch('Imperativo') ||
+            matchesSearch('Conectores') ||
+            matchesSearch('Aspecto') ||
+            matchesSearch('Cuerpo') ||
+            matchesSearch('Casa') ||
+            matchesSearch('Naturaleza') ||
+            matchesSearch('Entretenimiento') ||
+            matchesSearch('Emociones') ||
+            matchesSearch('Ropa')) && (
             <div>
               <button
                 onClick={() => toggleSection('Intermediate')}
@@ -826,6 +863,46 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
                           }`}
                         >
                           {tense.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Vocabulario B1 */}
+                  <button
+                    onClick={() => toggleSection('B1-Vocabulario')}
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm hover:bg-htb-card transition-colors"
+                  >
+                    <span className="text-htb-text-dim">📖 Vocabulario</span>
+                    <svg
+                      className={`w-3 h-3 transition-transform ${
+                        expandedSections['B1-Vocabulario'] ? 'rotate-180' : ''
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                  {expandedSections['B1-Vocabulario'] && (
+                    <div className="ml-3 space-y-0.5">
+                      {vocabularyTopicsB1.map((topic) => (
+                        <button
+                          key={topic.id}
+                          onClick={() => onSelectTense(topic.id)}
+                          className={`w-full text-left px-3 py-1.5 rounded text-xs transition-colors ${
+                            selectedTense === topic.id
+                              ? 'bg-htb-green text-htb-bg font-medium'
+                              : 'text-htb-text-dim hover:text-htb-text hover:bg-htb-card'
+                          }`}
+                        >
+                          {topic.name}
                         </button>
                       ))}
                     </div>

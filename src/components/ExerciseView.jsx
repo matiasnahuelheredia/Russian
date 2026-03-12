@@ -74,6 +74,17 @@ import PedirInfoExercise from './PedirInfoExercise';
 import VerbosMovimientoB1Exercise from './VerbosMovimientoB1Exercise';
 import VerbosReflexivosB1Exercise from './VerbosReflexivosB1Exercise';
 import ComparativosB1Exercise from './ComparativosB1Exercise';
+import ModalesB1Exercise from './ModalesB1Exercise';
+import RelativosB1Exercise from './RelativosB1Exercise';
+import ImperativoB1Exercise from './ImperativoB1Exercise';
+import ConectoresB1Exercise from './ConectoresB1Exercise';
+import AspectoPasadoB1Exercise from './AspectoPasadoB1Exercise';
+import CuerpoSaludB1Exercise from './CuerpoSaludB1Exercise';
+import CasaHogarB1Exercise from './CasaHogarB1Exercise';
+import NaturalezaClimaB1Exercise from './NaturalezaClimaB1Exercise';
+import EntretenimientoB1Exercise from './EntretenimientoB1Exercise';
+import EmocionesSentimientosB1Exercise from './EmocionesSentimientosB1Exercise';
+import RopaComprasB1Exercise from './RopaComprasB1Exercise';
 import ParticiposC1Exercise from './ParticiposC1Exercise';
 import GerundiosC1Exercise from './GerundiosC1Exercise';
 import AspectosVerbalesC1Exercise from './AspectosVerbalesC1Exercise';
@@ -250,6 +261,18 @@ const ExerciseView = ({ tenseId, onSelectTense }) => {
   if (tenseId === 'verbos-movimiento-b1') return <VerbosMovimientoB1Exercise />;
   if (tenseId === 'verbos-reflexivos-b1') return <VerbosReflexivosB1Exercise />;
   if (tenseId === 'comparativos-b1') return <ComparativosB1Exercise />;
+  if (tenseId === 'modales-b1') return <ModalesB1Exercise />;
+  if (tenseId === 'relativos-b1') return <RelativosB1Exercise />;
+  if (tenseId === 'imperativo-b1') return <ImperativoB1Exercise />;
+  if (tenseId === 'conectores-b1') return <ConectoresB1Exercise />;
+  if (tenseId === 'aspecto-pasado-b1') return <AspectoPasadoB1Exercise />;
+  if (tenseId === 'cuerpo-salud-b1') return <CuerpoSaludB1Exercise />;
+  if (tenseId === 'casa-hogar-b1') return <CasaHogarB1Exercise />;
+  if (tenseId === 'naturaleza-clima-b1') return <NaturalezaClimaB1Exercise />;
+  if (tenseId === 'entretenimiento-b1') return <EntretenimientoB1Exercise />;
+  if (tenseId === 'emociones-sentimientos-b1')
+    return <EmocionesSentimientosB1Exercise />;
+  if (tenseId === 'ropa-compras-b1') return <RopaComprasB1Exercise />;
 
   // C1 Avanzado
   if (tenseId === 'participios-c1') return <ParticiposC1Exercise />;
