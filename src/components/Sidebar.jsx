@@ -29,6 +29,7 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
       Vocabulary: false,
       Advanced: false,
       'C1-Gramatica': false,
+      'C1-Vocabulario': false,
     };
   });
 
@@ -173,6 +174,27 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
       name: 'Aspecto Verbal Avanzado',
       category: 'C1-Gramatica',
     },
+    {
+      id: 'subjuntivo-c1',
+      name: 'Condicional/Subjuntivo',
+      category: 'C1-Gramatica',
+    },
+    { id: 'pasiva-c1', name: 'Voz Pasiva', category: 'C1-Gramatica' },
+    {
+      id: 'discurso-indirecto-c1',
+      name: 'Discurso Indirecto',
+      category: 'C1-Gramatica',
+    },
+    {
+      id: 'numeros-casos-c1',
+      name: 'Números y Casos',
+      category: 'C1-Gramatica',
+    },
+    {
+      id: 'negacion-avanzada-c1',
+      name: 'Negación Avanzada',
+      category: 'C1-Gramatica',
+    },
 
     // Casos Gramaticales
     { id: 'nominative-case', name: 'Caso Nominativo', category: 'Casos' },
@@ -197,6 +219,15 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
     { id: 'work-professions', name: 'Trabajo y Profesiones' },
     { id: 'travel-tourism', name: 'Viajes y Turismo' },
     { id: 'shopping-money', name: 'Compras y Dinero' },
+  ];
+
+  const vocabularyTopicsC1 = [
+    { id: 'politica-sociedad-c1', name: 'Política y Sociedad' },
+    { id: 'ciencia-tecnologia-c1', name: 'Ciencia y Tecnología' },
+    { id: 'arte-cultura-c1', name: 'Arte y Cultura' },
+    { id: 'naturaleza-medio-c1', name: 'Naturaleza y Medio Ambiente' },
+    { id: 'salud-medicina-c1', name: 'Salud y Medicina' },
+    { id: 'educacion-ciencia-c1', name: 'Educación y Ciencia' },
   ];
 
   const groupedTenses = tenses.reduce((acc, tense) => {
@@ -972,7 +1003,19 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
             matchesSearch('Avanzado') ||
             matchesSearch('Participios') ||
             matchesSearch('Gerundios') ||
-            matchesSearch('Aspecto')) && (
+            matchesSearch('Aspecto') ||
+            matchesSearch('Subjuntivo') ||
+            matchesSearch('Pasiva') ||
+            matchesSearch('Discurso') ||
+            matchesSearch('Negacion') ||
+            matchesSearch('Politica') ||
+            matchesSearch('Sociedad') ||
+            matchesSearch('Ciencia') ||
+            matchesSearch('Arte') ||
+            matchesSearch('Cultura') ||
+            matchesSearch('Naturaleza') ||
+            matchesSearch('Salud') ||
+            matchesSearch('Educacion')) && (
             <div>
               <button
                 onClick={() => toggleSection('Advanced')}
@@ -1038,6 +1081,48 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
                           }`}
                         >
                           {tense.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Vocabulario C1 */}
+                  <button
+                    onClick={() => toggleSection('C1-Vocabulario')}
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm hover:bg-htb-card transition-colors"
+                  >
+                    <span className="text-htb-text-dim">
+                      📖 Vocabulario Avanzado
+                    </span>
+                    <svg
+                      className={`w-3 h-3 transition-transform ${
+                        expandedSections['C1-Vocabulario'] ? 'rotate-180' : ''
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                  {expandedSections['C1-Vocabulario'] && (
+                    <div className="ml-3 space-y-0.5">
+                      {vocabularyTopicsC1.map((topic) => (
+                        <button
+                          key={topic.id}
+                          onClick={() => onSelectTense(topic.id)}
+                          className={`w-full text-left px-3 py-1.5 rounded text-xs transition-colors ${
+                            selectedTense === topic.id
+                              ? 'bg-htb-green text-htb-bg font-medium'
+                              : 'text-htb-text-dim hover:text-htb-text hover:bg-htb-card'
+                          }`}
+                        >
+                          {topic.name}
                         </button>
                       ))}
                     </div>

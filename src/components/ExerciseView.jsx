@@ -77,6 +77,17 @@ import ComparativosB1Exercise from './ComparativosB1Exercise';
 import ParticiposC1Exercise from './ParticiposC1Exercise';
 import GerundiosC1Exercise from './GerundiosC1Exercise';
 import AspectosVerbalesC1Exercise from './AspectosVerbalesC1Exercise';
+import SubjuntivoC1Exercise from './SubjuntivoC1Exercise';
+import PasivaC1Exercise from './PasivaC1Exercise';
+import DiscursoIndirectoC1Exercise from './DiscursoIndirectoC1Exercise';
+import NumerosCasosC1Exercise from './NumerosCasosC1Exercise';
+import NegacionAvanzadaC1Exercise from './NegacionAvanzadaC1Exercise';
+import PoliticaSociedadC1Exercise from './PoliticaSociedadC1Exercise';
+import CienciaTecnologiaC1Exercise from './CienciaTecnologiaC1Exercise';
+import ArteCulturaC1Exercise from './ArteCulturaC1Exercise';
+import NaturalezaMedioC1Exercise from './NaturalezaMedioC1Exercise';
+import SaludMedicinaC1Exercise from './SaludMedicinaC1Exercise';
+import EducacionCienciaC1Exercise from './EducacionCienciaC1Exercise';
 import PronombresA1Exercise from './PronombresA1Exercise';
 import GeneroSustantivosA1Exercise from './GeneroSustantivosA1Exercise';
 import ConjugacionA1Exercise from './ConjugacionA1Exercise';
@@ -244,6 +255,19 @@ const ExerciseView = ({ tenseId, onSelectTense }) => {
   if (tenseId === 'participios-c1') return <ParticiposC1Exercise />;
   if (tenseId === 'gerundios-c1') return <GerundiosC1Exercise />;
   if (tenseId === 'aspecto-verbal-c1') return <AspectosVerbalesC1Exercise />;
+  if (tenseId === 'subjuntivo-c1') return <SubjuntivoC1Exercise />;
+  if (tenseId === 'pasiva-c1') return <PasivaC1Exercise />;
+  if (tenseId === 'discurso-indirecto-c1')
+    return <DiscursoIndirectoC1Exercise />;
+  if (tenseId === 'numeros-casos-c1') return <NumerosCasosC1Exercise />;
+  if (tenseId === 'negacion-avanzada-c1') return <NegacionAvanzadaC1Exercise />;
+  if (tenseId === 'politica-sociedad-c1') return <PoliticaSociedadC1Exercise />;
+  if (tenseId === 'ciencia-tecnologia-c1')
+    return <CienciaTecnologiaC1Exercise />;
+  if (tenseId === 'arte-cultura-c1') return <ArteCulturaC1Exercise />;
+  if (tenseId === 'naturaleza-medio-c1') return <NaturalezaMedioC1Exercise />;
+  if (tenseId === 'salud-medicina-c1') return <SaludMedicinaC1Exercise />;
+  if (tenseId === 'educacion-ciencia-c1') return <EducacionCienciaC1Exercise />;
   if (tenseId === 'pronombres-a1') return <PronombresA1Exercise />;
   if (tenseId === 'genero-sustantivos-a1')
     return <GeneroSustantivosA1Exercise />;
