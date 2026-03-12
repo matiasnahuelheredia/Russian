@@ -77,6 +77,44 @@ import ComparativosB1Exercise from './ComparativosB1Exercise';
 import ParticiposC1Exercise from './ParticiposC1Exercise';
 import GerundiosC1Exercise from './GerundiosC1Exercise';
 import AspectosVerbalesC1Exercise from './AspectosVerbalesC1Exercise';
+import PronombresA1Exercise from './PronombresA1Exercise';
+import GeneroSustantivosA1Exercise from './GeneroSustantivosA1Exercise';
+import ConjugacionA1Exercise from './ConjugacionA1Exercise';
+import AdjetivosA1Exercise from './AdjetivosA1Exercise';
+import PluralSustantivosA1Exercise from './PluralSustantivosA1Exercise';
+import NegacionA1Exercise from './NegacionA1Exercise';
+import PreposicionesA1Exercise from './PreposicionesA1Exercise';
+import LaHoraA1Exercise from './LaHoraA1Exercise';
+import NumerosOrdinalesA1Exercise from './NumerosOrdinalesA1Exercise';
+import CasosBasicosA1Exercise from './CasosBasicosA1Exercise';
+import EnElMedicoA1Exercise from './EnElMedicoA1Exercise';
+import PedirAyudaA1Exercise from './PedirAyudaA1Exercise';
+import EnCasaA1Exercise from './EnCasaA1Exercise';
+import DescribirPersonasA1Exercise from './DescribirPersonasA1Exercise';
+import ColoresA1Exercise from './ColoresA1Exercise';
+import PartesDelCuerpoA1Exercise from './PartesDelCuerpoA1Exercise';
+import DiasMesesA1Exercise from './DiasMesesA1Exercise';
+import GenitivoA2Exercise from './GenitivoA2Exercise';
+import DativoA2Exercise from './DativoA2Exercise';
+import AspectosIntroA2Exercise from './AspectosIntroA2Exercise';
+import AdverbiosA2Exercise from './AdverbiosA2Exercise';
+import NominativoCaseB2Exercise from './NominativoCaseB2Exercise';
+import AcusativoCaseB2Exercise from './AcusativoCaseB2Exercise';
+import GenitivoCaseB2Exercise from './GenitivoCaseB2Exercise';
+import DativoCaseB2Exercise from './DativoCaseB2Exercise';
+import InstrumentalCaseB2Exercise from './InstrumentalCaseB2Exercise';
+import PrepositionalCaseB2Exercise from './PrepositionalCaseB2Exercise';
+import PresenteTenseB2Exercise from './PresenteTenseB2Exercise';
+import PasadoTenseB2Exercise from './PasadoTenseB2Exercise';
+import FuturoTenseB2Exercise from './FuturoTenseB2Exercise';
+import VerbosMovimientoB2Exercise from './VerbosMovimientoB2Exercise';
+import VerbAspectosB2Exercise from './VerbAspectosB2Exercise';
+import FamiliaRelacionesB2Exercise from './FamiliaRelacionesB2Exercise';
+import ComidaBebidasB2Exercise from './ComidaBebidasB2Exercise';
+import CiudadTransporteB2Exercise from './CiudadTransporteB2Exercise';
+import TrabajoProfesionesB2Exercise from './TrabajoProfesionesB2Exercise';
+import ViajesTurismoB2Exercise from './ViajesTurismoB2Exercise';
+import ComprasDineroB2Exercise from './ComprasDineroB2Exercise';
 
 const ExerciseView = ({ tenseId, onSelectTense }) => {
   // Si es la introducción, mostrar el componente Introduction
@@ -191,6 +229,12 @@ const ExerciseView = ({ tenseId, onSelectTense }) => {
   if (tenseId === 'pasado-ruso') return <PasadoSimpleRusoExercise />;
   if (tenseId === 'pedir-informacion') return <PedirInfoExercise />;
 
+  // A2 Gramática
+  if (tenseId === 'genitivo-a2') return <GenitivoA2Exercise />;
+  if (tenseId === 'dativo-a2') return <DativoA2Exercise />;
+  if (tenseId === 'aspectos-intro-a2') return <AspectosIntroA2Exercise />;
+  if (tenseId === 'adverbios-a2') return <AdverbiosA2Exercise />;
+
   // B1 Intermedio
   if (tenseId === 'verbos-movimiento-b1') return <VerbosMovimientoB1Exercise />;
   if (tenseId === 'verbos-reflexivos-b1') return <VerbosReflexivosB1Exercise />;
@@ -200,141 +244,55 @@ const ExerciseView = ({ tenseId, onSelectTense }) => {
   if (tenseId === 'participios-c1') return <ParticiposC1Exercise />;
   if (tenseId === 'gerundios-c1') return <GerundiosC1Exercise />;
   if (tenseId === 'aspecto-verbal-c1') return <AspectosVerbalesC1Exercise />;
+  if (tenseId === 'pronombres-a1') return <PronombresA1Exercise />;
+  if (tenseId === 'genero-sustantivos-a1')
+    return <GeneroSustantivosA1Exercise />;
+  if (tenseId === 'conjugacion-a1') return <ConjugacionA1Exercise />;
+  if (tenseId === 'adjetivos-a1') return <AdjetivosA1Exercise />;
 
-  // Ejercicios de casos gramaticales
-  if (
-    [
-      'nominative-case',
-      'accusative-case',
-      'genitive-case',
-      'dative-case',
-      'instrumental-case',
-      'prepositional-case',
-    ].includes(tenseId)
-  ) {
-    return (
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="bg-htb-card rounded-lg border border-gray-800 p-6 mb-6">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Casos Gramaticales del Ruso
-          </h2>
-          <p className="text-htb-text mb-4">
-            Los ejercicios de casos gramaticales están en desarrollo.
-          </p>
-          <div className="bg-htb-sidebar border border-htb-green/30 rounded-lg p-4">
-            <p className="text-htb-green font-semibold mb-2">
-              📚 Los 6 casos del ruso:
-            </p>
-            <ul className="list-disc list-inside text-htb-text space-y-1">
-              <li>
-                <strong>Nominativo</strong> - Sujeto de la oración
-              </li>
-              <li>
-                <strong>Acusativo</strong> - Objeto directo
-              </li>
-              <li>
-                <strong>Genitivo</strong> - Posesión, negación
-              </li>
-              <li>
-                <strong>Dativo</strong> - Objeto indirecto
-              </li>
-              <li>
-                <strong>Instrumental</strong> - Instrumento, compañía
-              </li>
-              <li>
-                <strong>Prepositivo</strong> - Después de preposiciones
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // A1 Gramática Extra
+  if (tenseId === 'plural-sustantivos-a1')
+    return <PluralSustantivosA1Exercise />;
+  if (tenseId === 'negacion-a1') return <NegacionA1Exercise />;
+  if (tenseId === 'preposiciones-a1') return <PreposicionesA1Exercise />;
+  if (tenseId === 'la-hora-a1') return <LaHoraA1Exercise />;
+  if (tenseId === 'numeros-ordinales-a1') return <NumerosOrdinalesA1Exercise />;
+  if (tenseId === 'casos-basicos-a1') return <CasosBasicosA1Exercise />;
 
-  // Ejercicios de verbos
-  if (
-    [
-      'present-tense-verbs',
-      'past-tense-verbs',
-      'future-tense-verbs',
-      'verbs-of-motion',
-      'verb-aspects',
-    ].includes(tenseId)
-  ) {
-    return (
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="bg-htb-card rounded-lg border border-gray-800 p-6 mb-6">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Sistema Verbal Ruso
-          </h2>
-          <p className="text-htb-text mb-4">
-            Los ejercicios de verbos están en desarrollo.
-          </p>
-          <div className="bg-htb-sidebar border border-htb-green/30 rounded-lg p-4">
-            <p className="text-htb-green font-semibold mb-2">
-              🚀 Sistema verbal ruso:
-            </p>
-            <ul className="list-disc list-inside text-htb-text space-y-1">
-              <li>
-                <strong>Presente</strong> - Dos conjugaciones principales
-              </li>
-              <li>
-                <strong>Pasado</strong> - Formas por género y número
-              </li>
-              <li>
-                <strong>Futuro</strong> - Perfecto e imperfecto
-              </li>
-              <li>
-                <strong>Verbos de movimiento</strong> - Determinado e
-                indeterminado
-              </li>
-              <li>
-                <strong>Aspectos</strong> - Perfectivo e imperfectivo
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // A1 Situaciones Extra
+  if (tenseId === 'en-el-medico-a1') return <EnElMedicoA1Exercise />;
+  if (tenseId === 'pedir-ayuda-a1') return <PedirAyudaA1Exercise />;
+  if (tenseId === 'en-casa-a1') return <EnCasaA1Exercise />;
+  if (tenseId === 'describir-personas-a1')
+    return <DescribirPersonasA1Exercise />;
 
-  // Ejercicios de vocabulario
-  if (
-    [
-      'family-relations',
-      'food-drinks',
-      'city-transport',
-      'work-professions',
-      'travel-tourism',
-      'shopping-money',
-    ].includes(tenseId)
-  ) {
-    return (
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="bg-htb-card rounded-lg border border-gray-800 p-6 mb-6">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Vocabulario Ruso
-          </h2>
-          <p className="text-htb-text mb-4">
-            Los ejercicios de vocabulario temático están en desarrollo.
-          </p>
-          <div className="bg-htb-sidebar border border-htb-green/30 rounded-lg p-4">
-            <p className="text-htb-green font-semibold mb-2">
-              📖 Temas disponibles próximamente:
-            </p>
-            <ul className="list-disc list-inside text-htb-text space-y-1">
-              <li>Familia y Relaciones</li>
-              <li>Comida y Bebidas</li>
-              <li>Ciudad y Transporte</li>
-              <li>Trabajo y Profesiones</li>
-              <li>Viajes y Turismo</li>
-              <li>Compras y Dinero</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // A1 Vocabulario
+  if (tenseId === 'colores-a1') return <ColoresA1Exercise />;
+  if (tenseId === 'cuerpo-a1') return <PartesDelCuerpoA1Exercise />;
+  if (tenseId === 'dias-meses-a1') return <DiasMesesA1Exercise />;
+
+  // B2 Casos Gramaticales
+  if (tenseId === 'nominative-case') return <NominativoCaseB2Exercise />;
+  if (tenseId === 'accusative-case') return <AcusativoCaseB2Exercise />;
+  if (tenseId === 'genitive-case') return <GenitivoCaseB2Exercise />;
+  if (tenseId === 'dative-case') return <DativoCaseB2Exercise />;
+  if (tenseId === 'instrumental-case') return <InstrumentalCaseB2Exercise />;
+  if (tenseId === 'prepositional-case') return <PrepositionalCaseB2Exercise />;
+
+  // B2 Sistema Verbal
+  if (tenseId === 'present-tense-verbs') return <PresenteTenseB2Exercise />;
+  if (tenseId === 'past-tense-verbs') return <PasadoTenseB2Exercise />;
+  if (tenseId === 'future-tense-verbs') return <FuturoTenseB2Exercise />;
+  if (tenseId === 'verbs-of-motion') return <VerbosMovimientoB2Exercise />;
+  if (tenseId === 'verb-aspects') return <VerbAspectosB2Exercise />;
+
+  // B2 Vocabulario
+  if (tenseId === 'family-relations') return <FamiliaRelacionesB2Exercise />;
+  if (tenseId === 'food-drinks') return <ComidaBebidasB2Exercise />;
+  if (tenseId === 'city-transport') return <CiudadTransporteB2Exercise />;
+  if (tenseId === 'work-professions') return <TrabajoProfesionesB2Exercise />;
+  if (tenseId === 'travel-tourism') return <ViajesTurismoB2Exercise />;
+  if (tenseId === 'shopping-money') return <ComprasDineroB2Exercise />;
 
   // Si es have-had-c1, mostrar el componente HaveHadC1Exercise
   if (tenseId === 'have-had-c1') {

@@ -15,7 +15,12 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
       Beginner: true,
       'Beginner-Fundamentos': true,
       'Beginner-Situaciones': true,
+      'Beginner-Gramatica': true,
       'A2-Elemental': true,
+      'Beginner-Gramatica-Extra': true,
+      'A1-Situaciones-Extra': true,
+      'A1-Vocabulario': true,
+      'A2-Gramatica': false,
       Intermediate: false,
       'B1-Gramatica': false,
       'Upper-Intermediate': false,
@@ -43,6 +48,72 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
     { id: 'basic-phrases', name: 'Frases Básicas', category: 'Fundamentos' },
     { id: 'numbers-counting', name: 'Números', category: 'Fundamentos' },
 
+    // A1-Gramática
+    { id: 'verb-be-a1', name: 'Verbo Быть', category: 'A1-Gramatica' },
+    { id: 'pronombres-a1', name: 'Pronombres', category: 'A1-Gramatica' },
+    {
+      id: 'genero-sustantivos-a1',
+      name: 'Género de Sustantivos',
+      category: 'A1-Gramatica',
+    },
+    {
+      id: 'conjugacion-a1',
+      name: 'Conjugación de Verbos',
+      category: 'A1-Gramatica',
+    },
+    { id: 'adjetivos-a1', name: 'Adjetivos Básicos', category: 'A1-Gramatica' },
+
+    // A1-Gramática Extra
+    {
+      id: 'plural-sustantivos-a1',
+      name: 'Plural de Sustantivos',
+      category: 'A1-Gramatica-Extra',
+    },
+    { id: 'negacion-a1', name: 'La Negación', category: 'A1-Gramatica-Extra' },
+    {
+      id: 'preposiciones-a1',
+      name: 'Preposiciones Básicas',
+      category: 'A1-Gramatica-Extra',
+    },
+    { id: 'la-hora-a1', name: 'La Hora', category: 'A1-Gramatica-Extra' },
+    {
+      id: 'numeros-ordinales-a1',
+      name: 'Números Ordinales',
+      category: 'A1-Gramatica-Extra',
+    },
+    {
+      id: 'casos-basicos-a1',
+      name: 'Casos: Nom. y Acus.',
+      category: 'A1-Gramatica-Extra',
+    },
+
+    // A1-Situaciones Extra
+    {
+      id: 'en-el-medico-a1',
+      name: 'En el Médico',
+      category: 'A1-Situaciones-Extra',
+    },
+    {
+      id: 'pedir-ayuda-a1',
+      name: 'Pedir Ayuda',
+      category: 'A1-Situaciones-Extra',
+    },
+    { id: 'en-casa-a1', name: 'En Casa', category: 'A1-Situaciones-Extra' },
+    {
+      id: 'describir-personas-a1',
+      name: 'Describir Personas',
+      category: 'A1-Situaciones-Extra',
+    },
+
+    // A1-Vocabulario
+    { id: 'colores-a1', name: 'Colores', category: 'A1-Vocabulario' },
+    { id: 'cuerpo-a1', name: 'Partes del Cuerpo', category: 'A1-Vocabulario' },
+    {
+      id: 'dias-meses-a1',
+      name: 'Días, Meses y Estaciones',
+      category: 'A1-Vocabulario',
+    },
+
     // A1-Situaciones
     { id: 'presentarte', name: 'Presentarte', category: 'A1-Situaciones' },
     { id: 'pedir-comida', name: 'Pedir Comida', category: 'A1-Situaciones' },
@@ -58,6 +129,20 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
     { id: 'familia-trabajo', name: 'Familia y Trabajo', category: 'A2' },
     { id: 'pasado-ruso', name: 'Pasado en Ruso', category: 'A2' },
     { id: 'pedir-informacion', name: 'Pedir Información', category: 'A2' },
+
+    // A2-Gramática
+    { id: 'genitivo-a2', name: 'Caso Genitivo', category: 'A2-Gramatica' },
+    { id: 'dativo-a2', name: 'Caso Dativo', category: 'A2-Gramatica' },
+    {
+      id: 'aspectos-intro-a2',
+      name: 'Aspectos Verbales Intro',
+      category: 'A2-Gramatica',
+    },
+    {
+      id: 'adverbios-a2',
+      name: 'Adverbios Esenciales',
+      category: 'A2-Gramatica',
+    },
 
     // B1-Gramática
     {
@@ -375,6 +460,172 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
                       ))}
                     </div>
                   )}
+
+                  {/* Gramática A1 */}
+                  <button
+                    onClick={() => toggleSection('Beginner-Gramatica')}
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm hover:bg-htb-card text-htb-text-dim transition-colors"
+                  >
+                    <span>📐 Gramática</span>
+                    <svg
+                      className={`w-3 h-3 transition-transform ${
+                        expandedSections['Beginner-Gramatica']
+                          ? 'rotate-180'
+                          : ''
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                  {expandedSections['Beginner-Gramatica'] && (
+                    <div className="ml-4 space-y-1">
+                      {groupedTenses['A1-Gramatica']?.map((tense) => (
+                        <button
+                          key={tense.id}
+                          onClick={() => onSelectTense(tense.id)}
+                          className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                            selectedTense === tense.id
+                              ? 'bg-htb-green text-htb-bg'
+                              : 'hover:bg-htb-card text-htb-text-dim'
+                          }`}
+                        >
+                          {tense.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Gramática Extra A1 */}
+                  <button
+                    onClick={() => toggleSection('Beginner-Gramatica-Extra')}
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm hover:bg-htb-card text-htb-text-dim transition-colors"
+                  >
+                    <span>📐 Gramática Avanzada</span>
+                    <svg
+                      className={`w-3 h-3 transition-transform ${
+                        expandedSections['Beginner-Gramatica-Extra']
+                          ? 'rotate-180'
+                          : ''
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                  {expandedSections['Beginner-Gramatica-Extra'] && (
+                    <div className="ml-4 space-y-1">
+                      {groupedTenses['A1-Gramatica-Extra']?.map((tense) => (
+                        <button
+                          key={tense.id}
+                          onClick={() => onSelectTense(tense.id)}
+                          className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                            selectedTense === tense.id
+                              ? 'bg-htb-green text-htb-bg'
+                              : 'hover:bg-htb-card text-htb-text-dim'
+                          }`}
+                        >
+                          {tense.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Más Situaciones A1 */}
+                  <button
+                    onClick={() => toggleSection('A1-Situaciones-Extra')}
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm hover:bg-htb-card text-htb-text-dim transition-colors"
+                  >
+                    <span>🗣️ Más Situaciones</span>
+                    <svg
+                      className={`w-3 h-3 transition-transform ${
+                        expandedSections['A1-Situaciones-Extra']
+                          ? 'rotate-180'
+                          : ''
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                  {expandedSections['A1-Situaciones-Extra'] && (
+                    <div className="ml-4 space-y-1">
+                      {groupedTenses['A1-Situaciones-Extra']?.map((tense) => (
+                        <button
+                          key={tense.id}
+                          onClick={() => onSelectTense(tense.id)}
+                          className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                            selectedTense === tense.id
+                              ? 'bg-htb-green text-htb-bg'
+                              : 'hover:bg-htb-card text-htb-text-dim'
+                          }`}
+                        >
+                          {tense.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Vocabulario A1 */}
+                  <button
+                    onClick={() => toggleSection('A1-Vocabulario')}
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm hover:bg-htb-card text-htb-text-dim transition-colors"
+                  >
+                    <span>📖 Vocabulario</span>
+                    <svg
+                      className={`w-3 h-3 transition-transform ${
+                        expandedSections['A1-Vocabulario'] ? 'rotate-180' : ''
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                  {expandedSections['A1-Vocabulario'] && (
+                    <div className="ml-4 space-y-1">
+                      {groupedTenses['A1-Vocabulario']?.map((tense) => (
+                        <button
+                          key={tense.id}
+                          onClick={() => onSelectTense(tense.id)}
+                          className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                            selectedTense === tense.id
+                              ? 'bg-htb-green text-htb-bg'
+                              : 'hover:bg-htb-card text-htb-text-dim'
+                          }`}
+                        >
+                          {tense.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -414,6 +665,10 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
               </button>
               {expandedSections['A2-Elemental'] && (
                 <div className="mt-1 ml-6 space-y-1">
+                  {/* A2 Situaciones */}
+                  <div className="text-xs text-htb-text-dim px-3 py-1 uppercase tracking-wider">
+                    🗣️ Situaciones
+                  </div>
                   <div className="ml-4 space-y-1">
                     {groupedTenses['A2']?.map((tense) => (
                       <button
@@ -429,6 +684,43 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
                       </button>
                     ))}
                   </div>
+                  {/* A2 Gramática subsection */}
+                  <button
+                    onClick={() => toggleSection('A2-Gramatica')}
+                    className="w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-htb-card transition-colors mt-1"
+                  >
+                    <span className="text-htb-text-dim">📐 Gramática</span>
+                    <svg
+                      className={`w-3 h-3 transition-transform ${expandedSections['A2-Gramatica'] ? 'rotate-180' : ''}`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                  {expandedSections['A2-Gramatica'] && (
+                    <div className="ml-4 space-y-1">
+                      {groupedTenses['A2-Gramatica']?.map((tense) => (
+                        <button
+                          key={tense.id}
+                          onClick={() => onSelectTense(tense.id)}
+                          className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                            selectedTense === tense.id
+                              ? 'bg-htb-green text-htb-bg'
+                              : 'hover:bg-htb-card text-htb-text-dim'
+                          }`}
+                        >
+                          {tense.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
