@@ -120,6 +120,17 @@ import GenitivoA2Exercise from './GenitivoA2Exercise';
 import DativoA2Exercise from './DativoA2Exercise';
 import AspectosIntroA2Exercise from './AspectosIntroA2Exercise';
 import AdverbiosA2Exercise from './AdverbiosA2Exercise';
+import InstrumentalA2Exercise from './InstrumentalA2Exercise';
+import PrepositionalA2Exercise from './PrepositionalA2Exercise';
+import TiempoA2Exercise from './TiempoA2Exercise';
+import PluralesA2Exercise from './PluralesA2Exercise';
+import PronombresA2Exercise from './PronombresA2Exercise';
+import TransportesA2Exercise from './TransportesA2Exercise';
+import RestauranteA2Exercise from './RestauranteA2Exercise';
+import TiempoLibreA2Exercise from './TiempoLibreA2Exercise';
+import DescripcionPersonasA2Exercise from './DescripcionPersonasA2Exercise';
+import RopaA2Exercise from './RopaA2Exercise';
+import SaludBasicaA2Exercise from './SaludBasicaA2Exercise';
 import NominativoCaseB2Exercise from './NominativoCaseB2Exercise';
 import AcusativoCaseB2Exercise from './AcusativoCaseB2Exercise';
 import GenitivoCaseB2Exercise from './GenitivoCaseB2Exercise';
@@ -256,6 +267,18 @@ const ExerciseView = ({ tenseId, onSelectTense }) => {
   if (tenseId === 'dativo-a2') return <DativoA2Exercise />;
   if (tenseId === 'aspectos-intro-a2') return <AspectosIntroA2Exercise />;
   if (tenseId === 'adverbios-a2') return <AdverbiosA2Exercise />;
+  if (tenseId === 'instrumental-a2') return <InstrumentalA2Exercise />;
+  if (tenseId === 'prepositional-a2') return <PrepositionalA2Exercise />;
+  if (tenseId === 'tiempo-a2') return <TiempoA2Exercise />;
+  if (tenseId === 'plurales-a2') return <PluralesA2Exercise />;
+  if (tenseId === 'pronombres-a2') return <PronombresA2Exercise />;
+  if (tenseId === 'transportes-a2') return <TransportesA2Exercise />;
+  if (tenseId === 'restaurante-a2') return <RestauranteA2Exercise />;
+  if (tenseId === 'tiempo-libre-a2') return <TiempoLibreA2Exercise />;
+  if (tenseId === 'descripcion-personas-a2')
+    return <DescripcionPersonasA2Exercise />;
+  if (tenseId === 'ropa-a2') return <RopaA2Exercise />;
+  if (tenseId === 'salud-basica-a2') return <SaludBasicaA2Exercise />;
 
   // B1 Intermedio
   if (tenseId === 'verbos-movimiento-b1') return <VerbosMovimientoB1Exercise />;

@@ -21,6 +21,7 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
       'A1-Situaciones-Extra': true,
       'A1-Vocabulario': true,
       'A2-Gramatica': false,
+      'A2-Vocabulario': false,
       Intermediate: false,
       'B1-Gramatica': false,
       'B1-Vocabulario': false,
@@ -145,6 +146,31 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
       name: 'Adverbios Esenciales',
       category: 'A2-Gramatica',
     },
+    {
+      id: 'instrumental-a2',
+      name: 'Caso Instrumental',
+      category: 'A2-Gramatica',
+    },
+    {
+      id: 'prepositional-a2',
+      name: 'Caso Prepositivo',
+      category: 'A2-Gramatica',
+    },
+    {
+      id: 'tiempo-a2',
+      name: 'Expresiones de Tiempo',
+      category: 'A2-Gramatica',
+    },
+    {
+      id: 'plurales-a2',
+      name: 'Plurales y Declinaciones',
+      category: 'A2-Gramatica',
+    },
+    {
+      id: 'pronombres-a2',
+      name: 'Pronombres y Posesivos',
+      category: 'A2-Gramatica',
+    },
 
     // B1-Gramática
     {
@@ -237,6 +263,15 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
     { id: 'work-professions', name: 'Trabajo y Profesiones' },
     { id: 'travel-tourism', name: 'Viajes y Turismo' },
     { id: 'shopping-money', name: 'Compras y Dinero' },
+  ];
+
+  const vocabularyTopicsA2 = [
+    { id: 'transportes-a2', name: 'Transportes y Ciudad' },
+    { id: 'restaurante-a2', name: 'En el Restaurante' },
+    { id: 'tiempo-libre-a2', name: 'Tiempo Libre' },
+    { id: 'descripcion-personas-a2', name: 'Descripción de Personas' },
+    { id: 'ropa-a2', name: 'Ropa y Apariencia' },
+    { id: 'salud-basica-a2', name: 'Salud Básica' },
   ];
 
   const vocabularyTopicsB1 = [
@@ -695,7 +730,16 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
             matchesSearch('Rutina') ||
             matchesSearch('Familia') ||
             matchesSearch('Pasado') ||
-            matchesSearch('Información')) && (
+            matchesSearch('Información') ||
+            matchesSearch('Instrumental') ||
+            matchesSearch('Prepositivo') ||
+            matchesSearch('Plurales') ||
+            matchesSearch('Pronombres') ||
+            matchesSearch('Transportes') ||
+            matchesSearch('Restaurante') ||
+            matchesSearch('Tiempo Libre') ||
+            matchesSearch('Descripción') ||
+            matchesSearch('Salud')) && (
             <div>
               <button
                 onClick={() => toggleSection('A2-Elemental')}
@@ -779,12 +823,53 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
                       ))}
                     </div>
                   )}
+                  {/* A2 Vocabulario subsection */}
+                  <div className="mt-2">
+                    <button
+                      onClick={() => toggleSection('A2-Vocabulario')}
+                      className="w-full flex items-center justify-between px-3 py-1 rounded-lg text-xs font-medium hover:bg-htb-card transition-colors"
+                    >
+                      <span className="text-htb-text-dim uppercase tracking-wider">
+                        📖 Vocabulario
+                      </span>
+                      <svg
+                        className={`w-3 h-3 transition-transform ${
+                          expandedSections['A2-Vocabulario'] ? 'rotate-180' : ''
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                    {expandedSections['A2-Vocabulario'] && (
+                      <div className="ml-4 space-y-1">
+                        {vocabularyTopicsA2.map((topic) => (
+                          <button
+                            key={topic.id}
+                            onClick={() => onSelectTense(topic.id)}
+                            className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                              selectedTense === topic.id
+                                ? 'bg-htb-green text-htb-bg'
+                                : 'hover:bg-htb-card text-htb-text-dim'
+                            }`}
+                          >
+                            {topic.name}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
           )}
-
-          {/* B1 INTERMEDIO RUSO */}
           {(matchesSearch('B1') ||
             matchesSearch('Intermedio B1') ||
             matchesSearch('Movimiento') ||
