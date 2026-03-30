@@ -21,26 +21,58 @@ const IMPORT_LINE = "import SpeakableText from './SpeakableText';";
 
 // JSX attribute names where we must NOT wrap (the value goes to a prop, not rendered)
 const SKIP_ATTRS = new Set([
-  'title', 'text', 'value', 'placeholder', 'alt', 'key',
-  'aria-label', 'data-text', 'correctAnswer', 'correct', 'correcta',
+  'title',
+  'text',
+  'value',
+  'placeholder',
+  'alt',
+  'key',
+  'aria-label',
+  'data-text',
+  'correctAnswer',
+  'correct',
+  'correcta',
 ]);
 
 // Object property names that hold Russian text to be rendered as JSX children
 const RUSSIAN_PROPS = new Set([
-  'ru', 'ruso',
-  'forma', 'nom', 'masc', 'fem', 'neutro', 'pl', 'singular', 'plural',
-  'yo', 'tu', 'el', 'inf', 'infinitivo',
+  'ru',
+  'ruso',
+  'forma',
+  'nom',
+  'masc',
+  'fem',
+  'neutro',
+  'pl',
+  'singular',
+  'plural',
+  'yo',
+  'tu',
+  'el',
+  'inf',
+  'infinitivo',
   // some files use these for CyrillicAlphabet - skip 'upper'/'lower' since
   // VerbBeA1Exercise handles them with useTTS directly
 ]);
 
 // Skip files that don't need modification or are infrastructure
 const SKIP_FILES = new Set([
-  'SpeakableText.jsx', 'TTSLoadingBar.jsx', 'ExerciseView.jsx',
-  'ExamView.jsx', 'ExamView2.jsx', 'ExamView3.jsx', 'ExamView4.jsx',
-  'ExamView5.jsx', 'ExamView6.jsx', 'ExamViewC1.jsx',
-  'Layout.jsx', 'Sidebar.jsx', 'Introduction.jsx', 'SuccessModal.jsx',
-  'EmailWritingB1.jsx', 'EmailWritingB2.jsx',
+  'SpeakableText.jsx',
+  'TTSLoadingBar.jsx',
+  'ExerciseView.jsx',
+  'ExamView.jsx',
+  'ExamView2.jsx',
+  'ExamView3.jsx',
+  'ExamView4.jsx',
+  'ExamView5.jsx',
+  'ExamView6.jsx',
+  'ExamViewC1.jsx',
+  'Layout.jsx',
+  'Sidebar.jsx',
+  'Introduction.jsx',
+  'SuccessModal.jsx',
+  'EmailWritingB1.jsx',
+  'EmailWritingB2.jsx',
   // VerbBeA1Exercise uses useTTS directly for the alphabet grid — keep as-is
   'VerbBeA1Exercise.jsx',
 ]);
@@ -75,7 +107,10 @@ function transformCode(code) {
   // Build a regex matching {VAR.PROP} for every russian prop
   const propsPattern = [...RUSSIAN_PROPS].join('|');
   // Matches: {anything.prop} possibly with whitespace
-  const regex = new RegExp(`\\{([a-zA-Z_$][a-zA-Z0-9_$]*)\\.(${propsPattern})\\}`, 'g');
+  const regex = new RegExp(
+    `\\{([a-zA-Z_$][a-zA-Z0-9_$]*)\\.(${propsPattern})\\}`,
+    'g'
+  );
 
   const result = code.replace(regex, (match, varName, prop, offset) => {
     // Get the portion of the current line before this match
@@ -103,8 +138,9 @@ function transformCode(code) {
 
 // ─── main ───────────────────────────────────────────────────────────────────
 
-const files = readdirSync(COMPONENTS_DIR)
-  .filter((f) => f.endsWith('.jsx') && !SKIP_FILES.has(f));
+const files = readdirSync(COMPONENTS_DIR).filter(
+  (f) => f.endsWith('.jsx') && !SKIP_FILES.has(f)
+);
 
 let modified = 0;
 let skipped = 0;
@@ -115,7 +151,9 @@ for (const file of files) {
 
   // Check if there's any Russian text to wrap
   const propsPattern = [...RUSSIAN_PROPS].join('|');
-  const hasRussian = new RegExp(`\\{[a-zA-Z_$][a-zA-Z0-9_$]*\\.(${propsPattern})\\}`).test(code);
+  const hasRussian = new RegExp(
+    `\\{[a-zA-Z_$][a-zA-Z0-9_$]*\\.(${propsPattern})\\}`
+  ).test(code);
 
   if (!hasRussian) {
     skipped++;

@@ -163,14 +163,21 @@ export function TTSProvider({ children }) {
         }
       };
 
-      source.start();
+      // Schedule slightly in the future so the audio scheduler has time to
+      // queue the buffer before playback begins — prevents the first syllable
+      // from being clipped (especially after an AudioContext resume).
+      const SCHEDULE_AHEAD = 0.08; // 80 ms
+      source.start(ctx.currentTime + SCHEDULE_AHEAD);
       setStatus('speaking');
     };
 
-    // If context is suspended (autoplay policy), resume first then play
+    // If context is suspended (autoplay policy), resume first then play.
+    // After resume() resolves, currentTime may still be 0 for a tick, so we
+    // wait one animation frame to let the clock stabilise before scheduling.
     if (ctx.state === 'suspended') {
       ctx
         .resume()
+        .then(() => new Promise((r) => requestAnimationFrame(r)))
         .then(doPlay)
         .catch((err) => {
           console.error('[TTS] AudioContext resume failed:', err);
