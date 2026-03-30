@@ -99,6 +99,11 @@ import ArteCulturaC1Exercise from './ArteCulturaC1Exercise';
 import NaturalezaMedioC1Exercise from './NaturalezaMedioC1Exercise';
 import SaludMedicinaC1Exercise from './SaludMedicinaC1Exercise';
 import EducacionCienciaC1Exercise from './EducacionCienciaC1Exercise';
+import DebateC1Exercise from './DebateC1Exercise';
+import NegociacionC1Exercise from './NegociacionC1Exercise';
+import PresentacionC1Exercise from './PresentacionC1Exercise';
+import EntrevistaFormalC1Exercise from './EntrevistaFormalC1Exercise';
+import EscrituraFormalC1Exercise from './EscrituraFormalC1Exercise';
 import PronombresA1Exercise from './PronombresA1Exercise';
 import GeneroSustantivosA1Exercise from './GeneroSustantivosA1Exercise';
 import ConjugacionA1Exercise from './ConjugacionA1Exercise';
@@ -319,6 +324,11 @@ const ExerciseView = ({ tenseId, onSelectTense }) => {
   if (tenseId === 'naturaleza-medio-c1') return <NaturalezaMedioC1Exercise />;
   if (tenseId === 'salud-medicina-c1') return <SaludMedicinaC1Exercise />;
   if (tenseId === 'educacion-ciencia-c1') return <EducacionCienciaC1Exercise />;
+  if (tenseId === 'debate-c1') return <DebateC1Exercise />;
+  if (tenseId === 'negociacion-c1') return <NegociacionC1Exercise />;
+  if (tenseId === 'presentacion-c1') return <PresentacionC1Exercise />;
+  if (tenseId === 'entrevista-formal-c1') return <EntrevistaFormalC1Exercise />;
+  if (tenseId === 'escritura-formal-c1') return <EscrituraFormalC1Exercise />;
   if (tenseId === 'pronombres-a1') return <PronombresA1Exercise />;
   if (tenseId === 'genero-sustantivos-a1')
     return <GeneroSustantivosA1Exercise />;

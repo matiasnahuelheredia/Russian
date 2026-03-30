@@ -1,42 +1,83 @@
 import React, { useState } from 'react';
+import { useTTS } from '../context/TTSContext';
 
+// `spoken` = Russian letter name used for TTS (single letters are hard for the
+// model; letter names give a much cleaner pronunciation)
 const alphabet = [
-  { upper: 'А', lower: 'а', translit: 'a', sound: 'a (padre)' },
-  { upper: 'Б', lower: 'б', translit: 'b', sound: 'b (barco)' },
-  { upper: 'В', lower: 'в', translit: 'v', sound: 'v (vino)' },
-  { upper: 'Г', lower: 'г', translit: 'g', sound: 'g (gato)' },
-  { upper: 'Д', lower: 'д', translit: 'd', sound: 'd (dado)' },
-  { upper: 'Е', lower: 'е', translit: 'ye', sound: 'ye (yes)' },
-  { upper: 'Ё', lower: 'ё', translit: 'yo', sound: 'yo (yogur)' },
-  { upper: 'Ж', lower: 'ж', translit: 'zh', sound: 'zh (like French j)' },
-  { upper: 'З', lower: 'з', translit: 'z', sound: 'z (zapato)' },
-  { upper: 'И', lower: 'и', translit: 'i', sound: 'i (isla)' },
-  { upper: 'Й', lower: 'й', translit: 'y', sound: 'y (yate)' },
-  { upper: 'К', lower: 'к', translit: 'k', sound: 'k (kilo)' },
-  { upper: 'Л', lower: 'л', translit: 'l', sound: 'l (luna)' },
-  { upper: 'М', lower: 'м', translit: 'm', sound: 'm (mar)' },
-  { upper: 'Н', lower: 'н', translit: 'n', sound: 'n (noche)' },
-  { upper: 'О', lower: 'о', translit: 'o', sound: 'o (boca)' },
-  { upper: 'П', lower: 'п', translit: 'p', sound: 'p (paso)' },
-  { upper: 'Р', lower: 'р', translit: 'r', sound: 'r (pero)' },
-  { upper: 'С', lower: 'с', translit: 's', sound: 's (sol)' },
-  { upper: 'Т', lower: 'т', translit: 't', sound: 't (toro)' },
-  { upper: 'У', lower: 'у', translit: 'u', sound: 'u (uva)' },
-  { upper: 'Ф', lower: 'ф', translit: 'f', sound: 'f (foto)' },
-  { upper: 'Х', lower: 'х', translit: 'kh', sound: 'j (jota)' },
-  { upper: 'Ц', lower: 'ц', translit: 'ts', sound: 'ts (tsar)' },
-  { upper: 'Ч', lower: 'ч', translit: 'ch', sound: 'ch (chico)' },
-  { upper: 'Ш', lower: 'ш', translit: 'sh', sound: 'sh (show)' },
-  { upper: 'Щ', lower: 'щ', translit: 'shch', sound: 'shch (más suave)' },
-  { upper: 'Ъ', lower: 'ъ', translit: 'ʺ', sound: 'signo duro (silent)' },
-  { upper: 'Ы', lower: 'ы', translit: 'y', sound: 'sonido gutural' },
-  { upper: 'Ь', lower: 'ь', translit: 'ʹ', sound: 'signo blando (silent)' },
-  { upper: 'Э', lower: 'э', translit: 'e', sound: 'e (mesa)' },
-  { upper: 'Ю', lower: 'ю', translit: 'yu', sound: 'yu (yugo)' },
-  { upper: 'Я', lower: 'я', translit: 'ya', sound: 'ya (ya)' },
+  { upper: 'А', lower: 'а', translit: 'a', sound: 'a (padre)', spoken: 'а' },
+  { upper: 'Б', lower: 'б', translit: 'b', sound: 'b (barco)', spoken: 'бэ' },
+  { upper: 'В', lower: 'в', translit: 'v', sound: 'v (vino)', spoken: 'вэ' },
+  { upper: 'Г', lower: 'г', translit: 'g', sound: 'g (gato)', spoken: 'гэ' },
+  { upper: 'Д', lower: 'д', translit: 'd', sound: 'd (dado)', spoken: 'дэ' },
+  { upper: 'Е', lower: 'е', translit: 'ye', sound: 'ye (yes)', spoken: 'е' },
+  { upper: 'Ё', lower: 'ё', translit: 'yo', sound: 'yo (yogur)', spoken: 'ё' },
+  {
+    upper: 'Ж',
+    lower: 'ж',
+    translit: 'zh',
+    sound: 'zh (like French j)',
+    spoken: 'жэ',
+  },
+  { upper: 'З', lower: 'з', translit: 'z', sound: 'z (zapato)', spoken: 'зэ' },
+  { upper: 'И', lower: 'и', translit: 'i', sound: 'i (isla)', spoken: 'и' },
+  {
+    upper: 'Й',
+    lower: 'й',
+    translit: 'y',
+    sound: 'y (yate)',
+    spoken: 'и краткое',
+  },
+  { upper: 'К', lower: 'к', translit: 'k', sound: 'k (kilo)', spoken: 'ка' },
+  { upper: 'Л', lower: 'л', translit: 'l', sound: 'l (luna)', spoken: 'эл' },
+  { upper: 'М', lower: 'м', translit: 'm', sound: 'm (mar)', spoken: 'эм' },
+  { upper: 'Н', lower: 'н', translit: 'n', sound: 'n (noche)', spoken: 'эн' },
+  { upper: 'О', lower: 'о', translit: 'o', sound: 'o (boca)', spoken: 'о' },
+  { upper: 'П', lower: 'п', translit: 'p', sound: 'p (paso)', spoken: 'пэ' },
+  { upper: 'Р', lower: 'р', translit: 'r', sound: 'r (pero)', spoken: 'эр' },
+  { upper: 'С', lower: 'с', translit: 's', sound: 's (sol)', spoken: 'эс' },
+  { upper: 'Т', lower: 'т', translit: 't', sound: 't (toro)', spoken: 'тэ' },
+  { upper: 'У', lower: 'у', translit: 'u', sound: 'u (uva)', spoken: 'у' },
+  { upper: 'Ф', lower: 'ф', translit: 'f', sound: 'f (foto)', spoken: 'эф' },
+  { upper: 'Х', lower: 'х', translit: 'kh', sound: 'j (jota)', spoken: 'ха' },
+  { upper: 'Ц', lower: 'ц', translit: 'ts', sound: 'ts (tsar)', spoken: 'цэ' },
+  { upper: 'Ч', lower: 'ч', translit: 'ch', sound: 'ch (chico)', spoken: 'чэ' },
+  { upper: 'Ш', lower: 'ш', translit: 'sh', sound: 'sh (show)', spoken: 'ша' },
+  {
+    upper: 'Щ',
+    lower: 'щ',
+    translit: 'shch',
+    sound: 'shch (más suave)',
+    spoken: 'ща',
+  },
+  {
+    upper: 'Ъ',
+    lower: 'ъ',
+    translit: 'ʺ',
+    sound: 'signo duro (silent)',
+    spoken: 'твёрдый знак',
+  },
+  {
+    upper: 'Ы',
+    lower: 'ы',
+    translit: 'y',
+    sound: 'sonido gutural',
+    spoken: 'ы',
+  },
+  {
+    upper: 'Ь',
+    lower: 'ь',
+    translit: 'ʹ',
+    sound: 'signo blando (silent)',
+    spoken: 'мягкий знак',
+  },
+  { upper: 'Э', lower: 'э', translit: 'e', sound: 'e (mesa)', spoken: 'э' },
+  { upper: 'Ю', lower: 'ю', translit: 'yu', sound: 'yu (yugo)', spoken: 'ю' },
+  { upper: 'Я', lower: 'я', translit: 'ya', sound: 'ya (ya)', spoken: 'я' },
 ];
 
 const CyrillicAlphabetExercise = () => {
+  const { speak, isReady, status, currentText } = useTTS();
+
   const [answers, setAnswers] = useState({
     question01: '',
     question02: '',
@@ -150,30 +191,72 @@ const CyrillicAlphabetExercise = () => {
           <em className="text-htb-green">Русский алфавит</em>
         </h2>
         <p className="text-sm text-htb-text-dim mb-4">
-          33 letras · pasa el cursor para ver el sonido
+          33 letras ·{' '}
+          {isReady ? '🔈 clic para escuchar' : '⏳ cargando voz IA…'}
         </p>
         <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 gap-2">
-          {alphabet.map((letter) => (
-            <div
-              key={letter.upper}
-              title={letter.sound}
-              className="group relative flex flex-col items-center justify-center bg-htb-sidebar border border-gray-700 hover:border-htb-green rounded-lg p-2 cursor-default transition-colors hover:bg-htb-green/10"
-            >
-              <span className="text-2xl font-bold text-white leading-none">
-                {letter.upper}
-              </span>
-              <span className="text-lg text-htb-text-dim leading-none">
-                {letter.lower}
-              </span>
-              <span className="text-xs text-htb-green font-mono mt-1">
-                {letter.translit}
-              </span>
-              {/* Tooltip */}
-              <div className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 z-10 hidden group-hover:block bg-gray-900 border border-htb-green/50 rounded px-2 py-1 whitespace-nowrap text-xs text-white shadow-lg pointer-events-none">
-                {letter.sound}
+          {alphabet.map((letter) => {
+            const isThisActive =
+              (status === 'speaking' || status === 'synthesizing') &&
+              currentText === letter.spoken;
+            return (
+              <div
+                key={letter.upper}
+                role={isReady ? 'button' : undefined}
+                tabIndex={isReady ? 0 : undefined}
+                title={
+                  isReady
+                    ? `${letter.sound} · clic para escuchar`
+                    : letter.sound
+                }
+                onClick={() => isReady && speak(letter.spoken)}
+                onKeyDown={(e) =>
+                  (e.key === 'Enter' || e.key === ' ') &&
+                  isReady &&
+                  speak(letter.spoken)
+                }
+                className={[
+                  'group relative flex flex-col items-center justify-center',
+                  'bg-htb-sidebar border rounded-lg p-2 transition-all duration-150',
+                  isThisActive
+                    ? 'border-htb-green bg-htb-green/20 scale-105 shadow-lg shadow-htb-green/20'
+                    : isReady
+                      ? 'border-gray-700 hover:border-htb-green hover:bg-htb-green/10 cursor-pointer'
+                      : 'border-gray-700 cursor-default opacity-70',
+                ].join(' ')}
+              >
+                <span
+                  className={`text-2xl font-bold leading-none ${
+                    isThisActive ? 'text-htb-green' : 'text-white'
+                  }`}
+                >
+                  {letter.upper}
+                </span>
+                <span className="text-lg text-htb-text-dim leading-none">
+                  {letter.lower}
+                </span>
+                <span className="text-xs text-htb-green font-mono mt-1">
+                  {letter.translit}
+                </span>
+                {/* Speaker icon shown on hover or while active */}
+                {isReady && (
+                  <span
+                    className={`absolute top-0.5 right-1 text-[9px] transition-opacity ${
+                      isThisActive
+                        ? 'opacity-100'
+                        : 'opacity-0 group-hover:opacity-60'
+                    }`}
+                  >
+                    {isThisActive ? '🔊' : '🔈'}
+                  </span>
+                )}
+                {/* Tooltip */}
+                <div className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 z-10 hidden group-hover:block bg-gray-900 border border-htb-green/50 rounded px-2 py-1 whitespace-nowrap text-xs text-white shadow-lg pointer-events-none">
+                  {letter.sound}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

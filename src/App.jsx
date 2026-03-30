@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Layout from './components/Layout';
 import ExerciseView from './components/ExerciseView';
 import ExamViewC1 from './components/ExamViewC1';
+import { TTSProvider } from './context/TTSContext';
+import TTSLoadingBar from './components/TTSLoadingBar';
 
 function App() {
   // Recuperar el tense desde URL params, localStorage, o usar 'introduction' por defecto
@@ -38,16 +40,19 @@ function App() {
   }, []);
 
   return (
-    <Layout selectedTense={selectedTense} onSelectTense={setSelectedTense}>
-      {selectedTense.startsWith('exam-c1-') ? (
-        <ExamViewC1 tenseId={selectedTense} />
-      ) : (
-        <ExerciseView
-          tenseId={selectedTense}
-          onSelectTense={setSelectedTense}
-        />
-      )}
-    </Layout>
+    <TTSProvider>
+      <Layout selectedTense={selectedTense} onSelectTense={setSelectedTense}>
+        {selectedTense.startsWith('exam-c1-') ? (
+          <ExamViewC1 tenseId={selectedTense} />
+        ) : (
+          <ExerciseView
+            tenseId={selectedTense}
+            onSelectTense={setSelectedTense}
+          />
+        )}
+      </Layout>
+      <TTSLoadingBar />
+    </TTSProvider>
   );
 }
 

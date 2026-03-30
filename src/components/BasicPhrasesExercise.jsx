@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const categories = [
   {
@@ -465,7 +466,9 @@ const BasicPhrasesExercise = () => {
                       style={{ backgroundColor: colorHex[p.ru] || '#888' }}
                     />
                     <div className="bg-htb-sidebar px-3 py-2">
-                      <p className="text-white font-bold text-base">{p.ru}</p>
+                      <p className="text-white font-bold text-base">
+                        <SpeakableText text={p.ru} />
+                      </p>
                       <p className="text-htb-text-dim text-xs italic">
                         {p.translit}
                       </p>
@@ -497,7 +500,7 @@ const BasicPhrasesExercise = () => {
                         className={`border-b border-gray-800 ${i % 2 === 0 ? 'bg-htb-bg' : 'bg-htb-sidebar/40'} hover:bg-htb-green/10 transition-colors`}
                       >
                         <td className="px-4 py-3 text-white font-medium text-base">
-                          {p.ru}
+                          <SpeakableText text={p.ru} />
                         </td>
                         <td className="px-4 py-3 text-htb-text-dim italic">
                           {p.translit}
@@ -552,7 +555,7 @@ const BasicPhrasesExercise = () => {
                   {!flipped[i] ? (
                     <div>
                       <p className="text-white text-xl font-bold mb-1">
-                        {p.ru}
+                        <SpeakableText text={p.ru} />
                       </p>
                       <p className="text-htb-text-dim text-sm italic">
                         {p.translit}
@@ -567,7 +570,7 @@ const BasicPhrasesExercise = () => {
                         {p.es}
                       </p>
                       <p className="text-htb-text-dim text-sm">
-                        {p.ru} · <em>{p.translit}</em>
+                        <SpeakableText text={p.ru} /> · <em>{p.translit}</em>
                       </p>
                       <p className="text-htb-text-dim text-xs mt-2">
                         Toca para ocultar

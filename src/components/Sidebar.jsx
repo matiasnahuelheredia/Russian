@@ -33,6 +33,7 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
       Advanced: false,
       'C1-Gramatica': false,
       'C1-Vocabulario': false,
+      'C1-Situaciones': false,
     };
   });
 
@@ -239,6 +240,33 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
       id: 'negacion-avanzada-c1',
       name: 'Negación Avanzada',
       category: 'C1-Gramatica',
+    },
+
+    // C1-Situaciones
+    {
+      id: 'debate-c1',
+      name: 'Debate y Argumentación',
+      category: 'C1-Situaciones',
+    },
+    {
+      id: 'negociacion-c1',
+      name: 'Negociación y Persuasión',
+      category: 'C1-Situaciones',
+    },
+    {
+      id: 'presentacion-c1',
+      name: 'Presentaciones Formales',
+      category: 'C1-Situaciones',
+    },
+    {
+      id: 'entrevista-formal-c1',
+      name: 'Entrevista de Trabajo',
+      category: 'C1-Situaciones',
+    },
+    {
+      id: 'escritura-formal-c1',
+      name: 'Escritura Formal Argumentativa',
+      category: 'C1-Situaciones',
     },
 
     // B2-Gramática
@@ -1238,7 +1266,12 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
             matchesSearch('Cultura') ||
             matchesSearch('Naturaleza') ||
             matchesSearch('Salud') ||
-            matchesSearch('Educacion')) && (
+            matchesSearch('Educacion') ||
+            matchesSearch('Debate') ||
+            matchesSearch('Negociacion') ||
+            matchesSearch('Presentacion') ||
+            matchesSearch('Entrevista') ||
+            matchesSearch('Escritura')) && (
             <div>
               <button
                 onClick={() => toggleSection('Advanced')}
@@ -1346,6 +1379,48 @@ const Sidebar = ({ selectedTense, onSelectTense }) => {
                           }`}
                         >
                           {topic.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Situaciones C1 */}
+                  <button
+                    onClick={() => toggleSection('C1-Situaciones')}
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm hover:bg-htb-card transition-colors"
+                  >
+                    <span className="text-htb-text-dim">
+                      🗣️ Situaciones Formales
+                    </span>
+                    <svg
+                      className={`w-3 h-3 transition-transform ${
+                        expandedSections['C1-Situaciones'] ? 'rotate-180' : ''
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                  {expandedSections['C1-Situaciones'] && (
+                    <div className="ml-3 space-y-0.5">
+                      {groupedTenses['C1-Situaciones']?.map((tense) => (
+                        <button
+                          key={tense.id}
+                          onClick={() => onSelectTense(tense.id)}
+                          className={`w-full text-left px-3 py-1.5 rounded text-xs transition-colors ${
+                            selectedTense === tense.id
+                              ? 'bg-htb-green text-htb-bg font-medium'
+                              : 'text-htb-text-dim hover:text-htb-text hover:bg-htb-card'
+                          }`}
+                        >
+                          {tense.name}
                         </button>
                       ))}
                     </div>
