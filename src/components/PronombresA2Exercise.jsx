@@ -161,10 +161,10 @@ export default function PronombresA2Exercise() {
         </h2>
         <p className="text-htb-text-dim">
           Posesivos:{' '}
-          <span className="text-htb-green font-bold">мой, твой, наш, ваш</span>{' '}
+          <span className="text-htb-green font-bold"><SpeakableText text="мой, твой, наш, ваш" /></span>{' '}
           se declinan.{' '}
-          <span className="text-blue-400 font-bold">его, её, их</span> son
-          invariables. <span className="text-yellow-400 font-bold">свой</span> =
+          <span className="text-blue-400 font-bold"><SpeakableText text="его, её, их" /></span> son
+          invariables. <span className="text-yellow-400 font-bold"><SpeakableText text="свой" /></span> =
           poseedor es el sujeto.
         </p>
       </div>

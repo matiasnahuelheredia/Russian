@@ -199,8 +199,8 @@ const ColoresA1Exercise = () => {
             <p className="text-htb-green font-semibold mb-2">💡 Concordancia</p>
             <p className="text-htb-text-dim text-sm">
               Ejemplo: <span className="text-white">красный</span> (masc.) →{' '}
-              <span className="text-white">красная</span> (fem.) →{' '}
-              <span className="text-white">красное</span> (neutro). E.g.:
+              <span className="text-white"><SpeakableText text="красная" /></span> (fem.) →{' '}
+              <span className="text-white"><SpeakableText text="красное" /></span> (neutro). E.g.:
               красная машина (coche rojo).
             </p>
           </div>

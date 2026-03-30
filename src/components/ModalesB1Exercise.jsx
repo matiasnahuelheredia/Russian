@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -228,11 +229,11 @@ export default function ModalesB1Exercise() {
               className="bg-htb-card rounded-lg border border-gray-800 p-4"
             >
               <div className="flex items-start gap-4 flex-wrap">
-                <span className="text-htb-green font-bold text-lg">{m.w}</span>
+                <span className="text-htb-green font-bold text-lg"><SpeakableText text={m.w} /></span>
                 <span className="text-yellow-400 text-sm">({m.tipo})</span>
               </div>
               <p className="text-blue-300 text-sm">{m.es}</p>
-              <p className="text-white text-sm mt-1">{m.ej}</p>
+              <p className="text-white text-sm mt-1"><SpeakableText text={m.ej} /></p>
             </div>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -265,10 +266,10 @@ export default function VerbAspectosB2Exercise() {
                     <td
                       className={`py-2 px-3 font-bold text-sm ${c.asp === 'Imperfectivo' ? 'text-blue-400' : 'text-htb-green'}`}
                     >
-                      {c.asp}
+                      <SpeakableText text={c.asp} />
                     </td>
                     <td className="py-2 px-3">
-                      <p className="text-white text-sm">{c.ej}</p>
+                      <p className="text-white text-sm"><SpeakableText text={c.ej} /></p>
                       <p className="text-htb-text-dim text-xs">{c.t}</p>
                     </td>
                   </tr>

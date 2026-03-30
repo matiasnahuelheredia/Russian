@@ -254,9 +254,9 @@ export default function DebateC1Exercise() {
             По моему мнению / На мой взгляд
           </span>{' '}
           (opinión) ·{' '}
-          <span className="text-blue-400 font-bold">Тем не менее</span>{' '}
+          <span className="text-blue-400 font-bold"><SpeakableText text="Тем не менее" /></span>{' '}
           (contraste) ·{' '}
-          <span className="text-yellow-400 font-bold">Следовательно</span>{' '}
+          <span className="text-yellow-400 font-bold"><SpeakableText text="Следовательно" /></span>{' '}
           (conclusión).
         </p>
       </div>

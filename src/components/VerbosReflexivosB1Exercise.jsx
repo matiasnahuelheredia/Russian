@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const VerbosReflexivosB1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -184,8 +185,8 @@ const VerbosReflexivosB1Exercise = () => {
         </h2>
         <p className="text-htb-text-dim">
           Los verbos reflexivos se forman añadiendo{' '}
-          <span className="text-htb-green font-bold">-ся</span> (después de
-          consonante) o <span className="text-htb-green font-bold">-сь</span>{' '}
+          <span className="text-htb-green font-bold"><SpeakableText text="-ся" /></span> (después de
+          consonante) o <span className="text-htb-green font-bold"><SpeakableText text="-сь" /></span>{' '}
           (después de vocal) al verbo.
         </p>
       </div>
@@ -218,9 +219,9 @@ const VerbosReflexivosB1Exercise = () => {
                   -ся (después de consonante)
                 </p>
                 <p className="text-white text-sm">
-                  мыть<span className="text-htb-green">ся</span>, учит
-                  <span className="text-htb-green">ся</span>, одевает
-                  <span className="text-htb-green">ся</span>
+                  мыть<span className="text-htb-green"><SpeakableText text="ся" /></span>, учит
+                  <span className="text-htb-green"><SpeakableText text="ся" /></span>, одевает
+                  <span className="text-htb-green"><SpeakableText text="ся" /></span>
                 </p>
               </div>
               <div className="bg-htb-sidebar rounded-lg p-3 border border-htb-green/30">
@@ -228,9 +229,9 @@ const VerbosReflexivosB1Exercise = () => {
                   -сь (después de vocal)
                 </p>
                 <p className="text-white text-sm">
-                  учу<span className="text-htb-green">сь</span>, моё
-                  <span className="text-htb-green">сь</span>, занимаю
-                  <span className="text-htb-green">сь</span>
+                  учу<span className="text-htb-green"><SpeakableText text="сь" /></span>, моё
+                  <span className="text-htb-green"><SpeakableText text="сь" /></span>, занимаю
+                  <span className="text-htb-green"><SpeakableText text="сь" /></span>
                 </p>
               </div>
             </div>
@@ -263,10 +264,10 @@ const VerbosReflexivosB1Exercise = () => {
                       className={`border-b border-gray-800 hover:bg-htb-sidebar/50 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                     >
                       <td className="py-3 px-4 text-htb-green font-bold text-lg">
-                        {v.verbo}
+                        <SpeakableText text={v.verbo} />
                       </td>
                       <td className="py-3 px-4 text-htb-text-dim italic text-sm">
-                        {v.conjugacion}
+                        <SpeakableText text={v.conjugacion} />
                       </td>
                       <td className="py-3 px-4 text-white">{v.espanol}</td>
                     </tr>

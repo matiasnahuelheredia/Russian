@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const reference = [
   {
@@ -151,9 +152,9 @@ export default function PrepositionalA2Exercise() {
         </h2>
         <p className="text-htb-text-dim">
           El Prepositivo siempre lleva preposición.{' '}
-          <span className="text-htb-green font-bold">в/на + Prep.</span> =
+          <span className="text-htb-green font-bold"><SpeakableText text="в/на + Prep." /></span> =
           ubicación.{' '}
-          <span className="text-blue-400 font-bold">о/об + Prep.</span> = tema.
+          <span className="text-blue-400 font-bold"><SpeakableText text="о/об + Prep." /></span> = tema.
         </p>
       </div>
       <div className="flex gap-2 mb-6 flex-wrap">

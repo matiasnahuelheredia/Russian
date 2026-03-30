@@ -122,9 +122,9 @@ export default function RopaComprasB1Exercise() {
         </h2>
         <p className="text-htb-text-dim">
           Vocabulario B1 para comprar ropa. Verbo clave:{' '}
-          <span className="text-htb-green font-bold">носить</span> (llevar
+          <span className="text-htb-green font-bold"><SpeakableText text="носить" /></span> (llevar
           puesto habitualmente) vs{' '}
-          <span className="text-blue-400 font-bold">надевать/надеть</span>{' '}
+          <span className="text-blue-400 font-bold"><SpeakableText text="надевать/надеть" /></span>{' '}
           (ponerse en un momento).
         </p>
       </div>

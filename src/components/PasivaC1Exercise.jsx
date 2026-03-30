@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -202,7 +203,7 @@ export default function PasivaC1Exercise() {
             participios pasivos cortos
           </span>{' '}
           (para estados resultantes) y{' '}
-          <span className="text-blue-400 font-bold">-ся</span> (para procesos
+          <span className="text-blue-400 font-bold"><SpeakableText text="-ся" /></span> (para procesos
           pasivos). El agente siempre en instrumental.
         </p>
       </div>
@@ -228,11 +229,11 @@ export default function PasivaC1Exercise() {
               key={i}
               className="bg-htb-card rounded-lg border border-gray-800 p-4"
             >
-              <p className={`font-bold mb-1 ${f.col}`}>{f.d}</p>
+              <p className={`font-bold mb-1 ${f.col}`}><SpeakableText text={f.d} /></p>
               <p className="text-htb-text-dim text-xs mb-2">
-                Forma: <span className="text-white">{f.e}</span>
+                Forma: <span className="text-white"><SpeakableText text={f.e} /></span>
               </p>
-              <p className="text-white text-sm">{f.ej}</p>
+              <p className="text-white text-sm"><SpeakableText text={f.ej} /></p>
             </div>
           ))}
         </div>

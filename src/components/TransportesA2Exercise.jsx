@@ -150,9 +150,9 @@ export default function TransportesA2Exercise() {
         </h2>
         <p className="text-htb-text-dim">
           Vocabulario A2 de medios de transporte. Clave:{' '}
-          <span className="text-htb-green font-bold">ехать</span> (ir en
+          <span className="text-htb-green font-bold"><SpeakableText text="ехать" /></span> (ir en
           vehículo, un trayecto) vs{' '}
-          <span className="text-blue-400 font-bold">ездить</span> (ir
+          <span className="text-blue-400 font-bold"><SpeakableText text="ездить" /></span> (ir
           habitualmente).
         </p>
       </div>

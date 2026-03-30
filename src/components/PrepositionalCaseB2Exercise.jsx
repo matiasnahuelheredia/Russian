@@ -213,7 +213,7 @@ export default function PrepositionalCaseB2Exercise() {
                     <td className="py-2 px-3 text-htb-text-dim text-xs">
                       {u.uso}
                     </td>
-                    <td className="py-2 px-3 text-white text-sm">{u.ej}</td>
+                    <td className="py-2 px-3 text-white text-sm"><SpeakableText text={u.ej} /></td>
                   </tr>
                 ))}
               </tbody>

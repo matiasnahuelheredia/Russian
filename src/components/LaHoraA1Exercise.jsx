@@ -200,7 +200,7 @@ const LaHoraA1Exercise = () => {
         <h2 className="text-3xl font-bold text-white mb-2">🕐 La Hora</h2>
         <p className="text-htb-text-dim">
           Para decir la hora en ruso:{' '}
-          <span className="text-htb-green font-bold">Который час?</span> (¿Qué
+          <span className="text-htb-green font-bold"><SpeakableText text="Который час?" /></span> (¿Qué
           hora es?) /{' '}
           <span className="text-htb-green font-bold">
             Сейчас + número + час/часа/часов

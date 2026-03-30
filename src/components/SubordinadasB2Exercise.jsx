@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const reference = [
   {
@@ -166,11 +167,11 @@ export default function SubordinadasB2Exercise() {
         </h2>
         <p className="text-htb-text-dim">
           Conjunciones clave:{' '}
-          <span className="text-htb-green font-bold">что</span> (que) ·{' '}
-          <span className="text-blue-400 font-bold">чтобы</span> (para que) ·{' '}
-          <span className="text-yellow-400 font-bold">потому что</span> (porque)
-          · <span className="text-red-400 font-bold">хотя</span> (aunque) ·{' '}
-          <span className="text-purple-400 font-bold">если</span> (si/condición
+          <span className="text-htb-green font-bold"><SpeakableText text="что" /></span> (que) ·{' '}
+          <span className="text-blue-400 font-bold"><SpeakableText text="чтобы" /></span> (para que) ·{' '}
+          <span className="text-yellow-400 font-bold"><SpeakableText text="потому что" /></span> (porque)
+          · <span className="text-red-400 font-bold"><SpeakableText text="хотя" /></span> (aunque) ·{' '}
+          <span className="text-purple-400 font-bold"><SpeakableText text="если" /></span> (si/condición
           real).
         </p>
       </div>

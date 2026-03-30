@@ -254,10 +254,10 @@ export default function FuturoTenseB2Exercise() {
                   <p
                     className={`font-bold text-sm mb-1 ${i === 0 ? 'text-blue-400' : 'text-htb-green'}`}
                   >
-                    {t.asp}
+                    <SpeakableText text={t.asp} />
                   </p>
                   <p className="text-htb-text-dim text-xs mb-1"><SpeakableText text={t.forma} /></p>
-                  <p className="text-white text-sm">{t.ej}</p>
+                  <p className="text-white text-sm"><SpeakableText text={t.ej} /></p>
                   <p className="text-htb-text-dim text-xs italic">{t.uso}</p>
                 </div>
               ))}

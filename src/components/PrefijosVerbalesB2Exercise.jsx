@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const vocab = [
   {
@@ -217,9 +218,9 @@ export default function PrefijosVerbalesB2Exercise() {
         <p className="text-htb-text-dim">
           Los prefijos cambian el significado del verbo base y crean verbos
           perfectivos. Clave de movimiento:{' '}
-          <span className="text-htb-green font-bold">при-</span> (llegada) /{' '}
-          <span className="text-blue-400 font-bold">у-</span> (marcha) /{' '}
-          <span className="text-yellow-400 font-bold">вы-</span> (salida).
+          <span className="text-htb-green font-bold"><SpeakableText text="при-" /></span> (llegada) /{' '}
+          <span className="text-blue-400 font-bold"><SpeakableText text="у-" /></span> (marcha) /{' '}
+          <span className="text-yellow-400 font-bold"><SpeakableText text="вы-" /></span> (salida).
         </p>
       </div>
       <div className="flex gap-2 mb-6 flex-wrap">

@@ -235,8 +235,8 @@ const AdverbiosA2Exercise = () => {
             </p>
             <p className="text-htb-text-dim text-sm">
               En ruso, los adverbios negativos (
-              <span className="text-white">никогда, нигде, никак</span>) siempre
-              van acompañados de <span className="text-white">не</span> antes
+              <span className="text-white"><SpeakableText text="никогда, нигде, никак" /></span>) siempre
+              van acompañados de <span className="text-white"><SpeakableText text="не" /></span> antes
               del verbo — a diferencia del español que evita la doble negación.
               Ej: <span className="text-htb-green">Я никогда не</span> ем мяса =
               Nunca como carne.

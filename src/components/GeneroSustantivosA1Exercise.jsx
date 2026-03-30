@@ -241,10 +241,10 @@ const GeneroSustantivosA1Exercise = () => {
             </p>
             <p className="text-htb-text-dim text-sm">
               Los sustantivos que terminan en{' '}
-              <strong className="text-white">-ь</strong> (signo blando) pueden
+              <strong className="text-white"><SpeakableText text="-ь" /></strong> (signo blando) pueden
               ser masculinos o femeninos. Hay que aprenderlos individualmente.
               Ej: <span className="text-blue-400">словарь</span> (masc.) vs{' '}
-              <span className="text-pink-400">ночь</span> (fem.)
+              <span className="text-pink-400"><SpeakableText text="ночь" /></span> (fem.)
             </p>
           </div>
 
@@ -272,8 +272,8 @@ const GeneroSustantivosA1Exercise = () => {
                     <td className="py-2 px-3 text-white">
                       consonante, -й, -ь*
                     </td>
-                    <td className="py-2 px-3 text-white">-а, -я, -ь*</td>
-                    <td className="py-2 px-3 text-white">-о, -е, -мя</td>
+                    <td className="py-2 px-3 text-white"><SpeakableText text="-а, -я, -ь*" /></td>
+                    <td className="py-2 px-3 text-white"><SpeakableText text="-о, -е, -мя" /></td>
                   </tr>
                 </tbody>
               </table>

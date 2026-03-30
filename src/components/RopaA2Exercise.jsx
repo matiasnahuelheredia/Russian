@@ -136,10 +136,10 @@ export default function RopaA2Exercise() {
         </h2>
         <p className="text-htb-text-dim">
           Vocabulario A2 de ropa. Contraste:{' '}
-          <span className="text-htb-green font-bold">надеть</span> (ponerse —
+          <span className="text-htb-green font-bold"><SpeakableText text="надеть" /></span> (ponerse —
           acción puntual) vs{' '}
-          <span className="text-blue-400 font-bold">носить</span> (llevar puesto
-          — habitual). <span className="text-yellow-400 font-bold">Пальто</span>{' '}
+          <span className="text-blue-400 font-bold"><SpeakableText text="носить" /></span> (llevar puesto
+          — habitual). <span className="text-yellow-400 font-bold"><SpeakableText text="Пальто" /></span>{' '}
           es invariable.
         </p>
       </div>

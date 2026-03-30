@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const vowels = [
   {
@@ -298,7 +299,7 @@ const PronunciationExercise = () => {
         <div className="mb-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
             Pronunciación Rusa –{' '}
-            <em className="text-htb-green">Произношение</em>
+            <em className="text-htb-green"><SpeakableText text="Произношение" /></em>
           </h2>
           <p className="text-sm sm:text-base text-htb-text-dim">
             Vocales, consonantes, signos mudos y reglas de reducción.
@@ -369,10 +370,10 @@ const PronunciationExercise = () => {
               </p>
               <p className="text-htb-text text-sm">
                 Las vocales{' '}
-                <span className="text-white font-medium">Я, Е, Ё, Ю, И</span>{' '}
+                <span className="text-white font-medium"><SpeakableText text="Я, Е, Ё, Ю, И" /></span>{' '}
                 indican que la consonante anterior es <em>suave</em>. Las
                 vocales{' '}
-                <span className="text-white font-medium">А, О, У, Э, Ы</span>{' '}
+                <span className="text-white font-medium"><SpeakableText text="А, О, У, Э, Ы" /></span>{' '}
                 indican que la consonante es <em>dura</em>.
               </p>
             </div>
@@ -462,11 +463,11 @@ const PronunciationExercise = () => {
               </p>
               <ul className="text-htb-text text-sm space-y-1 list-disc list-inside">
                 <li>
-                  <strong className="text-white">Ь (blando)</strong> — suaviza
+                  <strong className="text-white"><SpeakableText text="Ь (blando)" /></strong> — suaviza
                   la consonante que lo precede
                 </li>
                 <li>
-                  <strong className="text-white">Ъ (duro)</strong> — separa sin
+                  <strong className="text-white"><SpeakableText text="Ъ (duro)" /></strong> — separa sin
                   suavizar (raro, aparece tras prefijos)
                 </li>
                 <li>
@@ -513,7 +514,7 @@ const PronunciationExercise = () => {
               <p className="text-htb-text text-sm">
                 El acento en ruso no está marcado en los textos normales, pero
                 determina completamente cómo suena una palabra. Por ejemplo,{' '}
-                <span className="text-white font-medium">замок</span> significa{' '}
+                <span className="text-white font-medium"><SpeakableText text="замок" /></span> significa{' '}
                 <em>castillo</em> o <em>cerradura</em> dependiendo de qué sílaba
                 se acentúa.
               </p>

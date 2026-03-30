@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const reference = [
   {
@@ -174,9 +175,9 @@ export default function CondicionalB2Exercise() {
           🔀 Modo Condicional B2 (Условное наклонение)
         </h2>
         <p className="text-htb-text-dim">
-          Pasado + <span className="text-htb-green font-bold">бы</span> para
+          Pasado + <span className="text-htb-green font-bold"><SpeakableText text="бы" /></span> para
           hipótesis, deseos y condiciones irreales.{' '}
-          <span className="text-blue-400 font-bold">если бы ... то ...</span> —
+          <span className="text-blue-400 font-bold"><SpeakableText text="если бы ... то ..." /></span> —
           Si hubiera/tuviera..., ... haría.
         </p>
       </div>

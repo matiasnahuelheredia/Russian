@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const reference = [
   {
@@ -153,7 +154,7 @@ export default function InstrumentalA2Exercise() {
         </h2>
         <p className="text-htb-text-dim">
           El caso Instrumental expresa{' '}
-          <span className="text-htb-green font-bold">compañía (с + Inst.)</span>
+          <span className="text-htb-green font-bold"><SpeakableText text="compañía (с + Inst.)" /></span>
           , <span className="text-blue-400 font-bold">medio o instrumento</span>{' '}
           y <span className="text-yellow-400 font-bold">profesión/función</span>{' '}
           (работать + Inst.).

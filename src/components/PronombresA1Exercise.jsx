@@ -344,9 +344,9 @@ const PronombresA1Exercise = () => {
           <div className="bg-htb-sidebar rounded-lg border border-htb-green/30 p-4">
             <p className="text-htb-green font-semibold mb-2">💡 Nota clave</p>
             <p className="text-htb-text-dim text-sm">
-              Los posesivos <strong className="text-white">его</strong> (de él),{' '}
-              <strong className="text-white">её</strong> (de ella) e{' '}
-              <strong className="text-white">их</strong> (de ellos) son
+              Los posesivos <strong className="text-white"><SpeakableText text="его" /></strong> (de él),{' '}
+              <strong className="text-white"><SpeakableText text="её" /></strong> (de ella) e{' '}
+              <strong className="text-white"><SpeakableText text="их" /></strong> (de ellos) son
               invariables — no cambian según el género del sustantivo.
             </p>
           </div>

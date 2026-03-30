@@ -228,8 +228,8 @@ const DireccionesExercise = () => {
             <p className="text-htb-green font-semibold mb-2">💡 Consejo</p>
             <p className="text-htb-text-dim text-sm">
               En ruso, para dar instrucciones usas el imperativo:{' '}
-              <span className="text-white">Идите прямо</span> (Vaya recto),{' '}
-              <span className="text-white">Поверните направо</span> (Gire a la
+              <span className="text-white"><SpeakableText text="Идите прямо" /></span> (Vaya recto),{' '}
+              <span className="text-white"><SpeakableText text="Поверните направо" /></span> (Gire a la
               derecha).
             </p>
           </div>

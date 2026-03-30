@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -252,7 +253,7 @@ export default function VerbosMovimientoB2Exercise() {
                     {p.pref}
                   </span>
                   <span className="text-white text-sm">{p.sig}</span>
-                  <p className="text-htb-text-dim text-xs">{p.ej}</p>
+                  <p className="text-htb-text-dim text-xs"><SpeakableText text={p.ej} /></p>
                 </div>
               ))}
             </div>

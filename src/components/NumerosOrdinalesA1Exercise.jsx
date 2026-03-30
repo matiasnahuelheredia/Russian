@@ -306,7 +306,7 @@ const NumerosOrdinalesA1Exercise = () => {
             </p>
             <p className="text-htb-text-dim text-sm">
               "Tercero" es especial:{' '}
-              <span className="text-white">третий / третья / третье</span> (nota
+              <span className="text-white"><SpeakableText text="третий / третья / третье" /></span> (nota
               la ь intermediа — forma suave).
             </p>
           </div>

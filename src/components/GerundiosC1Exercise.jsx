@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const GerundiosC1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -301,7 +302,7 @@ const GerundiosC1Exercise = () => {
                   className="bg-htb-sidebar rounded-lg p-4 border border-gray-800"
                 >
                   <p className="text-htb-green font-semibold text-lg">
-                    {e.gerundio}
+                    <SpeakableText text={e.gerundio} />
                   </p>
                   <p className="text-white mt-1">{e.espanol}</p>
                   <span

@@ -157,7 +157,7 @@ export default function RelativosB1Exercise() {
           🔗 Pronombres Relativos — который
         </h2>
         <p className="text-htb-text-dim">
-          <span className="text-htb-green font-bold">который</span> (que, el
+          <span className="text-htb-green font-bold"><SpeakableText text="который" /></span> (que, el
           cual) declina en género, número y caso. El caso depende de su función
           en la oración subordinada; el género y número dependen del
           antecedente.

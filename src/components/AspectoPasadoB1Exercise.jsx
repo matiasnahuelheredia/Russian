@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -221,12 +222,12 @@ export default function AspectoPasadoB1Exercise() {
               key={i}
               className={`bg-htb-card rounded-lg border border-gray-800 p-4`}
             >
-              <p className={`font-bold text-lg mb-1 ${t.color}`}>{t.asp}</p>
+              <p className={`font-bold text-lg mb-1 ${t.color}`}><SpeakableText text={t.asp} /></p>
               <p className="text-white text-sm">{t.uso}</p>
               <p className="text-htb-text-dim text-xs">
                 Señales: <span className="text-yellow-400">{t.senal}</span>
               </p>
-              <p className="text-htb-text-dim text-xs mt-1 italic">{t.ej}</p>
+              <p className="text-htb-text-dim text-xs mt-1 italic"><SpeakableText text={t.ej} /></p>
             </div>
           ))}
           <div className="bg-htb-card rounded-lg border border-gray-800 overflow-hidden">
@@ -240,9 +241,9 @@ export default function AspectoPasadoB1Exercise() {
                 key={i}
                 className={`py-2 px-4 border-b border-gray-800 flex items-center gap-4 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
               >
-                <span className="text-blue-400 w-24 font-bold">{p.imp}</span>
+                <span className="text-blue-400 w-24 font-bold"><SpeakableText text={p.imp} /></span>
                 <span className="text-htb-text-dim">→</span>
-                <span className="text-htb-green w-24 font-bold">{p.perf}</span>
+                <span className="text-htb-green w-24 font-bold"><SpeakableText text={p.perf} /></span>
                 <span className="text-white text-sm">{p.es}</span>
               </div>
             ))}

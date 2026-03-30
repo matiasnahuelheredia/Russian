@@ -270,16 +270,16 @@ const DiasMesesA1Exercise = () => {
             </p>
             <ul className="text-htb-text-dim text-sm space-y-1">
               <li>
-                • Сегодня <span className="text-htb-green">понедельник</span> —
+                • Сегодня <span className="text-htb-green"><SpeakableText text="понедельник" /></span> —
                 Hoy es lunes
               </li>
               <li>
-                • Сейчас <span className="text-htb-green">зима</span> — Ahora es
+                • Сейчас <span className="text-htb-green"><SpeakableText text="зима" /></span> — Ahora es
                 invierno
               </li>
               <li>
                 • Мой день рождения в{' '}
-                <span className="text-htb-green">марте</span> — Mi cumpleaños es
+                <span className="text-htb-green"><SpeakableText text="марте" /></span> — Mi cumpleaños es
                 en marzo
               </li>
             </ul>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -256,7 +257,7 @@ export default function DativoCaseB2Exercise() {
                     </td>
                     <td className="py-2 px-3 text-white">{v.esp}</td>
                     <td className="py-2 px-3 text-htb-text-dim text-xs">
-                      {v.ej} — {v.t}
+                      <SpeakableText text={v.ej} /> — {v.t}
                     </td>
                   </tr>
                 ))}
@@ -269,15 +270,15 @@ export default function DativoCaseB2Exercise() {
                 Preposiciones + Dativo
               </p>
               <p className="text-white text-sm">
-                <span className="text-htb-green font-bold">к</span> — hacia, a
+                <span className="text-htb-green font-bold"><SpeakableText text="к" /></span> — hacia, a
                 (destino): Иди к врачу.
               </p>
               <p className="text-white text-sm mt-1">
-                <span className="text-htb-green font-bold">по</span> — por
+                <span className="text-htb-green font-bold"><SpeakableText text="по" /></span> — por
                 (distribución), a lo largo de: По улицам.
               </p>
               <p className="text-white text-sm mt-1">
-                <span className="text-htb-green font-bold">благодаря</span> —
+                <span className="text-htb-green font-bold"><SpeakableText text="благодаря" /></span> —
                 gracias a: Благодаря другу.
               </p>
             </div>
@@ -286,19 +287,19 @@ export default function DativoCaseB2Exercise() {
                 Modales + Dativo
               </p>
               <p className="text-htb-text-dim text-sm">
-                <span className="text-white">мне можно</span> — puedo / me
+                <span className="text-white"><SpeakableText text="мне можно" /></span> — puedo / me
                 permiten
               </p>
               <p className="text-htb-text-dim text-sm">
-                <span className="text-white">мне нельзя</span> — no puedo / está
+                <span className="text-white"><SpeakableText text="мне нельзя" /></span> — no puedo / está
                 prohibido para mí
               </p>
               <p className="text-htb-text-dim text-sm">
-                <span className="text-white">мне нужно</span> — necesito / tengo
+                <span className="text-white"><SpeakableText text="мне нужно" /></span> — necesito / tengo
                 que
               </p>
               <p className="text-htb-text-dim text-sm">
-                <span className="text-white">мне надо</span> — necesito / debo
+                <span className="text-white"><SpeakableText text="мне надо" /></span> — necesito / debo
               </p>
             </div>
           </div>

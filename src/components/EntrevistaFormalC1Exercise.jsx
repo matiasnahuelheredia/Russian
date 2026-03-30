@@ -223,9 +223,9 @@ export default function EntrevistaFormalC1Exercise() {
           <span className="text-htb-green font-bold">
             Я специализируюсь на + Prep.
           </span>{' '}
-          · <span className="text-blue-400 font-bold">Отвечать за + Acus.</span>{' '}
+          · <span className="text-blue-400 font-bold"><SpeakableText text="Отвечать за + Acus." /></span>{' '}
           (ser responsable de) ·{' '}
-          <span className="text-yellow-400 font-bold">Полагаю, что...</span>{' '}
+          <span className="text-yellow-400 font-bold"><SpeakableText text="Полагаю, что..." /></span>{' '}
           (considero que).
         </p>
       </div>

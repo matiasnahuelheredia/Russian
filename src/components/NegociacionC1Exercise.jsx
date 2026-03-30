@@ -250,11 +250,11 @@ export default function NegociacionC1Exercise() {
         </h2>
         <p className="text-htb-text-dim">
           Lenguaje formal para negociar. Clave:{' '}
-          <span className="text-htb-green font-bold">При условии, что...</span>{' '}
+          <span className="text-htb-green font-bold"><SpeakableText text="При условии, что..." /></span>{' '}
           (condición) ·{' '}
-          <span className="text-blue-400 font-bold">Было бы целесообразно</span>{' '}
+          <span className="text-blue-400 font-bold"><SpeakableText text="Было бы целесообразно" /></span>{' '}
           (sugerencia formal) ·{' '}
-          <span className="text-yellow-400 font-bold">Мы нашли компромисс</span>{' '}
+          <span className="text-yellow-400 font-bold"><SpeakableText text="Мы нашли компромисс" /></span>{' '}
           (acuerdo).
         </p>
       </div>

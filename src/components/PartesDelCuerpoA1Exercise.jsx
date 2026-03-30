@@ -191,7 +191,7 @@ const PartesDelCuerpoA1Exercise = () => {
         <p className="text-htb-text-dim">
           Vocabulario esencial para hablar sobre salud, descripciones físicas y
           situaciones cotidianas. Combínalo con{' '}
-          <span className="text-htb-green font-bold">У меня болит...</span> (me
+          <span className="text-htb-green font-bold"><SpeakableText text="У меня болит..." /></span> (me
           duele) para el médico.
         </p>
       </div>

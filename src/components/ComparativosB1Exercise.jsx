@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const ComparativosB1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -223,7 +224,7 @@ const ComparativosB1Exercise = () => {
         <p className="text-htb-text-dim">
           En ruso, los comparativos son invariables (no cambian género/número).
           Los superlativos usan{' '}
-          <span className="text-htb-green font-bold">самый</span> + adjetivo
+          <span className="text-htb-green font-bold"><SpeakableText text="самый" /></span> + adjetivo
           (que sí concuerda).
         </p>
       </div>

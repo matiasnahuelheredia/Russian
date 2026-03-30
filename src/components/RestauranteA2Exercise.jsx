@@ -157,7 +157,7 @@ export default function RestauranteA2Exercise() {
           <span className="text-htb-green font-bold">
             Принесите, пожалуйста...
           </span>{' '}
-          y <span className="text-blue-400 font-bold">Я буду + Acus.</span>
+          y <span className="text-blue-400 font-bold"><SpeakableText text="Я буду + Acus." /></span>
         </p>
       </div>
       <div className="flex gap-2 mb-6 flex-wrap">

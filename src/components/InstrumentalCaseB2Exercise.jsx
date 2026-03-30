@@ -222,7 +222,7 @@ export default function InstrumentalCaseB2Exercise() {
                     <td className="py-2 px-3 text-htb-text-dim italic text-xs">
                       {u.est}
                     </td>
-                    <td className="py-2 px-3 text-white text-sm">{u.ej}</td>
+                    <td className="py-2 px-3 text-white text-sm"><SpeakableText text={u.ej} /></td>
                     <td className="py-2 px-3 text-htb-text-dim text-xs">
                       {u.t}
                     </td>

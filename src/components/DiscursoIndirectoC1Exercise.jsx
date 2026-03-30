@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -249,7 +250,7 @@ export default function DiscursoIndirectoC1Exercise() {
                       {r.conj}
                     </td>
                     <td className="py-2 px-3">
-                      <p className="text-white text-sm">{r.ej}</p>
+                      <p className="text-white text-sm"><SpeakableText text={r.ej} /></p>
                       <p className="text-htb-text-dim text-xs">{r.es}</p>
                     </td>
                   </tr>

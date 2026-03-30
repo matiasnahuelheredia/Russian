@@ -172,9 +172,9 @@ export default function TiempoLibreA2Exercise() {
         </h2>
         <p className="text-htb-text-dim">
           Vocabulario A2 para hablar del ocio. Contraste clave:{' '}
-          <span className="text-htb-green font-bold">играть в + Acc.</span>{' '}
+          <span className="text-htb-green font-bold"><SpeakableText text="играть в + Acc." /></span>{' '}
           (deportes/juegos) vs{' '}
-          <span className="text-blue-400 font-bold">играть на + Prep.</span>{' '}
+          <span className="text-blue-400 font-bold"><SpeakableText text="играть на + Prep." /></span>{' '}
           (instrumentos).
         </p>
       </div>

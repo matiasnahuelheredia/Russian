@@ -1,90 +1,65 @@
 /**
- * add-tts.mjs
- * Automatically injects SpeakableText into every Exercise component that
- * renders Russian text but doesn't yet import SpeakableText.
+ * add-tts.mjs  (v2)
+ * Injects <SpeakableText text={...} /> into every Exercise component that
+ * renders Russian text but doesn't use SpeakableText yet.
  *
- * Russian text detection strategy:
- *   - Properties named `.ru`, `.ruso` are always Russian text.
- *   - Properties named `.forma`, `.nom`, `.masc`, `.fem`, `.neutro`, `.pl`,
- *     `.yo`, `.tu`, `.el`, `.singular`, `.plural`, `.inf`, `.infinitivo`
- *     are Russian word forms in conjugation/declension tables.
- *   - Only replaces JSX *children* (not attribute values like title={x.ru}).
+ * Detection strategy:
+ *   A) Object-property JSX children: {x.ru}, {x.ruso}, {x.verbo}, {x.ej} …
+ *   B) Inline Cyrillic string literals between JSX tags: >Привет<
  *
- * Run with: node scripts/add-tts.mjs
+ * Run: node scripts/add-tts.mjs
  */
 
 import { readFileSync, writeFileSync, readdirSync } from 'fs';
-import { join, basename } from 'path';
+import { join } from 'path';
 
 const COMPONENTS_DIR = 'src/components';
 const IMPORT_LINE = "import SpeakableText from './SpeakableText';";
 
-// JSX attribute names where we must NOT wrap (the value goes to a prop, not rendered)
-const SKIP_ATTRS = new Set([
-  'title',
-  'text',
-  'value',
-  'placeholder',
-  'alt',
-  'key',
-  'aria-label',
-  'data-text',
-  'correctAnswer',
-  'correct',
-  'correcta',
-]);
-
-// Object property names that hold Russian text to be rendered as JSX children
 const RUSSIAN_PROPS = new Set([
-  'ru',
-  'ruso',
-  'forma',
-  'nom',
-  'masc',
-  'fem',
-  'neutro',
-  'pl',
-  'singular',
-  'plural',
-  'yo',
-  'tu',
-  'el',
-  'inf',
-  'infinitivo',
-  // some files use these for CyrillicAlphabet - skip 'upper'/'lower' since
-  // VerbBeA1Exercise handles them with useTTS directly
+  'ru', 'ruso',
+  'forma', 'verbo', 'conjugacion', 'infinitivo', 'inf',
+  'perf', 'imp', 'asp',
+  'yo', 'tu', 'el', 'nos', 'vos', 'ellos',
+  'nom', 'masc', 'fem', 'neutro', 'pl', 'singular', 'plural',
+  'participio', 'gerundio',
+  'ej', 'form', 'w', 'd', 'e', 'patron',
 ]);
 
-// Skip files that don't need modification or are infrastructure
 const SKIP_FILES = new Set([
-  'SpeakableText.jsx',
-  'TTSLoadingBar.jsx',
-  'ExerciseView.jsx',
-  'ExamView.jsx',
-  'ExamView2.jsx',
-  'ExamView3.jsx',
-  'ExamView4.jsx',
-  'ExamView5.jsx',
-  'ExamView6.jsx',
-  'ExamViewC1.jsx',
-  'Layout.jsx',
-  'Sidebar.jsx',
-  'Introduction.jsx',
-  'SuccessModal.jsx',
-  'EmailWritingB1.jsx',
-  'EmailWritingB2.jsx',
-  // VerbBeA1Exercise uses useTTS directly for the alphabet grid — keep as-is
-  'VerbBeA1Exercise.jsx',
+  'SpeakableText.jsx','TTSLoadingBar.jsx','ExerciseView.jsx',
+  'ExamView.jsx','ExamView2.jsx','ExamView3.jsx','ExamView4.jsx','ExamView5.jsx','ExamView6.jsx','ExamViewC1.jsx',
+  'Layout.jsx','Sidebar.jsx','Introduction.jsx','SuccessModal.jsx',
+  'EmailWritingB1.jsx','EmailWritingB2.jsx','VerbBeA1Exercise.jsx',
+  // Pure English exercises
+  'AnimalIssuesC1Exercise.jsx','AnimalsBirdsInsectsC1Exercise.jsx',
+  'CleftSentencesC1Exercise.jsx','CompoundPossessiveNounsC1Exercise.jsx',
+  'ConflictWarfareExercise.jsx','ConfusingAdverbsExercise.jsx',
+  'DiscourseMarkersC1Exercise.jsx','DistancingC1Exercise.jsx',
+  'EllipsisC1Exercise.jsx','FuturePlansC1Exercise.jsx',
+  'GerundsInfinitivesC1Exercise.jsx','GetVerbC1Exercise.jsx',
+  'HaveHadC1Exercise.jsx','IdiomsC1Exercise.jsx','InversionC1Exercise.jsx',
+  'JobInterviewB2.jsx','JobInterviewCSharp.jsx',
+  'LinkersC1Exercise.jsx','LinkingWordsB2.jsx',
+  'ManagerialReportsExercise.jsx','MatchExercise.jsx',
+  'MoneyVocabularyC1Exercise.jsx','NegativePrefixesC1Exercise.jsx',
+  'PermissionObligationC1Exercise.jsx','PersonalQuestionsB2.jsx',
+  'PhonesTechnologyC1Exercise.jsx','PhonesTechnologyExercise.jsx',
+  'PhrasalVerbsC1Exercise.jsx','PictureDescriptionB2.jsx',
+  'PrefixesMeaningsC1Exercise.jsx','RelativeClausesC1Exercise.jsx',
+  'SentenceAdverbsExercise.jsx','SoundsVoiceC1Exercise.jsx',
+  'SpeculationDeductionC1Exercise.jsx','StoryTellingB2.jsx',
+  'TalkAboutYourselfB2.jsx','TimeExpressionsC1Exercise.jsx',
+  'UnrealPastTensesC1Exercise.jsx','VerbObjectInfinitiveGerundC1Exercise.jsx',
+  'VerbSensesC1Exercise.jsx','VerbsSensesC1Exercise.jsx',
+  'WorkVocabularyC1Exercise.jsx','ExpressionsIdiomsC1Exercise.jsx',
+  'UtensilsC1Exercise.jsx','AdjectivesC1Exercise.jsx','AdjectivesExercise.jsx',
 ]);
 
-// ─── helpers ────────────────────────────────────────────────────────────────
-
-function alreadyHasSpeakable(code) {
-  return code.includes('SpeakableText');
-}
+const CYRILLIC_RE = /[\u0400-\u04FF]/;
 
 function addImport(code) {
-  // Insert after the last import line
+  if (code.includes(IMPORT_LINE)) return code;
   const lines = code.split('\n');
   let lastImport = 0;
   for (let i = 0; i < lines.length; i++) {
@@ -94,92 +69,57 @@ function addImport(code) {
   return lines.join('\n');
 }
 
-/**
- * Replace JSX child expressions like {x.ru} or {x.ruso} with
- * <SpeakableText text={x.ru} /> — but only when they appear as JSX children,
- * not inside attribute values.
- *
- * We detect attribute context by checking whether the expression is preceded
- * on its line by `=` with no intervening `>` (a crude but effective heuristic
- * for JSX attribute syntax like title={x.ru}).
- */
-function transformCode(code) {
-  // Build a regex matching {VAR.PROP} for every russian prop
+function transformProps(code) {
   const propsPattern = [...RUSSIAN_PROPS].join('|');
-  // Matches: {anything.prop} possibly with whitespace
-  const regex = new RegExp(
-    `\\{([a-zA-Z_$][a-zA-Z0-9_$]*)\\.(${propsPattern})\\}`,
-    'g'
-  );
-
-  const result = code.replace(regex, (match, varName, prop, offset) => {
-    // Get the portion of the current line before this match
+  const regex = new RegExp(`\\{([a-zA-Z_$][a-zA-Z0-9_$]*)\\.(${propsPattern})\\}`, 'g');
+  return code.replace(regex, (match, varName, prop, offset) => {
     const lineStart = code.lastIndexOf('\n', offset) + 1;
     const before = code.slice(lineStart, offset);
-
-    // If there's an `=` before us on this line (and no `>` between `=` and us),
-    // we're likely inside an attribute value — skip
     const lastEq = before.lastIndexOf('=');
     const lastGt = before.lastIndexOf('>');
-    if (lastEq !== -1 && lastEq > lastGt) {
-      return match; // inside attr, leave alone
-    }
-
-    // Also skip if we're inside a string (template literal, etc.) — simple check:
-    // count unescaped backticks before us on this line
+    if (lastEq !== -1 && lastEq > lastGt) return match;
     const backticks = (before.match(/`/g) || []).length;
     if (backticks % 2 === 1) return match;
-
     return `<SpeakableText text={${varName}.${prop}} />`;
   });
-
-  return result;
 }
 
-// ─── main ───────────────────────────────────────────────────────────────────
+function transformInlineCyrillic(code) {
+  const lines = code.split('\n');
+  return lines.map((line) => {
+    if (!CYRILLIC_RE.test(line)) return line;
+    const trimmed = line.trimStart();
+    // Skip data lines, comments, already-wrapped
+    if (
+      trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('/*') ||
+      trimmed.includes('SpeakableText') ||
+      /^\s+[a-zA-Z_$][a-zA-Z0-9_$]*\s*[=:]/.test(line)
+    ) return line;
 
-const files = readdirSync(COMPONENTS_DIR).filter(
-  (f) => f.endsWith('.jsx') && !SKIP_FILES.has(f)
-);
+    // Replace Cyrillic text between > and < (JSX children only)
+    return line.replace(/(>)(\s*)([^<>{}"'`]+?)(\s*)(<)/g, (full, gt, wsL, text, wsR, lt) => {
+      if (!CYRILLIC_RE.test(text)) return full;
+      const t = text.trim();
+      if (!t) return full;
+      return `${gt}${wsL}<SpeakableText text="${t}" />${wsR}${lt}`;
+    });
+  }).join('\n');
+}
 
-let modified = 0;
-let skipped = 0;
+const files = readdirSync(COMPONENTS_DIR).filter((f) => f.endsWith('.jsx') && !SKIP_FILES.has(f));
+let modified = 0, skipped = 0;
 
 for (const file of files) {
   const filePath = join(COMPONENTS_DIR, file);
   let code = readFileSync(filePath, 'utf8');
-
-  // Check if there's any Russian text to wrap
-  const propsPattern = [...RUSSIAN_PROPS].join('|');
-  const hasRussian = new RegExp(
-    `\\{[a-zA-Z_$][a-zA-Z0-9_$]*\\.(${propsPattern})\\}`
-  ).test(code);
-
-  if (!hasRussian) {
-    skipped++;
-    continue;
-  }
-
-  if (alreadyHasSpeakable(code)) {
-    // Already has SpeakableText — still transform any remaining unwrapped ones
-    const transformed = transformCode(code);
-    if (transformed !== code) {
-      writeFileSync(filePath, transformed, 'utf8');
-      console.log(`[updated] ${file}`);
-      modified++;
-    } else {
-      skipped++;
-    }
-    continue;
-  }
-
-  // Add import + transform
+  const original = code;
+  code = transformProps(code);
+  code = transformInlineCyrillic(code);
+  if (code === original) { skipped++; continue; }
   code = addImport(code);
-  code = transformCode(code);
-
   writeFileSync(filePath, code, 'utf8');
-  console.log(`[+import +transform] ${file}`);
+  console.log(`[✓] ${file}`);
   modified++;
 }
 
-console.log(`\nDone: ${modified} files modified, ${skipped} skipped.`);
+console.log(`\nDone: ${modified} modified, ${skipped} skipped.`);

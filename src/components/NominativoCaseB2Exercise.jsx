@@ -187,7 +187,7 @@ export default function NominativoCaseB2Exercise() {
                     <td className="py-2 px-3 text-htb-green font-bold">
                       {r.caso}
                     </td>
-                    <td className="py-2 px-3 text-white font-medium">{r.ej}</td>
+                    <td className="py-2 px-3 text-white font-medium"><SpeakableText text={r.ej} /></td>
                     <td className="py-2 px-3 text-htb-text-dim italic">
                       {r.t}
                     </td>

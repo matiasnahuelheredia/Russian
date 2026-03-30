@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -188,7 +189,7 @@ export default function SubjuntivoC1Exercise() {
             если бы + pasado + бы
           </span>{' '}
           para condiciones irreales. Para deseos/mandatos indirectos:{' '}
-          <span className="text-htb-green font-bold">чтобы + pasado</span>. No
+          <span className="text-htb-green font-bold"><SpeakableText text="чтобы + pasado" /></span>. No
           hay modo subjuntivo propiamente dicho.
         </p>
       </div>
@@ -240,7 +241,7 @@ export default function SubjuntivoC1Exercise() {
                       {r.est}
                     </td>
                     <td className="py-2 px-3">
-                      <p className="text-white text-sm">{r.ej}</p>
+                      <p className="text-white text-sm"><SpeakableText text={r.ej} /></p>
                       <p className="text-htb-text-dim text-xs">{r.es}</p>
                     </td>
                   </tr>

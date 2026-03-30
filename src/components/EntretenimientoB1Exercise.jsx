@@ -156,7 +156,7 @@ export default function EntretenimientoB1Exercise() {
         <p className="text-htb-text-dim">
           Vocabulario B1 para hablar de hobbies, ocio y entretenimiento. Útil
           para expresar gustos:{' '}
-          <span className="text-htb-green font-bold">мне нравится + inf.</span>{' '}
+          <span className="text-htb-green font-bold"><SpeakableText text="мне нравится + inf." /></span>{' '}
           (me gusta).
         </p>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const AspectosVerbalesC1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -309,10 +310,10 @@ const AspectosVerbalesC1Exercise = () => {
                       className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                     >
                       <td className="py-2 px-4 text-blue-400 font-bold text-lg">
-                        {p.imp}
+                        <SpeakableText text={p.imp} />
                       </td>
                       <td className="py-2 px-4 text-htb-green font-bold text-lg">
-                        {p.perf}
+                        <SpeakableText text={p.perf} />
                       </td>
                       <td className="py-2 px-4 text-htb-text-dim text-sm">
                         {p.espanol}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const NegacionA1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -224,9 +225,9 @@ const NegacionA1Exercise = () => {
           🚫 La Negación en Ruso
         </h2>
         <p className="text-htb-text-dim">
-          En ruso se usa <span className="text-htb-green font-bold">не</span>{' '}
+          En ruso se usa <span className="text-htb-green font-bold"><SpeakableText text="не" /></span>{' '}
           antes del verbo para negar acciones, y{' '}
-          <span className="text-htb-green font-bold">нет</span> para indicar
+          <span className="text-htb-green font-bold"><SpeakableText text="нет" /></span> para indicar
           ausencia o responder negativamente.
         </p>
       </div>
@@ -278,7 +279,7 @@ const NegacionA1Exercise = () => {
                     className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                   >
                     <td className="py-2 px-4 text-htb-green font-bold text-sm">
-                      {r.patron}
+                      <SpeakableText text={r.patron} />
                     </td>
                     <td className="py-2 px-4 text-white">{r.ejemplo}</td>
                     <td className="py-2 px-4 text-htb-text-dim italic text-sm">
@@ -299,14 +300,14 @@ const NegacionA1Exercise = () => {
               </p>
               <ul className="text-htb-text-dim text-sm space-y-1">
                 <li>
-                  • Я <span className="text-white">не</span> читаю → No leo
+                  • Я <span className="text-white"><SpeakableText text="не" /></span> читаю → No leo
                 </li>
                 <li>
-                  • Он <span className="text-white">не</span> дома → No está en
+                  • Он <span className="text-white"><SpeakableText text="не" /></span> дома → No está en
                   casa
                 </li>
                 <li>
-                  • <span className="text-white">Не</span> очень хорошо → No muy
+                  • <span className="text-white"><SpeakableText text="Не" /></span> очень хорошо → No muy
                   bien
                 </li>
               </ul>
@@ -317,15 +318,15 @@ const NegacionA1Exercise = () => {
               </p>
               <ul className="text-htb-text-dim text-sm space-y-1">
                 <li>
-                  • <span className="text-white">Нет</span>, спасибо → No,
+                  • <span className="text-white"><SpeakableText text="Нет" /></span>, спасибо → No,
                   gracias
                 </li>
                 <li>
-                  • У меня <span className="text-white">нет</span> денег → No
+                  • У меня <span className="text-white"><SpeakableText text="нет" /></span> денег → No
                   tengo dinero
                 </li>
                 <li>
-                  • Его <span className="text-white">нет</span> → Él no está
+                  • Его <span className="text-white"><SpeakableText text="нет" /></span> → Él no está
                 </li>
               </ul>
             </div>

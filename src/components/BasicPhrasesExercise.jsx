@@ -405,7 +405,7 @@ const BasicPhrasesExercise = () => {
         {/* Heading */}
         <div className="mb-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-            Frases Básicas – <em className="text-htb-green">Основные фразы</em>
+            Frases Básicas – <em className="text-htb-green"><SpeakableText text="Основные фразы" /></em>
           </h2>
           <p className="text-sm sm:text-base text-htb-text-dim">
             Las expresiones más esenciales del ruso cotidiano.

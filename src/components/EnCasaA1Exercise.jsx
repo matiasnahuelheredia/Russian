@@ -185,7 +185,7 @@ const EnCasaA1Exercise = () => {
         <p className="text-htb-text-dim">
           Vocabulario para describir tu hogar: tipos de vivienda, habitaciones y
           muebles. Combínalo con{' '}
-          <span className="text-htb-green font-bold">Я живу в...</span> para
+          <span className="text-htb-green font-bold"><SpeakableText text="Я живу в..." /></span> para
           presentarte.
         </p>
       </div>

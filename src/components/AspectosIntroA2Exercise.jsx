@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const AspectosIntroA2Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -244,9 +245,9 @@ const AspectosIntroA2Exercise = () => {
         </h2>
         <p className="text-htb-text-dim">
           El ruso distingue dos aspectos para casi todos los verbos:{' '}
-          <span className="text-blue-400 font-bold">imperfectivo (НСВ)</span> —
+          <span className="text-blue-400 font-bold"><SpeakableText text="imperfectivo (НСВ)" /></span> —
           proceso/hábito — y{' '}
-          <span className="text-htb-green font-bold">perfectivo (СВ)</span> —
+          <span className="text-htb-green font-bold"><SpeakableText text="perfectivo (СВ)" /></span> —
           acción completada con resultado.
         </p>
       </div>
@@ -322,13 +323,13 @@ const AspectosIntroA2Exercise = () => {
                       className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                     >
                       <td className="py-2 px-3 text-blue-400 font-bold">
-                        {v.imp}
+                        <SpeakableText text={v.imp} />
                       </td>
                       <td className="py-2 px-3 text-htb-text-dim italic">
                         {v.espImp}
                       </td>
                       <td className="py-2 px-3 text-htb-green font-bold">
-                        {v.perf}
+                        <SpeakableText text={v.perf} />
                       </td>
                       <td className="py-2 px-3 text-htb-text-dim italic">
                         {v.espPerf}

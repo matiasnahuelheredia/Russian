@@ -259,7 +259,7 @@ export default function AcusativoCaseB2Exercise() {
                     <td className="py-2 px-3 text-htb-text-dim text-xs">
                       {p.uso}
                     </td>
-                    <td className="py-2 px-3 text-white">{p.ej}</td>
+                    <td className="py-2 px-3 text-white"><SpeakableText text={p.ej} /></td>
                     <td className="py-2 px-3 text-htb-text-dim italic text-xs">
                       {p.t}
                     </td>

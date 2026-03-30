@@ -165,7 +165,7 @@ export default function DescripcionPersonasA2Exercise() {
             У него/неё + волосы + прилагательное
           </span>
           . Parecerse:{' '}
-          <span className="text-blue-400 font-bold">похож(а) на + Acus.</span>
+          <span className="text-blue-400 font-bold"><SpeakableText text="похож(а) на + Acus." /></span>
         </p>
       </div>
       <div className="flex gap-2 mb-6 flex-wrap">

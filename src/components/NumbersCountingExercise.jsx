@@ -244,7 +244,7 @@ const NumbersCountingExercise = () => {
         {/* Heading */}
         <div className="mb-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-            Números en Ruso – <em className="text-htb-green">Числа</em>
+            Números en Ruso – <em className="text-htb-green"><SpeakableText text="Числа" /></em>
           </h2>
           <p className="text-sm sm:text-base text-htb-text-dim">
             Aprende a contar en ruso: cardinales, ordinales y cientos.
@@ -291,15 +291,15 @@ const NumbersCountingExercise = () => {
               <ul className="list-disc list-inside text-htb-text space-y-1 text-sm">
                 <li>
                   <strong>1</strong> → Nominativo singular —{' '}
-                  <span className="text-white">один стол</span> (una mesa)
+                  <span className="text-white"><SpeakableText text="один стол" /></span> (una mesa)
                 </li>
                 <li>
                   <strong>2, 3, 4</strong> → Genitivo singular —{' '}
-                  <span className="text-white">два стола</span> (dos mesas)
+                  <span className="text-white"><SpeakableText text="два стола" /></span> (dos mesas)
                 </li>
                 <li>
                   <strong>5 – 20</strong> → Genitivo plural —{' '}
-                  <span className="text-white">пять столов</span> (cinco mesas)
+                  <span className="text-white"><SpeakableText text="пять столов" /></span> (cinco mesas)
                 </li>
               </ul>
             </div>

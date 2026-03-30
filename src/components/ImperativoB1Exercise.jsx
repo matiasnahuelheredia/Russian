@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -170,10 +171,10 @@ export default function ImperativoB1Exercise() {
         </h2>
         <p className="text-htb-text-dim">
           El imperativo se forma con la raíz del presente.{' '}
-          <span className="text-htb-green font-bold">-й</span> tras vocal,{' '}
-          <span className="text-htb-green font-bold">-и/-ь</span> tras
+          <span className="text-htb-green font-bold"><SpeakableText text="-й" /></span> tras vocal,{' '}
+          <span className="text-htb-green font-bold"><SpeakableText text="-и/-ь" /></span> tras
           consonante. Plural: sg +{' '}
-          <span className="text-htb-green font-bold">-те</span>. Negativo: не +
+          <span className="text-htb-green font-bold"><SpeakableText text="-те" /></span>. Negativo: не +
           imperativo imperfectivo.
         </p>
       </div>
@@ -200,8 +201,8 @@ export default function ImperativoB1Exercise() {
               className="bg-htb-card rounded-lg border border-gray-800 p-4"
             >
               <p className="text-htb-green font-bold">{r.tipo}</p>
-              <p className="text-htb-text-dim text-xs mt-1">{r.form}</p>
-              <p className="text-white text-sm mt-1">{r.ej}</p>
+              <p className="text-htb-text-dim text-xs mt-1"><SpeakableText text={r.form} /></p>
+              <p className="text-white text-sm mt-1"><SpeakableText text={r.ej} /></p>
             </div>
           ))}
         </div>

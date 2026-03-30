@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -237,7 +238,7 @@ export default function NegacionAvanzadaC1Exercise() {
                 <span className="text-htb-text-dim text-sm w-40">{r.pos}</span>
                 <span className="text-red-400 font-bold">→ {r.neg}</span>
               </div>
-              <p className="text-htb-text-dim text-xs mt-1">{r.ej}</p>
+              <p className="text-htb-text-dim text-xs mt-1"><SpeakableText text={r.ej} /></p>
             </div>
           ))}
         </div>

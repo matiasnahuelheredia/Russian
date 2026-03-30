@@ -278,9 +278,9 @@ const PedirAyudaA1Exercise = () => {
             </p>
             <p className="text-htb-text-dim text-sm">
               El prefijo "по-" + adverbio de lengua:{' '}
-              <span className="text-white">по-русски</span> (en ruso),{' '}
-              <span className="text-white">по-испански</span> (en español),{' '}
-              <span className="text-white">по-английски</span> (en inglés).
+              <span className="text-white"><SpeakableText text="по-русски" /></span> (en ruso),{' '}
+              <span className="text-white"><SpeakableText text="по-испански" /></span> (en español),{' '}
+              <span className="text-white"><SpeakableText text="по-английски" /></span> (en inglés).
             </p>
           </div>
         </div>

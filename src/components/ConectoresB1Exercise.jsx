@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -212,9 +213,9 @@ export default function ConectoresB1Exercise() {
                   {c.cat}
                 </span>
               </div>
-              <p className="text-htb-green font-bold">{c.w}</p>
+              <p className="text-htb-green font-bold"><SpeakableText text={c.w} /></p>
               <p className="text-blue-300 text-sm">{c.es}</p>
-              <p className="text-htb-text-dim text-xs mt-1 italic">{c.ej}</p>
+              <p className="text-htb-text-dim text-xs mt-1 italic"><SpeakableText text={c.ej} /></p>
             </div>
           ))}
         </div>

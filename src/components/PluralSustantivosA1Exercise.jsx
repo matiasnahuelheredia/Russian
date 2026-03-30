@@ -222,8 +222,8 @@ const PluralSustantivosA1Exercise = () => {
         <p className="text-htb-text-dim">
           El plural en ruso depende de la terminación del sustantivo. La
           desinencia más común es{' '}
-          <span className="text-htb-green font-semibold">-ы/-и</span> y para
-          neutros <span className="text-htb-green font-semibold">-а/-я</span>.
+          <span className="text-htb-green font-semibold"><SpeakableText text="-ы/-и" /></span> y para
+          neutros <span className="text-htb-green font-semibold"><SpeakableText text="-а/-я" /></span>.
         </p>
       </div>
       <div className="flex gap-2 mb-6 flex-wrap">
@@ -336,7 +336,7 @@ const PluralSustantivosA1Exercise = () => {
             </p>
             <p className="text-htb-text-dim text-sm">
               Después de г, к, х, ж, ш, щ, ч — se escribe{' '}
-              <strong className="text-white">-и</strong> (nunca -ы). Ej: книга →
+              <strong className="text-white"><SpeakableText text="-и" /></strong> (nunca -ы). Ej: книга →
               книги (no книгы).
             </p>
           </div>

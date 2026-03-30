@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const reference = [
   {
@@ -174,7 +175,7 @@ export default function FuturoB2Exercise() {
         </h2>
         <p className="text-htb-text-dim">
           Contraste esencial:{' '}
-          <span className="text-htb-green font-bold">буду + Inf.impf.</span>{' '}
+          <span className="text-htb-green font-bold"><SpeakableText text="буду + Inf.impf." /></span>{' '}
           (proceso/hábito) vs{' '}
           <span className="text-blue-400 font-bold">Pf. conjugado </span>{' '}
           (resultado concreto).

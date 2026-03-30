@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const ParticiposC1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -314,7 +315,7 @@ const ParticiposC1Exercise = () => {
                   key={i}
                   className="bg-htb-sidebar rounded-lg p-3 border border-gray-800"
                 >
-                  <p className="text-htb-green font-bold">{e.participio}</p>
+                  <p className="text-htb-green font-bold"><SpeakableText text={e.participio} /></p>
                   <p className="text-white text-sm">{e.espanol}</p>
                   <span className="text-xs bg-htb-card border border-gray-700 text-htb-text-dim px-2 py-0.5 rounded mt-1 inline-block">
                     {e.tipo}
