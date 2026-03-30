@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const AdjetivosA1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -302,13 +303,13 @@ const AdjetivosA1Exercise = () => {
                       className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                     >
                       <td className="py-2 px-4 text-blue-300 font-bold">
-                        {a.masc}
+                        <SpeakableText text={a.masc} />
                       </td>
                       <td className="py-2 px-4 text-pink-300 font-bold">
-                        {a.fem}
+                        <SpeakableText text={a.fem} />
                       </td>
                       <td className="py-2 px-4 text-htb-green font-bold">
-                        {a.neutro}
+                        <SpeakableText text={a.neutro} />
                       </td>
                       <td className="py-2 px-4 text-white">{a.espanol}</td>
                     </tr>

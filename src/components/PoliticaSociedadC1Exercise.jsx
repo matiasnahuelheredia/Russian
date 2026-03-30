@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const vocab = [
   { ru: 'правительство', tl: 'pravitelʼstvo', es: 'gobierno' },
@@ -158,7 +159,7 @@ export default function PoliticaSociedadC1Exercise() {
                 className={`py-2 px-4 border-b border-gray-800 flex items-center gap-3 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
               >
                 <span className="text-htb-green font-bold text-base w-44">
-                  {v.ru}
+                  <SpeakableText text={v.ru} />
                 </span>
                 <span className="text-htb-text-dim text-xs italic w-36">
                   {v.tl}

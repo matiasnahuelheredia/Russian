@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const ColoresA1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -185,7 +186,7 @@ const ColoresA1Exercise = () => {
                   style={{ backgroundColor: c.hex }}
                 />
                 <div className="p-2 text-center">
-                  <p className="text-htb-green font-bold">{c.ruso}</p>
+                  <p className="text-htb-green font-bold"><SpeakableText text={c.ruso} /></p>
                   <p className="text-htb-text-dim text-xs italic">
                     {c.translit}
                   </p>

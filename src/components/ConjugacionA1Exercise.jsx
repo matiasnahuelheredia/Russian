@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const ConjugacionA1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -273,7 +274,7 @@ const ConjugacionA1Exercise = () => {
                           {f.desinencia}
                         </td>
                         <td className="py-2 px-3 text-htb-green font-bold">
-                          {f.forma}
+                          <SpeakableText text={f.forma} />
                         </td>
                       </tr>
                     ))}
@@ -314,14 +315,14 @@ const ConjugacionA1Exercise = () => {
                       className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                     >
                       <td className="py-2 px-4 text-htb-green font-bold">
-                        {v.infinitivo}
+                        <SpeakableText text={v.infinitivo} />
                       </td>
                       <td className="py-2 px-4 text-htb-text-dim italic text-sm">
                         {v.translit}
                       </td>
                       <td className="py-2 px-4 text-white">{v.espanol}</td>
                       <td className="py-2 px-4 text-htb-green font-bold">
-                        {v.yo}
+                        <SpeakableText text={v.yo} />
                       </td>
                     </tr>
                   ))}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -191,7 +192,7 @@ export default function GenitivoCaseB2Exercise() {
                   <span className="text-htb-text-dim text-xs w-28">
                     {p.tipo}
                   </span>
-                  <span className="text-white font-bold">{p.nom}</span>
+                  <span className="text-white font-bold"><SpeakableText text={p.nom} /></span>
                   <span className="text-htb-text-dim">→</span>
                   <span className="text-htb-green font-bold">{p.genPl}</span>
                 </div>

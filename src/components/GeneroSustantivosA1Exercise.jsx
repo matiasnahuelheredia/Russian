@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const GeneroSustantivosA1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -221,7 +222,7 @@ const GeneroSustantivosA1Exercise = () => {
                       <span
                         className={`font-bold text-lg ${headerColor[r.color]}`}
                       >
-                        {e.ruso}
+                        <SpeakableText text={e.ruso} />
                       </span>
                       <span className="text-htb-text-dim text-sm italic">
                         {e.translit}

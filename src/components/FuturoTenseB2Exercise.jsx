@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -255,7 +256,7 @@ export default function FuturoTenseB2Exercise() {
                   >
                     {t.asp}
                   </p>
-                  <p className="text-htb-text-dim text-xs mb-1">{t.forma}</p>
+                  <p className="text-htb-text-dim text-xs mb-1"><SpeakableText text={t.forma} /></p>
                   <p className="text-white text-sm">{t.ej}</p>
                   <p className="text-htb-text-dim text-xs italic">{t.uso}</p>
                 </div>

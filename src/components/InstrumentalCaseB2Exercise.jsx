@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -245,7 +246,7 @@ export default function InstrumentalCaseB2Exercise() {
                   <span className="text-htb-text-dim text-xs w-24">
                     {d.tipo}
                   </span>
-                  <span className="text-white font-bold">{d.nom}</span>
+                  <span className="text-white font-bold"><SpeakableText text={d.nom} /></span>
                   <span className="text-htb-text-dim">→</span>
                   <span className="text-htb-green font-bold">{d.ins}</span>
                 </div>

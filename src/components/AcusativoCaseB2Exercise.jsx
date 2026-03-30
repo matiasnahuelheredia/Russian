@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -227,7 +228,7 @@ export default function AcusativoCaseB2Exercise() {
                     <td className="py-2 px-3 text-htb-text-dim text-xs">
                       {r.tipo}
                     </td>
-                    <td className="py-2 px-3 text-white font-bold">{r.nom}</td>
+                    <td className="py-2 px-3 text-white font-bold"><SpeakableText text={r.nom} /></td>
                     <td className="py-2 px-3 text-htb-green font-bold">
                       {r.ac}
                     </td>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -214,7 +215,7 @@ export default function ViajesTurismoB2Exercise() {
               className="bg-htb-card rounded-lg border border-gray-800 p-3 flex items-start gap-3"
             >
               <div className="flex-1">
-                <p className="text-htb-green font-bold">{v.ru}</p>
+                <p className="text-htb-green font-bold"><SpeakableText text={v.ru} /></p>
                 <p className="text-htb-text-dim text-xs italic">{v.tl}</p>
               </div>
               <div className="text-right">

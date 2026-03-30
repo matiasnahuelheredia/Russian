@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -216,7 +217,7 @@ export default function RelativosB1Exercise() {
                       {d.n}
                     </td>
                     <td className="py-2 px-3 text-pink-400 font-bold">
-                      {d.pl}
+                      <SpeakableText text={d.pl} />
                     </td>
                   </tr>
                 ))}

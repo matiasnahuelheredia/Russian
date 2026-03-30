@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const NumbersCountingExercise = () => {
   const [activeTab, setActiveTab] = useState('reference');
@@ -223,7 +224,7 @@ const NumbersCountingExercise = () => {
                   {row.num}
                 </td>
                 <td className="px-4 py-2 text-white font-medium text-base">
-                  {row.ru}
+                  <SpeakableText text={row.ru} />
                 </td>
                 <td className="px-4 py-2 text-htb-text-dim italic">
                   {row.translit}

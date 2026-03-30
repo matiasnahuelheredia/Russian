@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const PasadoSimpleRusoExercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -241,7 +242,7 @@ const PasadoSimpleRusoExercise = () => {
                       className={`border-b border-gray-800 hover:bg-htb-sidebar/50 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                     >
                       <td className="py-3 px-4 text-white font-medium">
-                        {row.forma}
+                        <SpeakableText text={row.forma} />
                       </td>
                       <td className="py-3 px-4 text-htb-green font-bold text-lg">
                         {row.terminacion}
@@ -290,16 +291,16 @@ const PasadoSimpleRusoExercise = () => {
                       className={`border-b border-gray-800 hover:bg-htb-sidebar/50 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                     >
                       <td className="py-3 px-4 text-htb-text-dim text-sm">
-                        {v.infinitivo}
+                        <SpeakableText text={v.infinitivo} />
                       </td>
                       <td className="py-3 px-4 text-htb-green font-medium">
-                        {v.masc}
+                        <SpeakableText text={v.masc} />
                       </td>
                       <td className="py-3 px-4 text-htb-green font-medium">
-                        {v.fem}
+                        <SpeakableText text={v.fem} />
                       </td>
                       <td className="py-3 px-4 text-htb-green font-medium">
-                        {v.pl}
+                        <SpeakableText text={v.pl} />
                       </td>
                     </tr>
                   ))}

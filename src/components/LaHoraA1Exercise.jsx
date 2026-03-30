@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const LaHoraA1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -253,7 +254,7 @@ const LaHoraA1Exercise = () => {
                   >
                     <td className="py-3 px-4 text-white">{r.numero}</td>
                     <td className="py-3 px-4 text-htb-green font-bold text-xl">
-                      {r.forma}
+                      <SpeakableText text={r.forma} />
                     </td>
                     <td className="py-3 px-4 text-htb-text-dim">{r.ejemplo}</td>
                   </tr>
@@ -324,7 +325,7 @@ const LaHoraA1Exercise = () => {
                     className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                   >
                     <td className="py-2 px-4 text-htb-green font-bold">
-                      {p.ruso}
+                      <SpeakableText text={p.ruso} />
                     </td>
                     <td className="py-2 px-4 text-htb-text-dim italic text-sm">
                       {p.translit}

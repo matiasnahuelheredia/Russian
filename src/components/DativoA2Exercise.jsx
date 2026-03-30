@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const DativoA2Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -298,7 +299,7 @@ const DativoA2Exercise = () => {
                       key={i}
                       className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                     >
-                      <td className="py-2 px-3 text-htb-text-dim">{p.nom}</td>
+                      <td className="py-2 px-3 text-htb-text-dim"><SpeakableText text={p.nom} /></td>
                       <td className="py-2 px-3 text-htb-green font-bold">
                         {p.dat}
                       </td>
@@ -327,7 +328,7 @@ const DativoA2Exercise = () => {
                         {d.tipo}
                       </td>
                       <td className="py-2 px-3 text-htb-green font-bold">
-                        {d.nom}
+                        <SpeakableText text={d.nom} />
                       </td>
                       <td className="py-2 px-3 text-white">→ {d.dat}</td>
                     </tr>
@@ -353,7 +354,7 @@ const DativoA2Exercise = () => {
                       className={`border-b border-gray-800 ${j % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                     >
                       <td className="py-2 px-4 text-htb-green font-bold">
-                        {e.ruso}
+                        <SpeakableText text={e.ruso} />
                       </td>
                       <td className="py-2 px-4 text-htb-text-dim italic text-sm">
                         {e.translit}

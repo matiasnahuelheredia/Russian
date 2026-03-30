@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const PluralSustantivosA1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -276,10 +277,10 @@ const PluralSustantivosA1Exercise = () => {
                       {r.tipo}
                     </td>
                     <td className={`py-2 px-4 font-bold ${colorMap[r.color]}`}>
-                      {r.singular}
+                      <SpeakableText text={r.singular} />
                     </td>
                     <td className="py-2 px-4 text-white font-bold">
-                      {r.plural}
+                      <SpeakableText text={r.plural} />
                     </td>
                     <td className="py-2 px-4 text-htb-green text-sm font-mono">
                       {r.regla}
@@ -316,10 +317,10 @@ const PluralSustantivosA1Exercise = () => {
                     className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                   >
                     <td className="py-2 px-4 text-htb-green font-bold">
-                      {e.singular}
+                      <SpeakableText text={e.singular} />
                     </td>
                     <td className="py-2 px-4 text-white font-bold">
-                      {e.plural}
+                      <SpeakableText text={e.plural} />
                     </td>
                     <td className="py-2 px-4 text-htb-text-dim text-sm italic">
                       {e.espanol}

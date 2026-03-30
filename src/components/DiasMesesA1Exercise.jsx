@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const DiasMesesA1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -203,7 +204,7 @@ const DiasMesesA1Exercise = () => {
                       className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                     >
                       <td className="py-2 px-3 text-htb-green font-bold">
-                        {d.ruso}
+                        <SpeakableText text={d.ruso} />
                       </td>
                       <td className="py-2 px-3 text-htb-text-dim italic text-sm">
                         {d.translit}
@@ -228,7 +229,7 @@ const DiasMesesA1Exercise = () => {
                       className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                     >
                       <td className="py-2 px-3 text-htb-green font-bold">
-                        {m.ruso}
+                        <SpeakableText text={m.ruso} />
                       </td>
                       <td className="py-2 px-3 text-htb-text-dim italic text-xs">
                         {m.translit}
@@ -254,7 +255,7 @@ const DiasMesesA1Exercise = () => {
                   key={i}
                   className="bg-htb-sidebar rounded-lg p-3 text-center border border-gray-700"
                 >
-                  <p className={`text-2xl font-bold ${e.color}`}>{e.ruso}</p>
+                  <p className={`text-2xl font-bold ${e.color}`}><SpeakableText text={e.ruso} /></p>
                   <p className="text-htb-text-dim italic text-xs">
                     {e.translit}
                   </p>

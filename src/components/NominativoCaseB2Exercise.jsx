@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -212,7 +213,7 @@ export default function NominativoCaseB2Exercise() {
                   </span>
                   <span className="text-htb-green font-bold">{p.sg}</span>
                   <span className="text-htb-text-dim">→</span>
-                  <span className="text-white font-bold">{p.pl}</span>
+                  <span className="text-white font-bold"><SpeakableText text={p.pl} /></span>
                 </div>
               ))}
             </div>

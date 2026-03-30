@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const PartesDelCuerpoA1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -224,7 +225,7 @@ const PartesDelCuerpoA1Exercise = () => {
                   key={i}
                   className={`flex items-center justify-between py-2 px-4 border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                 >
-                  <span className="text-htb-green font-bold">{p.ruso}</span>
+                  <span className="text-htb-green font-bold"><SpeakableText text={p.ruso} /></span>
                   <span className="text-htb-text-dim italic text-sm">
                     {p.translit}
                   </span>
@@ -247,7 +248,7 @@ const PartesDelCuerpoA1Exercise = () => {
                     className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                   >
                     <td className="py-3 px-4 text-htb-green font-bold">
-                      {f.ruso}
+                      <SpeakableText text={f.ruso} />
                     </td>
                     <td className="py-3 px-4 text-htb-text-dim italic text-sm">
                       {f.translit}

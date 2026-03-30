@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const CasosBasicosA1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -252,7 +253,7 @@ const CasosBasicosA1Exercise = () => {
                         className="border-b border-gray-800 last:border-0"
                       >
                         <td className={`py-2 px-3 font-bold ${c.color}`}>
-                          {e.ruso}
+                          <SpeakableText text={e.ruso} />
                         </td>
                         <td className="py-2 px-3 text-htb-text-dim italic text-sm">
                           {e.translit}
@@ -295,7 +296,7 @@ const CasosBasicosA1Exercise = () => {
                   >
                     <td className="py-2 px-3 text-htb-text-dim">{r.tipo}</td>
                     <td className="py-2 px-3 text-htb-green font-bold">
-                      {r.nom}
+                      <SpeakableText text={r.nom} />
                     </td>
                     <td className="py-2 px-3 text-blue-400 font-bold">
                       {r.acus}

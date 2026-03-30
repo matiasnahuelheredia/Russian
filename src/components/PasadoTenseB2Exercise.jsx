@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -235,10 +236,10 @@ export default function PasadoTenseB2Exercise() {
                     className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                   >
                     <td className="py-1.5 px-3 text-white font-bold">{f.v}</td>
-                    <td className="py-1.5 px-3 text-blue-400">{f.masc}</td>
-                    <td className="py-1.5 px-3 text-pink-400">{f.fem}</td>
+                    <td className="py-1.5 px-3 text-blue-400"><SpeakableText text={f.masc} /></td>
+                    <td className="py-1.5 px-3 text-pink-400"><SpeakableText text={f.fem} /></td>
                     <td className="py-1.5 px-3 text-yellow-400">{f.neu}</td>
-                    <td className="py-1.5 px-3 text-htb-green">{f.pl}</td>
+                    <td className="py-1.5 px-3 text-htb-green"><SpeakableText text={f.pl} /></td>
                   </tr>
                 ))}
               </tbody>

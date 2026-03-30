@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const phrases = [
   {
@@ -277,7 +278,7 @@ export default function PresentacionC1Exercise() {
                     <span className="text-htb-green mt-0.5">▸</span>
                     <div>
                       <p className="text-white font-medium text-sm">
-                        {item.ru}
+                        <SpeakableText text={item.ru} />
                       </p>
                       <p className="text-htb-text-dim text-xs italic">
                         {item.tl}

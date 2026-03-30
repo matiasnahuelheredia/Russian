@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const NumerosOrdinalesA1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -261,10 +262,10 @@ const NumerosOrdinalesA1Exercise = () => {
                         {o.num}
                       </td>
                       <td className="py-2 px-3 text-htb-green font-bold">
-                        {o.masc}
+                        <SpeakableText text={o.masc} />
                       </td>
-                      <td className="py-2 px-3 text-pink-400">{o.fem}</td>
-                      <td className="py-2 px-3 text-blue-400">{o.neutro}</td>
+                      <td className="py-2 px-3 text-pink-400"><SpeakableText text={o.fem} /></td>
+                      <td className="py-2 px-3 text-blue-400"><SpeakableText text={o.neutro} /></td>
                       <td className="py-2 px-3 text-white">{o.espanol}</td>
                     </tr>
                   ))}
@@ -286,7 +287,7 @@ const NumerosOrdinalesA1Exercise = () => {
                     className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                   >
                     <td className="py-2 px-4 text-htb-green font-bold">
-                      {e.ruso}
+                      <SpeakableText text={e.ruso} />
                     </td>
                     <td className="py-2 px-4 text-htb-text-dim italic text-sm">
                       {e.translit}

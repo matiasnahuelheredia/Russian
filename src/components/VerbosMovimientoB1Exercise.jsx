@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const VerbosMovimientoB1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -316,7 +317,7 @@ const VerbosMovimientoB1Exercise = () => {
                           {row.persona}
                         </td>
                         <td className="py-2 px-4 text-htb-green font-bold">
-                          {row.forma}
+                          <SpeakableText text={row.forma} />
                         </td>
                       </tr>
                     ))}

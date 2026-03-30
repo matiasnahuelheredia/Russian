@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const EnCasaA1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -221,7 +222,7 @@ const EnCasaA1Exercise = () => {
                       className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                     >
                       <td className="py-2 px-3 text-htb-green font-bold">
-                        {t.ruso}
+                        <SpeakableText text={t.ruso} />
                       </td>
                       <td className="py-2 px-3 text-htb-text-dim italic text-xs">
                         {t.translit}
@@ -246,7 +247,7 @@ const EnCasaA1Exercise = () => {
                       className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                     >
                       <td className="py-2 px-3 text-htb-green font-bold">
-                        {h.ruso}
+                        <SpeakableText text={h.ruso} />
                       </td>
                       <td className="py-2 px-3 text-htb-text-dim italic text-xs">
                         {h.translit}
@@ -272,7 +273,7 @@ const EnCasaA1Exercise = () => {
                   key={i}
                   className={`py-2 px-3 border-b border-r border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                 >
-                  <p className="text-htb-green font-bold text-sm">{m.ruso}</p>
+                  <p className="text-htb-green font-bold text-sm"><SpeakableText text={m.ruso} /></p>
                   <p className="text-htb-text-dim italic text-xs">
                     {m.translit}
                   </p>
@@ -293,7 +294,7 @@ const EnCasaA1Exercise = () => {
                     className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                   >
                     <td className="py-2 px-4 text-htb-green font-bold">
-                      {f.ruso}
+                      <SpeakableText text={f.ruso} />
                     </td>
                     <td className="py-2 px-4 text-htb-text-dim italic text-xs">
                       {f.translit}

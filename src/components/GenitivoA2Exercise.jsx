@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const GenitivoA2Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -278,7 +279,7 @@ const GenitivoA2Exercise = () => {
                   className={`flex items-center justify-between py-2 px-4 border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                 >
                   <span className="text-htb-text-dim text-sm">{d.tipo}</span>
-                  <span className="text-htb-green font-bold">{d.nom}</span>
+                  <span className="text-htb-green font-bold"><SpeakableText text={d.nom} /></span>
                   <span className="text-white">→ {d.gen}</span>
                 </div>
               ))}

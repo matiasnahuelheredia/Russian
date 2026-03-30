@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const ComprarAlgoExercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -224,7 +225,7 @@ const ComprarAlgoExercise = () => {
                     className={`border-b border-gray-800 hover:bg-htb-sidebar/50 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                   >
                     <td className="py-3 px-4 text-htb-green font-medium">
-                      {p.ruso}
+                      <SpeakableText text={p.ruso} />
                     </td>
                     <td className="py-3 px-4 text-htb-text-dim italic text-sm">
                       {p.translit}

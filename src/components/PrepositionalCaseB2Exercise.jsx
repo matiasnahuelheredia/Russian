@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -233,7 +234,7 @@ export default function PrepositionalCaseB2Exercise() {
                   <span className="text-htb-text-dim text-xs w-24">
                     {d.tipo}
                   </span>
-                  <span className="text-white font-bold">{d.nom}</span>
+                  <span className="text-white font-bold"><SpeakableText text={d.nom} /></span>
                   <span className="text-htb-text-dim mx-1">→</span>
                   <span className="text-htb-green font-bold">{d.prep}</span>
                 </div>
@@ -250,7 +251,7 @@ export default function PrepositionalCaseB2Exercise() {
                   key={i}
                   className={`py-2 px-4 border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                 >
-                  <span className="text-white font-bold mr-2">{e.nom}</span>
+                  <span className="text-white font-bold mr-2"><SpeakableText text={e.nom} /></span>
                   <span className="text-htb-text-dim">→</span>
                   <span className="text-htb-green font-bold ml-2">
                     {e.prep}
