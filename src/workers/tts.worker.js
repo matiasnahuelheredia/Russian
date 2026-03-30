@@ -90,9 +90,15 @@ self.onmessage = async (event) => {
               total: progressInfo.total ?? 0,
             });
           } else if (progressInfo.status === 'initiate') {
-            self.postMessage({ type: 'initiate', file: progressInfo.file || '' });
+            self.postMessage({
+              type: 'initiate',
+              file: progressInfo.file || '',
+            });
           } else if (progressInfo.status === 'done') {
-            self.postMessage({ type: 'file_done', file: progressInfo.file || '' });
+            self.postMessage({
+              type: 'file_done',
+              file: progressInfo.file || '',
+            });
           }
         },
       });
@@ -101,7 +107,6 @@ self.onmessage = async (event) => {
     } catch (err) {
       self.postMessage({ type: 'error', message: err.message });
     }
-
   } else if (type === 'synthesize') {
     if (!isReady || !synthesizer) {
       self.postMessage({ type: 'error', message: 'Modelo no cargado aún', id });
@@ -122,7 +127,10 @@ self.onmessage = async (event) => {
     if (cached) {
       const audio = new Float32Array(cached.audioBuffer);
       // Warm L1 so next play is synchronous
-      memCache.set(key, { audio: audio.slice(0), sampling_rate: cached.sampling_rate });
+      memCache.set(key, {
+        audio: audio.slice(0),
+        sampling_rate: cached.sampling_rate,
+      });
       sendAudio(audio, cached.sampling_rate, id, /* isClone */ false);
       return;
     }
@@ -139,10 +147,9 @@ self.onmessage = async (event) => {
       idbPut(key, { audioBuffer: audio.slice(0).buffer, sampling_rate });
 
       // Transfer the original buffer to the main thread (zero-copy)
-      self.postMessage(
-        { type: 'audio', audio, sampling_rate, id },
-        [audio.buffer]
-      );
+      self.postMessage({ type: 'audio', audio, sampling_rate, id }, [
+        audio.buffer,
+      ]);
     } catch (err) {
       self.postMessage({ type: 'error', message: err.message, id });
     }
