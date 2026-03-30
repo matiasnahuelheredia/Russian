@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const quiz = [
   {
@@ -355,7 +356,7 @@ export default function PresenteTenseB2Exercise() {
                       </p>
                       {ans[q.id] !== q.c && (
                         <p className="text-htb-green text-sm">
-                          Correcta: {q.c}
+                          Correcta: <SpeakableText text={q.c} />
                         </p>
                       )}
                     </div>

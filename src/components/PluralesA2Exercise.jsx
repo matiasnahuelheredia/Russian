@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const reference = [
   {
@@ -187,7 +188,7 @@ export default function PluralesA2Exercise() {
           >
             {ff ? (
               <p className="text-3xl text-htb-green font-bold text-center">
-                {vocab[fi].ru}
+                <SpeakableText text={vocab[fi].ru} />
               </p>
             ) : (
               <p className="text-2xl text-white text-center">{vocab[fi].es}</p>

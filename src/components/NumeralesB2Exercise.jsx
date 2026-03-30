@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const reference = [
   {
@@ -192,7 +193,7 @@ export default function NumeralesB2Exercise() {
                 {sec.items.map((item, j) => (
                   <li key={j} className="flex gap-2 text-sm">
                     <span className="text-htb-green mt-0.5">▸</span>
-                    <span className="text-white">{item}</span>
+                    <span className="text-white"><SpeakableText text={item} /></span>
                   </li>
                 ))}
               </ul>
@@ -233,7 +234,7 @@ export default function NumeralesB2Exercise() {
                       </p>
                       {ans[q.id] !== q.c && (
                         <p className="text-htb-green text-sm">
-                          Correcta: {q.c}
+                          Correcta: <SpeakableText text={q.c} />
                         </p>
                       )}
                     </div>

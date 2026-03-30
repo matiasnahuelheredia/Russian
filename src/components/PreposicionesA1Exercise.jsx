@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpeakableText from './SpeakableText';
 
 const PreposicionesA1Exercise = () => {
   const [activeTab, setActiveTab] = useState('referencia');
@@ -291,14 +292,14 @@ const PreposicionesA1Exercise = () => {
                       className={`border-b border-gray-800 ${i % 2 === 0 ? '' : 'bg-htb-sidebar/20'}`}
                     >
                       <td className="py-2 px-3 text-htb-green font-bold text-xl">
-                        {p.prep}
+                        <SpeakableText text={p.prep} />
                       </td>
                       <td className="py-2 px-3 text-htb-text-dim text-xs">
                         {p.caso}
                       </td>
                       <td className="py-2 px-3 text-white text-sm">{p.uso}</td>
                       <td className="py-2 px-3 text-htb-green text-sm">
-                        {p.ejemplo}
+                        <SpeakableText text={p.ejemplo} />
                       </td>
                       <td className="py-2 px-3 text-htb-text-dim text-sm italic">
                         {p.espanol}
