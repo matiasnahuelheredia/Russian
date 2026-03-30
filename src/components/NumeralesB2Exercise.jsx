@@ -193,7 +193,9 @@ export default function NumeralesB2Exercise() {
                 {sec.items.map((item, j) => (
                   <li key={j} className="flex gap-2 text-sm">
                     <span className="text-htb-green mt-0.5">▸</span>
-                    <span className="text-white"><SpeakableText text={item} /></span>
+                    <span className="text-white">
+                      <SpeakableText text={item} />
+                    </span>
                   </li>
                 ))}
               </ul>

@@ -72,6 +72,24 @@ export function TTSProvider({ children }) {
         case 'loaded':
           setStatus('ready');
           setOverallProgress(100);
+          // Kick off background pre-caching of all registered texts
+          if (
+            !precacheStartedRef.current &&
+            precacheQueueRef.current.size > 0
+          ) {
+            precacheStartedRef.current = true;
+            const texts = [...precacheQueueRef.current];
+            setPrecacheProgress({ done: 0, total: texts.length });
+            workerRef.current.postMessage({ type: 'precache', texts });
+          }
+          break;
+
+        case 'precache_progress':
+          setPrecacheProgress({ done: msg.done, total: msg.total });
+          break;
+
+        case 'precache_done':
+          setPrecacheProgress((p) => ({ ...p, done: p.total }));
           break;
 
         // Use the ref so we always invoke the latest _playAudio
@@ -195,6 +213,31 @@ export function TTSProvider({ children }) {
      Public API
   ─────────────────────────────────────────────────────────── */
 
+  /** Register a Russian text for background pre-caching.
+   *  Call this on component mount (e.g. from SpeakableText).
+   *  If the model is already ready, triggers precache immediately.
+   */
+  const registerForPrecache = useCallback(
+    (text) => {
+      if (!text || !text.trim()) return;
+      precacheQueueRef.current.add(text.trim());
+      // If model already loaded and precache hasn't started yet — start now
+      if (
+        !precacheStartedRef.current &&
+        workerRef.current &&
+        (status === 'ready' ||
+          status === 'synthesizing' ||
+          status === 'speaking')
+      ) {
+        precacheStartedRef.current = true;
+        const texts = [...precacheQueueRef.current];
+        setPrecacheProgress({ done: 0, total: texts.length });
+        workerRef.current.postMessage({ type: 'precache', texts });
+      }
+    },
+    [status]
+  );
+
   /** Speak `text` in Russian. Returns a Promise that resolves when audio ends.
    *  MUST be called from a user-gesture handler (click, etc.)
    */
@@ -250,11 +293,13 @@ export function TTSProvider({ children }) {
   const value = {
     speak,
     stop,
+    registerForPrecache,
     // 'idle' | 'loading' | 'ready' | 'synthesizing' | 'speaking' | 'error'
     status,
     overallProgress,
     fileProgress,
     currentText,
+    precacheProgress,
     isReady:
       status === 'ready' || status === 'synthesizing' || status === 'speaking',
     isLoading: status === 'loading' || status === 'idle',

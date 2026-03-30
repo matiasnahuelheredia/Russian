@@ -2,38 +2,55 @@ import React, { useEffect, useState } from 'react';
 import { useTTS } from '../context/TTSContext';
 
 /**
- * TTSLoadingBar — floating indicator shown while the AI TTS model
- * is downloading and initialising. Fades away once ready.
+ * TTSLoadingBar — floating indicator:
+ *   1. While model downloads: shows download progress
+ *   2. After model ready: shows background audio pre-caching progress
+ *   3. When everything cached: fades out and unmounts
  */
 export default function TTSLoadingBar() {
-  const { status, overallProgress, fileProgress } = useTTS();
+  const { status, overallProgress, fileProgress, precacheProgress } = useTTS();
   const [visible, setVisible] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
+  const [phase, setPhase] = useState('loading'); // 'loading' | 'precaching' | 'done' | 'error'
 
-  // When fully loaded, start fade-out then unmount
   useEffect(() => {
-    if (status === 'ready') {
-      setFadeOut(true);
-      const t = setTimeout(() => setVisible(false), 1800);
-      return () => clearTimeout(t);
-    }
     if (status === 'error') {
+      setPhase('error');
       const t = setTimeout(() => setVisible(false), 4000);
       return () => clearTimeout(t);
     }
-  }, [status]);
+    if (status === 'ready') {
+      // Move to precaching phase once model is loaded
+      if (phase === 'loading') setPhase('precaching');
+    }
+  }, [status, phase]);
+
+  // Watch precache progress — when done, fade out
+  useEffect(() => {
+    const { done, total } = precacheProgress;
+    if (total > 0 && done >= total) {
+      setPhase('done');
+      setFadeOut(true);
+      const t = setTimeout(() => setVisible(false), 2000);
+      return () => clearTimeout(t);
+    }
+  }, [precacheProgress]);
 
   if (!visible) return null;
 
-  const isError = status === 'error';
-  const isReady = status === 'ready';
+  const isError = phase === 'error';
+  const isPrecaching = phase === 'precaching';
+  const isDone = phase === 'done';
 
   // Current active files downloading
   const activeFiles = Object.entries(fileProgress)
     .filter(([, pct]) => pct < 100)
-    .map(([file]) => file.split('/').pop()); // basename only
-
+    .map(([file]) => file.split('/').pop());
   const mostRecentFile = activeFiles[activeFiles.length - 1] ?? null;
+
+  // Precache progress bar values
+  const { done: pcDone, total: pcTotal } = precacheProgress;
+  const pcPct = pcTotal > 0 ? Math.round((pcDone / pcTotal) * 100) : 0;
 
   return (
     <div
@@ -51,14 +68,14 @@ export default function TTSLoadingBar() {
         <span
           className={[
             'text-base',
-            isReady
+            isDone
               ? 'text-htb-green'
               : isError
                 ? 'text-red-400'
                 : 'animate-pulse text-htb-green',
           ].join(' ')}
         >
-          {isError ? '⚠️' : isReady ? '✅' : '🎙️'}
+          {isError ? '⚠️' : isDone ? '✅' : '🎙️'}
         </span>
         <div className="flex-1">
           <p
@@ -66,25 +83,21 @@ export default function TTSLoadingBar() {
           >
             {isError
               ? 'Error al cargar la voz IA'
-              : isReady
-                ? '¡Voz IA lista!'
-                : 'Cargando voz IA en ruso…'}
+              : isDone
+                ? '¡Audio precargado!'
+                : isPrecaching
+                  ? 'Precargando audios en fondo…'
+                  : 'Cargando voz IA en ruso…'}
           </p>
-          {!isReady && !isError && (
-            <p className="text-htb-text-dim text-xs mt-0.5">
-              Se descargará una sola vez y quedará en caché
-            </p>
-          )}
-          {isError && (
-            <p className="text-red-300 text-xs mt-0.5">
-              Comprueba tu conexión e intenta recargar
-            </p>
-          )}
-          {isReady && (
-            <p className="text-htb-text-dim text-xs mt-0.5">
-              Haz clic en cualquier texto ruso para escucharlo
-            </p>
-          )}
+          <p className="text-htb-text-dim text-xs mt-0.5">
+            {isError
+              ? 'Comprueba tu conexión e intenta recargar'
+              : isDone
+                ? 'Todos los textos están listos para reproducir'
+                : isPrecaching
+                  ? `${pcDone} / ${pcTotal} textos cacheados — clic para escuchar ya`
+                  : 'Se descargará una sola vez y quedará en caché'}
+          </p>
         </div>
       </div>
 
@@ -93,42 +106,45 @@ export default function TTSLoadingBar() {
         <div className="px-4 py-2">
           <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
             <div
-              className={[
-                'h-2 rounded-full transition-all duration-500',
-                isReady ? 'bg-htb-green' : 'bg-htb-green/70',
-              ].join(' ')}
-              style={{ width: `${overallProgress}%` }}
+              className="h-2 rounded-full transition-all duration-300 bg-htb-green/80"
+              style={{
+                width: `${isPrecaching || isDone ? pcPct : overallProgress}%`,
+              }}
             />
           </div>
           <div className="flex justify-between mt-1 text-xs text-htb-text-dim">
-            <span className="truncate max-w-[180px]">
-              {isReady
-                ? 'Modelo MMS-TTS Russian'
+            <span className="truncate max-w-[200px]">
+              {isPrecaching || isDone
+                ? `🔊 Modelo MMS-TTS Russian`
                 : mostRecentFile
                   ? `↓ ${mostRecentFile}`
                   : 'Iniciando descarga…'}
             </span>
-            <span className="font-mono tabular-nums">{overallProgress}%</span>
+            <span className="font-mono tabular-nums">
+              {isPrecaching || isDone ? `${pcPct}%` : `${overallProgress}%`}
+            </span>
           </div>
         </div>
       )}
 
-      {/* Individual file rows (only while loading) */}
-      {!isReady && !isError && Object.keys(fileProgress).length > 0 && (
-        <div className="px-4 pb-3 space-y-1">
-          {Object.entries(fileProgress).map(([file, pct]) => (
-            <div key={file} className="flex items-center gap-2 text-xs">
-              <span className="w-2 h-2 rounded-full flex-shrink-0 bg-htb-green/50" />
-              <span className="text-htb-text-dim truncate flex-1">
-                {file.split('/').pop()}
-              </span>
-              <span className="font-mono tabular-nums text-htb-text-dim">
-                {Math.round(pct)}%
-              </span>
-            </div>
-          ))}
-        </div>
-      )}
+      {/* Individual file rows (only while loading model) */}
+      {phase === 'loading' &&
+        !isError &&
+        Object.keys(fileProgress).length > 0 && (
+          <div className="px-4 pb-3 space-y-1">
+            {Object.entries(fileProgress).map(([file, pct]) => (
+              <div key={file} className="flex items-center gap-2 text-xs">
+                <span className="w-2 h-2 rounded-full flex-shrink-0 bg-htb-green/50" />
+                <span className="text-htb-text-dim truncate flex-1">
+                  {file.split('/').pop()}
+                </span>
+                <span className="font-mono tabular-nums text-htb-text-dim">
+                  {Math.round(pct)}%
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
     </div>
   );
 }

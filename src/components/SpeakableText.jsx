@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTTS } from '../context/TTSContext';
 
 /**
@@ -17,7 +17,13 @@ export default function SpeakableText({
   showIcon = true,
   children,
 }) {
-  const { speak, status, currentText, isReady } = useTTS();
+  const { speak, status, currentText, isReady, registerForPrecache } = useTTS();
+
+  // Register this text for background pre-caching as soon as the component mounts
+  useEffect(() => {
+    if (text && text.trim()) registerForPrecache(text.trim());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [text]);
 
   // 'synthesizing' = sent to worker, waiting for audio
   // 'speaking'     = audio is playing

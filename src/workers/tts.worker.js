@@ -107,6 +107,51 @@ self.onmessage = async (event) => {
     } catch (err) {
       self.postMessage({ type: 'error', message: err.message });
     }
+  } else if (type === 'precache') {
+    // Silently synthesize an array of texts into cache — no audio sent back.
+    // Process one at a time with a small yield so synthesize messages aren't blocked.
+    const texts = event.data.texts || [];
+    let done = 0;
+    for (const t of texts) {
+      if (!isReady || !synthesizer) break;
+      if (!t || !t.trim()) {
+        done++;
+        continue;
+      }
+      const key = cacheKey(t);
+      // Already warm in L1 memory cache — skip synthesis
+      if (!memCache.has(key)) {
+        const cached = await idbGet(key);
+        if (cached) {
+          // Warm L1 so next click is synchronous
+          memCache.set(key, {
+            audio: new Float32Array(cached.audioBuffer),
+            sampling_rate: cached.sampling_rate,
+          });
+        } else {
+          try {
+            const output = await synthesizer(t, { speaker_id: 0 });
+            const { audio, sampling_rate } = output;
+            memCache.set(key, { audio: audio.slice(0), sampling_rate });
+            await idbPut(key, {
+              audioBuffer: audio.slice(0).buffer,
+              sampling_rate,
+            });
+          } catch (_) {
+            // Non-fatal — skip this text
+          }
+        }
+      }
+      done++;
+      self.postMessage({
+        type: 'precache_progress',
+        done,
+        total: texts.length,
+      });
+      // Yield to allow incoming synthesize messages to be processed first
+      await new Promise((r) => setTimeout(r, 30));
+    }
+    self.postMessage({ type: 'precache_done', total: texts.length });
   } else if (type === 'synthesize') {
     if (!isReady || !synthesizer) {
       self.postMessage({ type: 'error', message: 'Modelo no cargado aún', id });
