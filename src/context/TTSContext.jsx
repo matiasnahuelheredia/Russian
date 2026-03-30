@@ -30,6 +30,7 @@ export function TTSProvider({ children }) {
   const [overallProgress, setOverallProgress] = useState(0);
   const [fileProgress, setFileProgress] = useState({});
   const [currentText, setCurrentText] = useState(null);
+  const [precacheProgress, setPrecacheProgress] = useState({ done: 0, total: 0 });
 
   /* ──────────────────────────────────────────────────────────
      Boot the worker and start loading on mount
